@@ -1,10 +1,10 @@
-package org.example.board;
+package board.pjt.back;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BoardApplicationTests {
+class BackApplicationTests {
 
     @Test
     void contextLoads() {
