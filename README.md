@@ -3,20 +3,23 @@
 1. project clone
 
     ```
-    $ git clone https://github.com/cm-rnd/ims-front-react.git
-    $ cd ims-front-react
+    $ git clone https://github.com/6810779s/board-fullstack-pjt.git
+    $ cd front
+    or
+    $ cd back
     ```
 
 2. 실행
     ```
-    $ yarn && yarn dev
+    $ npm i
+    $ npm start
     ```
 
 ## branch policy
 
 ### branch name
 
--   \`${name}/${level}/${keyword}\`
+-   \`${name}/${level}/${role}/${keyword}\`
 
 ### examples
 
