@@ -1,5 +1,3 @@
-# focus-front-react
-
 ## start
 
 1. project clone
