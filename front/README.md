@@ -1,46 +1,92 @@
-# Getting Started with Create React App
+## start
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. project clone
 
-## Available Scripts
+   ```
+   $ git clone https://github.com/6810779s/board-fullstack-pjt.git
+   $ cd front
+   or
+   $ cd back
+   ```
 
-In the project directory, you can run:
+2. 실행
+   ```
+   $ npm i
+   $ npm start
+   ```
 
-### `npm start`
+## branch policy
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### branch name
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- \`${name}/${level}/${role}/${keyword}\`
 
-### `npm test`
+### examples
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ex) jeh/f/front/cart
+- ex) jeh/config/back/docker-file
 
-### `npm run build`
+#### name
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- ex) 장은희 → jeh
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### level
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| branch level | description                       |
+| ------------ | --------------------------------- |
+| add (a)      | 패키지 추가                       |
+| config       | config 파일 수정                  |
+| chore        | 기능에 영향을 주지 않는 파일 수정 |
+| docs (d)     | 문서 작성/수정                    |
+| feat (f)     | 새로운 기능 추가                  |
+| bugfix (b)   | 버그 수정                         |
+| refactor (r) | 코드 리팩터링                     |
+| style (s)    | CSS 코드 수정                     |
 
-### `npm run eject`
+#### keyword
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- kebab-case
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## commit policy
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### commit name
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- \`[${level}] ${description}\`
 
-## Learn More
+### examples
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- ex) [doc] README.md 작성
+- ex) [feat] 공통 SNB 구현
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### level
+
+| commit level | description                       |
+| ------------ | --------------------------------- |
+| add          | 패키지 추가                       |
+| config       | config 파일 수정                  |
+| chore        | 기능에 영향을 주지 않는 파일 수정 |
+| docs         | 문서 작성/수정                    |
+| feat         | 새로운 기능 추가                  |
+| bugfix       | 버그 수정                         |
+| refactor     | 코드 리팩터링                     |
+| style        | CSS 코드 수정                     |
+
+## comment policy
+
+### comment
+
+- \`${level}: ${description} ${date} ${name}\`
+
+### examples
+
+- ex) // TODO: 장바구니 조회 API 연동 2023.08.09 kbc
+- ex) // FIXME: 주문 생성 API가 2번 호출되는 문제 2023.08.09 kbc
+
+#### level
+
+| comment level | description                                                           |
+| ------------- | --------------------------------------------------------------------- |
+| TODO          | 아직 해결하지 않은, 앞으로 추가해야 할 내용을 기술함.                 |
+| HACK          | 임시로 문제를 해결한 코드. 왜 이렇게 해결했는지에 대한 정보 있어야함. |
+| FIXME         | 오작동을 일으킨다고 알려진 코드. 당장 수정할 필요 없음.               |
+| XXX           | 당장 수정이 필요한 코드.                                              |
