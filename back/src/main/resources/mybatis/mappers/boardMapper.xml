@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board.pjt.back.mapper.BoardMapper">
+    <insert id="insert" parameterType="BoardDto">
+        Insert Into article
+            (user_email, title, content, category_id, createdAt, createdBy)
+        VALUES ('test@naver.com', #{title}, #{content}, #{category_id}, now(), 'test')
+
+    </insert>
+    <select id="select" parameterType="int" resultType="BoardDto">
+        SELECT *
+        FROM article
+        WHERE article_id = #{article_id}
+    </select>
+    <select id="selectAll" resultType="BoardDto">
+        SELECT *
+        FROM article
+        ORDER BY article_id DESC
+    </select>
+    <update id="update" parameterType="BoardDto">
+        UPDATE article
+        SET title=#{title},
+            content=#{content},
+            modifiedAt=now(),
+            modifiedBy='eunhee'
+        WHERE article_id = #{article_id}
+    </update>
+    <delete id="deleteAll">
+        DELETE
+        from article
+    </delete>
+    <delete id="delete" parameterType="int">
+        DELETE
+        from article
+        WHERE article_id = #{article_id}
+    </delete>
+</mapper>
