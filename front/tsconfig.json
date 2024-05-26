@@ -23,6 +23,7 @@
     /* Import Paths */
     "baseUrl": "./src",
     "paths": {
+      "@assets/*": ["./assets/*"],
       "@routers/*": ["./routers/*"],
       "@apis/*": ["./apis/*"],
       "@utils/*": ["./utils/*"],

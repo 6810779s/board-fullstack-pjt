@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
+import Gnb from "./Gnb";
 
 const GnbLayout = () => {
   return (
     <div>
-      GNB
+      <Gnb />
       <Outlet />
     </div>
   );

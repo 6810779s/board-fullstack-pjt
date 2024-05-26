@@ -1,13 +1,13 @@
-import GnbLayout from "@components/GnbLayout";
-import SnbLayout from "@components/SnbLayout";
 import Board from "@pages/board/Board";
 import { createBrowserRouter } from "react-router-dom";
 import { PATH } from "./Path";
 import BoardDetail from "@pages/board/BoardDetail";
 import Login from "@pages/accounts/Login";
 import SignUp from "@pages/accounts/SignUp";
-import MyPage from "@pages/myPage/MyPage";
 import { Redirect } from "./Redirect";
+import GnbLayout from "@components/layout/GnbLayout";
+import SnbLayout from "@components/layout/SnbLayout";
+import MyPage from "@pages/myPage/MyPage";
 
 export const router = createBrowserRouter([
   {
