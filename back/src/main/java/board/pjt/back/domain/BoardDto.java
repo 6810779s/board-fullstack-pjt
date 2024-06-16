@@ -9,29 +9,31 @@ public class BoardDto {
     private String title;
     private String content;
     private Integer category_id;
-    private Date createdAt;
-    private String createdBy;
-    private Date modifiedAt;
-    private String modifiedBy;
+    private Date created_at;
+    private String created_by;
+    private Date modified_at;
+    private String modified_by;
+
+    public BoardDto() {
+    }
+
+    public BoardDto(String title, String content, Integer category_id) {
+        this.title = title;
+        this.content = content;
+        this.category_id = category_id;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BoardDto boardDto = (BoardDto) o;
-        return Objects.equals(article_id, boardDto.article_id) && Objects.equals(user_email, boardDto.user_email) && Objects.equals(title, boardDto.title) && Objects.equals(content, boardDto.content) && Objects.equals(createdBy, boardDto.createdBy);
+        return Objects.equals(article_id, boardDto.article_id) && Objects.equals(user_email, boardDto.user_email) && Objects.equals(title, boardDto.title) && Objects.equals(content, boardDto.content) && Objects.equals(created_by, boardDto.created_by);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(article_id, user_email, title, content, category_id);
-    }
-
-    public BoardDto(){}
-    public BoardDto( String title, String content, Integer category_id) {
-        this.title = title;
-        this.content = content;
-        this.category_id = category_id;
     }
 
     public Integer getArticle_id() {
@@ -74,36 +76,36 @@ public class BoardDto {
         this.category_id = category_id;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getcreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setcreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public String getcreated_by() {
+        return created_by;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setcreated_by(String created_by) {
+        this.created_by = created_by;
     }
 
-    public Date getModifiedAt() {
-        return modifiedAt;
+    public Date getmodified_at() {
+        return modified_at;
     }
 
-    public void setModifiedAt(Date modifiedAt) {
-        this.modifiedAt = modifiedAt;
+    public void setmodified_at(Date modified_at) {
+        this.modified_at = modified_at;
     }
 
-    public String getModifiedBy() {
-        return modifiedBy;
+    public String getmodified_by() {
+        return modified_by;
     }
 
-    public void setModifiedBy(String modifiedBy) {
-        this.modifiedBy = modifiedBy;
+    public void setmodified_by(String modified_by) {
+        this.modified_by = modified_by;
     }
 
     @Override
@@ -114,10 +116,10 @@ public class BoardDto {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", category_id=" + category_id +
-                ", createdAt=" + createdAt +
-                ", createdBy='" + createdBy + '\'' +
-                ", modifiedAt=" + modifiedAt +
-                ", modifiedBy=" + modifiedBy +
+                ", created_at=" + created_at +
+                ", created_by='" + created_by + '\'' +
+                ", modified_at=" + modified_at +
+                ", modified_by=" + modified_by +
                 '}';
     }
 }
