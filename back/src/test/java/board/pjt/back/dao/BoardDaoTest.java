@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-class BoardDaoImplTest {
+class BoardDaoTest {
     @Autowired
     private BoardDao boardDao;
 
@@ -41,9 +41,11 @@ class BoardDaoImplTest {
     @DisplayName("insert test")
     @Test
     void insertTest() throws Exception {
-        resetDatabase();
+        BoardDto boardDto = new BoardDto("title2", "content board", 1);
+        assertEquals(1, boardDao.insert(boardDto));
         int size = boardDao.selectAll().size();
         assertEquals(1, size);
+
     }
 
     @DisplayName("selectAll Test")
