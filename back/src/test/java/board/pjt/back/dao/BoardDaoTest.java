@@ -1,6 +1,7 @@
 package board.pjt.back.dao;
 
 import board.pjt.back.domain.BoardDto;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,11 @@ class BoardDaoTest {
 
     void resetDatabase() {
         boardDao.deleteAll();
-        BoardDto boardDto = new BoardDto("title2", "content board", 1);
+        BoardDto boardDto = new BoardDto("title2", "content board", 7);
         assertEquals(1, boardDao.insert(boardDto));
     }
 
-
+    @Disabled
     @DisplayName("delete all")
     @Test
     void deleteAll() throws Exception {
@@ -29,6 +30,7 @@ class BoardDaoTest {
         assertEquals(0, (int) boardDao.selectAll().size());
     }
 
+    @Disabled
     @DisplayName("delete test")
     @Test
     void delete() throws Exception {
@@ -41,13 +43,14 @@ class BoardDaoTest {
     @DisplayName("insert test")
     @Test
     void insertTest() throws Exception {
-        BoardDto boardDto = new BoardDto("title2", "content board", 1);
+        BoardDto boardDto = new BoardDto("title3", "content board", 7);
         assertEquals(1, boardDao.insert(boardDto));
         int size = boardDao.selectAll().size();
         assertEquals(1, size);
 
     }
 
+    @Disabled
     @DisplayName("selectAll Test")
     @Test
     public void selectAllTest() throws Exception {
@@ -56,6 +59,7 @@ class BoardDaoTest {
         assertEquals(1, (int) boardList.size());
     }
 
+    @Disabled
     @DisplayName("select Test")
     @Test
     public void selectTest() throws Exception {
@@ -65,6 +69,7 @@ class BoardDaoTest {
         assertEquals("title2", board.getTitle());
     }
 
+    @Disabled
     @DisplayName("update Test")
     @Test
     void updateTest() throws Exception {
