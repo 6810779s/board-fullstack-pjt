@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.pjt.back.mapper.ArticleLikeMapper">
+    <select id="selectAll" resultType="ArticleLikeDto">
+        SELECT *
+        FROM article_like
+    </select>
+    <select id="select" parameterType="int" resultType="ArticleLikeDto">
+        SELECT *
+        FROM article_like
+        WHERE article_like_id = #{article_like_id}
+    </select>
+    <select id="findByArticleLikeId" parameterType="int" resultType="ArticleLikeDto">
+        SELECT *
+        FROM article_like
+        WHERE article_id = #{article_id}
+    </select>
+    <delete id="delete" parameterType="int">
+        DELETE
+        FROM article_like
+        WHERE article_like_id = #{article_like_id}
+    </delete>
+    <insert id="insert" parameterType="ArticleLikeDto">
+        INSERT INTO article_like
+            (article_like_id, article_id, created_at, created_by)
+        VALUES (#{article_like_id}, #{article_id}, now(), #{created_by})
+    </insert>
+</mapper>
