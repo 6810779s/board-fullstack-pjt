@@ -12,6 +12,11 @@
         FROM article_comments_like
         WHERE article_comments_like_id = #{article_comments_like_id}
     </select>
+    <select id="findByCommentId" parameterType="int" resultType="ArticleCommentsLikeDto">
+        SELECT *
+        FROM article_comments_like
+        WHERE comment_id = #{comment_id}
+    </select>
     <insert id="insert" parameterType="ArticleCommentsLikeDto">
         INSERT INTO article_comments_like
             (article_comments_like_id, comment_id, created_at, created_by)
