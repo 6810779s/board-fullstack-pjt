@@ -6,8 +6,8 @@
 <mapper namespace="board.pjt.back.mapper.BoardMapper">
     <insert id="insert" parameterType="BoardDto">
         Insert Into article
-            (user_email, title, content, category_id, created_at, created_by)
-        VALUES ('test@naver.com', #{title}, #{content}, #{category_id}, now(), 'test@naver.com')
+        (article_id, title, content, category_id, created_at, created_by, updated_at, updated_by)
+        VALUES (#{article_id}, #{title}, #{content}, #{category_id}, now(), 'test@naver.com', NULL, NULL)
     </insert>
     <select id="select" parameterType="int" resultType="BoardDto">
         SELECT *
