@@ -9,6 +9,8 @@ import java.util.List;
 public interface ArticleCommentsLikeMapper {
     List<ArticleCommentsLikeDto> selectAll();
 
+    List<ArticleCommentsLikeDto> findByCommentId(int comment_id);
+
     ArticleCommentsLikeDto select(int article_comments_like_id);
 
     int delete(int article_comments_like_id);

@@ -20,6 +20,11 @@ public class ArticleCommentsLikeDao implements ArticleCommentsLikeMapper {
     }
 
     @Override
+    public List<ArticleCommentsLikeDto> findByCommentId(int comment_id) {
+        return articleCommentsLikeMapper.findByCommentId(comment_id);
+    }
+
+    @Override
     public ArticleCommentsLikeDto select(int article_comments_like_id) {
         return articleCommentsLikeMapper.select(article_comments_like_id);
     }

@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -47,9 +49,16 @@ class ArticleCommentsLikeDaoTest {
     @DisplayName("insert test")
     @Test
     void insert() {
-        int comment_id = articleCommentsDao.selectAll().get(0).getComments_id();
+        int comment_id = articleCommentsDao.selectAll().get(1).getComments_id();
         ArticleCommentsLikeDto dto = new ArticleCommentsLikeDto(comment_id, "test@naver.com");
         assertEquals(1, articleCommentsLikeDao.insert(dto));
+    }
 
+    @Disabled
+    @DisplayName("findByCommentId test")
+    @Test
+    void findByCommentId() {
+        List<ArticleCommentsLikeDto> dto = articleCommentsLikeDao.findByCommentId(2);
+        assertEquals(2, dto.size());
     }
 }
