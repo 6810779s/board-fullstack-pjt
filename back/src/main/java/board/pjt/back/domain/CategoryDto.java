@@ -74,5 +74,5 @@ public class CategoryDto {
     public String getUpdated_by() {
         return updated_by;
     }
-    
+
 }

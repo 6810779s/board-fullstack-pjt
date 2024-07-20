@@ -1,21 +1,23 @@
 package board.pjt.back.mapper;
 
-import board.pjt.back.domain.BoardDto;
+import board.pjt.back.domain.board.BoardCreateRequestDto;
+import board.pjt.back.domain.board.BoardDeleteRequestDto;
+import board.pjt.back.domain.board.BoardResponseDto;
+import board.pjt.back.domain.board.BoardUpdateRequestDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
 public interface BoardMapper {
-    BoardDto select(int article_id);
+    BoardResponseDto select(@Param("article_id") Integer article_id);
 
-    List<BoardDto> selectAll();
+    List<BoardResponseDto> selectAll();
 
-    int update(BoardDto dto);
+    void insert(BoardCreateRequestDto requestDto);
 
-    int insert(BoardDto dto);
+    void delete(BoardDeleteRequestDto requestDto);
 
-    void deleteAll();
-
-    int delete(int article_id);
+    void update(BoardUpdateRequestDto requestDto);
 }

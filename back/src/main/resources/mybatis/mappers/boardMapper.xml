@@ -4,36 +4,36 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board.pjt.back.mapper.BoardMapper">
-    <insert id="insert" parameterType="BoardDto">
-        Insert Into article
-        (article_id, title, content, category_id, created_at, created_by, updated_at, updated_by)
-        VALUES (#{article_id}, #{title}, #{content}, #{category_id}, now(), 'test@naver.com', NULL, NULL)
-    </insert>
-    <select id="select" parameterType="int" resultType="BoardDto">
-        SELECT *
-        FROM article
-        WHERE article_id = #{article_id}
-    </select>
-    <select id="selectAll" resultType="BoardDto">
+
+    <select id="selectAll" resultType="BoardResponseDto">
         SELECT *
         FROM article
         ORDER BY article_id DESC
     </select>
-    <update id="update" parameterType="BoardDto">
+    <select id="select" parameterType="int" resultType="BoardResponseDto">
+        SELECT *
+        FROM article
+        WHERE article_id = #{article_id}
+    </select>
+    <insert id="insert" parameterType="BoardCreateRequestDto">
+        INSERT INTO article
+        (title, content, category_id, created_at, created_by, updated_at, updated_by)
+        VALUES (#{title}, #{content}, #{category_id}, now(), 'test@naver.com', null,
+                null)
+    </insert>
+    <insert id="delete" parameterType="int">
+        DELETE
+        FROM article
+        WHERE article_id = #{article_id}
+    </insert>
+    <update id="update" parameterType="BoardUpdateRequestDto">
         UPDATE article
-        SET title=#{title},
-            content=#{content},
-            updated_at=now(),
-            updated_by='eunhee'
+        SET title       = #{title},
+            content     = #{content},
+            category_id = #{category_id},
+            updated_at  = now(),
+            updated_by  = 'test@naver.com'
         WHERE article_id = #{article_id}
     </update>
-    <delete id="deleteAll">
-        DELETE
-        from article
-    </delete>
-    <delete id="delete" parameterType="int">
-        DELETE
-        from article
-        WHERE article_id = #{article_id}
-    </delete>
+
 </mapper>

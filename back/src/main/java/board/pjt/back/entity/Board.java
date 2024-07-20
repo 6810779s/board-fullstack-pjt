@@ -1,9 +1,9 @@
-package board.pjt.back.domain;
+package board.pjt.back.entity;
 
 import java.util.Date;
 import java.util.Objects;
 
-public class BoardDto {
+public class Board {
     private Integer article_id;
     private String title;
     private String content;
@@ -13,27 +13,40 @@ public class BoardDto {
     private Date updated_at;
     private String updated_by;
 
-    public BoardDto() {
+    public Board() {
     }
 
-    public BoardDto(String title, String content, Integer category_id, String created_by) {
+    public Board(String title, String content, Integer category_id) {
         this.title = title;
         this.content = content;
         this.category_id = category_id;
-        this.created_by = created_by;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BoardDto boardDto = (BoardDto) o;
-        return Objects.equals(article_id, boardDto.article_id) && Objects.equals(title, boardDto.title) && Objects.equals(content, boardDto.content) && Objects.equals(category_id, boardDto.category_id) && Objects.equals(created_at, boardDto.created_at) && Objects.equals(created_by, boardDto.created_by) && Objects.equals(updated_at, boardDto.updated_at) && Objects.equals(updated_by, boardDto.updated_by);
+        Board board = (Board) o;
+        return Objects.equals(article_id, board.article_id) && Objects.equals(title, board.title) && Objects.equals(content, board.content) && Objects.equals(category_id, board.category_id) && Objects.equals(created_at, board.created_at) && Objects.equals(created_by, board.created_by) && Objects.equals(updated_at, board.updated_at) && Objects.equals(updated_by, board.updated_by);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(article_id, title, content, category_id, created_at, created_by, updated_at, updated_by);
+    }
+
+    @Override
+    public String toString() {
+        return "Board{" +
+                "article_id=" + article_id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", category_id=" + category_id +
+                ", created_at=" + created_at +
+                ", created_by='" + created_by + '\'' +
+                ", updated_at=" + updated_at +
+                ", updated_by='" + updated_by + '\'' +
+                '}';
     }
 
     public Integer getArticle_id() {
@@ -64,38 +77,39 @@ public class BoardDto {
         return category_id;
     }
 
+    public void setCategory_id(Integer category_id) {
+        this.category_id = category_id;
+    }
 
     public Date getCreated_at() {
         return created_at;
     }
 
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
 
     public String getCreated_by() {
         return created_by;
     }
 
+    public void setCreated_by(String created_by) {
+        this.created_by = created_by;
+    }
 
     public Date getUpdated_at() {
         return updated_at;
     }
 
+    public void setUpdated_at(Date updated_at) {
+        this.updated_at = updated_at;
+    }
 
     public String getUpdated_by() {
         return updated_by;
     }
 
-
-    @Override
-    public String toString() {
-        return "BoardDto{" +
-                "article_id=" + article_id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", category_id=" + category_id +
-                ", created_at=" + created_at +
-                ", created_by='" + created_by + '\'' +
-                ", updated_at=" + updated_at +
-                ", updated_by='" + updated_by + '\'' +
-                '}';
+    public void setUpdated_by(String updated_by) {
+        this.updated_by = updated_by;
     }
 }

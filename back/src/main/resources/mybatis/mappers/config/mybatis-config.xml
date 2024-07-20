@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias alias="BoardResponseDto" type="board.pjt.back.domain.board.BoardResponseDto"/>
+        <typeAlias alias="BoardCreateRequestDto" type="board.pjt.back.domain.board.BoardCreateRequestDto"/>
+        <typeAlias alias="ArticleCommentsDto" type="board.pjt.back.domain.ArticleCommentsDto"/>
+        <typeAlias alias="ArticleCommentsLikeDto" type="board.pjt.back.domain.ArticleCommentsLikeDto"/>
+        <typeAlias alias="ArticleLikeDto" type="board.pjt.back.domain.ArticleLikeDto"/>
+        <typeAlias alias="CategoryDto" type="board.pjt.back.domain.CategoryDto"/>
+        <typeAlias alias="UserDto" type="board.pjt.back.domain.UserDto"/>
+    </typeAliases>
+</configuration>
