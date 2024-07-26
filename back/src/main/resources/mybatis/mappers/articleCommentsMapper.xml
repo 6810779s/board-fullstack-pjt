@@ -3,25 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board.pjt.back.mapper.ArticleCommentsMapper">
-    <select id="selectAll" resultType="ArticleCommentsDto">
-        SELECT *
-        FROM article_comments
-    </select>
-    <select id="select" parameterType="int" resultType="ArticleCommentsDto">
+    <select id="select" parameterType="int" resultType="CommentResponseDto">
         SELECT *
         FROM article_comments
         WHERE article_comments_id = #{article_comments_id}
     </select>
-    <insert id="insert" parameterType="ArticleCommentsDto">
-        INSERT INTO article_comments (article_comments_id, article_id, content, created_at, created_by, updated_at,
-                                      updated_by)
-        VALUES (#{article_comments_id}, #{article_id}, #{content}, now(), #{created_by}, null, null)
+    <select id="selectAll" resultType="CommentResponseDto">
+        SELECT *
+        FROM article_comments
+    </select>
+    <select id="selectAllReplyList" resultType="CommentResponseDto">
+        SELECT *
+        FROM article_comments
+        WHERE parent_comment_id = #{parent_comment_id}
+    </select>
+    <insert id="insert" parameterType="CommentCreateRequestDto">
+        INSERT INTO article_comments (article_id, content, created_at, created_by, updated_at,
+                                      updated_by, parent_comment_id)
+        VALUES (#{article_id}, #{content}, now(), 'test@naver.com', null, null, #{parent_comment_id})
     </insert>
-    <update id="update" parameterType="ArticleCommentsDto">
+    <update id="update" parameterType="CommentUpdateRequestDto">
         UPDATE article_comments
         SET content    = #{content},
             updated_at = now(),
-            updated_by = #{updated_by}
+            updated_by = 'test@naver.com'
         WHERE article_comments_id = #{article_comments_id}
     </update>
     <delete id="delete" parameterType="int">

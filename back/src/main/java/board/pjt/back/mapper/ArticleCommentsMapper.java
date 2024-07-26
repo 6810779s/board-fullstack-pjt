@@ -1,19 +1,27 @@
 package board.pjt.back.mapper;
 
-import board.pjt.back.domain.ArticleCommentsDto;
+import board.pjt.back.domain.comment.CommentCreateRequestDto;
+import board.pjt.back.domain.comment.CommentDeleteRequestDto;
+import board.pjt.back.domain.comment.CommentResponseDto;
+import board.pjt.back.domain.comment.CommentUpdateRequestDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
 public interface ArticleCommentsMapper {
-    List<ArticleCommentsDto> selectAll();
+    CommentResponseDto select(@Param("article_comments_id") Integer article_comments_id);
 
-    ArticleCommentsDto select(int articleComments_id);
+    List<CommentResponseDto> selectAll();
 
-    int insert(ArticleCommentsDto dto);
+    List<CommentResponseDto> selectAllReplyList(Integer parent_comment_id);
 
-    int update(ArticleCommentsDto dto);
 
-    int delete(int articleComments_id);
+    void insert(CommentCreateRequestDto dto);
+
+    void update(CommentUpdateRequestDto dto);
+
+    void delete(CommentDeleteRequestDto dto);
+
 }
