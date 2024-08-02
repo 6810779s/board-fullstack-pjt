@@ -11,11 +11,19 @@
     <select id="selectAll" resultType="CommentResponseDto">
         SELECT *
         FROM article_comments
+        ORDER BY created_at DESC
     </select>
     <select id="selectAllReplyList" resultType="CommentResponseDto">
         SELECT *
         FROM article_comments
         WHERE parent_comment_id = #{parent_comment_id}
+        ORDER BY created_at ASC
+    </select>
+    <select id="selectAllCommentByArticleId" resultType="CommentResponseDto">
+        SELECT *
+        FROM article_comments
+        WHERE article_id = #{article_id}
+        ORDER BY created_at DESC
     </select>
     <insert id="insert" parameterType="CommentCreateRequestDto">
         INSERT INTO article_comments (article_id, content, created_at, created_by, updated_at,
