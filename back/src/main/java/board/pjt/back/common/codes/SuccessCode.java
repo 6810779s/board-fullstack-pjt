@@ -6,13 +6,13 @@ public enum SuccessCode {
      * ******************************* Success CodeList ***************************************
      */
     // 조회 성공 코드 (HTTP Response: 200 OK)
-    SELECT_SUCCESS(200, "200", "SELECT SUCCESS"),
+    SELECT_SUCCESS("SUCCESS", 200, "SELECT SUCCESS"),
     // 삭제 성공 코드 (HTTP Response: 200 OK)
-    DELETE_SUCCESS(200, "200", "DELETE SUCCESS"),
+    DELETE_SUCCESS("SUCCESS", 200, "DELETE SUCCESS"),
     // 삽입 성공 코드 (HTTP Response: 201 Created)
-    INSERT_SUCCESS(201, "201", "INSERT SUCCESS"),
+    INSERT_SUCCESS("SUCCESS", 201, "INSERT SUCCESS"),
     // 수정 성공 코드 (HTTP Response: 201 Created)
-    UPDATE_SUCCESS(204, "204", "UPDATE SUCCESS"),
+    UPDATE_SUCCESS("SUCCESS", 204, "UPDATE SUCCESS"),
 
     ; // End
 
@@ -20,33 +20,33 @@ public enum SuccessCode {
      * ******************************* Success Code Constructor ***************************************
      */
     // 성공 코드의 '코드 상태'를 반환한다.
-    private final int status;
+    private final String status;
 
     // 성공 코드의 '코드 값'을 반환한다.
-    private final String code;
+    private final int divisionCode;
 
     // 성공 코드의 '코드 메시지'를 반환한다.s
     private final String message;
 
     SuccessCode() {
-        this.status = 0;
-        this.code = null;
+        this.status = "SUCCESS";
+        this.divisionCode = 200;
         this.message = null;
     }
 
     // 생성자 구성
-    SuccessCode(final int status, final String code, final String message) {
+    SuccessCode(final String status, final int divisionCode, final String message) {
         this.status = status;
-        this.code = code;
+        this.divisionCode = divisionCode;
         this.message = message;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public String getCode() {
-        return code;
+    public int getDivisionCode() {
+        return divisionCode;
     }
 
     public String getMessage() {

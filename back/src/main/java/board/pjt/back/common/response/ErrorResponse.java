@@ -5,10 +5,10 @@ import board.pjt.back.common.codes.ErrorCode;
 import java.time.LocalDateTime;
 
 public class ErrorResponse {
-    private final Integer status;
+    private final String status;
     private final String message;
     private final LocalDateTime timestamp;
-    private final String divisionCode;
+    private final int divisionCode;
     private String reason;
 
     public ErrorResponse(final ErrorCode code) {
@@ -35,7 +35,7 @@ public class ErrorResponse {
         return new ErrorResponse(code, reason);
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -52,7 +52,7 @@ public class ErrorResponse {
         return timestamp;
     }
 
-    public String getDivisionCode() {
+    public int getDivisionCode() {
         return divisionCode;
     }
 }
