@@ -1,12 +1,13 @@
 package board.pjt.back.controller;
 
+import board.pjt.back.common.codes.SuccessCode;
+import board.pjt.back.common.response.ApiResponse;
 import board.pjt.back.dao.BoardDao;
 import board.pjt.back.domain.board.BoardCreateRequestDto;
 import board.pjt.back.domain.board.BoardDeleteRequestDto;
 import board.pjt.back.domain.board.BoardResponseDto;
 import board.pjt.back.domain.board.BoardUpdateRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,39 +20,38 @@ public class BoardController {
     private BoardDao boardDao;
 
     @GetMapping("/")
-    public ResponseEntity<List<BoardResponseDto>> getBoardList() {
+    public ResponseEntity<ApiResponse<List<BoardResponseDto>>> getBoardList() {
         List<BoardResponseDto> boardList = boardDao.selectAll();
-        return ResponseEntity.ok(boardList);
+        ApiResponse<List<BoardResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardList);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{article_id}")
-    public ResponseEntity<BoardResponseDto> getBoard(@PathVariable Integer article_id) {
+    public ResponseEntity<ApiResponse<BoardResponseDto>> getBoard(@PathVariable Integer article_id) {
         BoardResponseDto board = boardDao.select(article_id);
-        return ResponseEntity.ok(board);
+        ApiResponse<BoardResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, board);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Void> createArticle(@RequestBody BoardCreateRequestDto requestDto) {
-        try {
-            boardDao.insert(requestDto);
-            return ResponseEntity.ok().build();
-        } catch (Exception e) {
-            // 예외 처리
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    public ResponseEntity<ApiResponse<Void>> createArticle(@RequestBody BoardCreateRequestDto requestDto) {
+        boardDao.insert(requestDto);
+        ApiResponse<Void> response = ApiResponse.of(SuccessCode.INSERT_SUCCESS);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Void> deleteArticle(@RequestBody BoardDeleteRequestDto requestDto) {
-
+    public ResponseEntity<ApiResponse<Void>> deleteArticle(@RequestBody BoardDeleteRequestDto requestDto) {
         boardDao.delete(requestDto);
-        return ResponseEntity.ok().build();
+        ApiResponse<Void> response = ApiResponse.of(SuccessCode.DELETE_SUCCESS);
+        return ResponseEntity.ok(response);
 
     }
 
     @PatchMapping("/update")
-    public ResponseEntity<Void> updateArticle(@RequestBody BoardUpdateRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<Void>> updateArticle(@RequestBody BoardUpdateRequestDto requestDto) {
         boardDao.update(requestDto);
-        return ResponseEntity.ok().build();
+        ApiResponse<Void> response = ApiResponse.of(SuccessCode.UPDATE_SUCCESS);
+        return ResponseEntity.ok(response);
     }
 }
