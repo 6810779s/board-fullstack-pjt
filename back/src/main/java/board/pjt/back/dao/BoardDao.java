@@ -1,5 +1,6 @@
 package board.pjt.back.dao;
 
+import board.pjt.back.common.constants.ErrorMessages;
 import board.pjt.back.domain.board.BoardCreateRequestDto;
 import board.pjt.back.domain.board.BoardDeleteRequestDto;
 import board.pjt.back.domain.board.BoardResponseDto;
@@ -19,8 +20,11 @@ public class BoardDao implements BoardMapper {
 
     @Override
     public BoardResponseDto select(Integer article_id) {
-
-        return boardMapper.select(article_id);
+        BoardResponseDto dto = boardMapper.select(article_id);
+        if (dto == null) {
+            throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
+        }
+        return dto;
     }
 
     @Override
@@ -30,6 +34,7 @@ public class BoardDao implements BoardMapper {
 
     @Override
     public void insert(BoardCreateRequestDto requestDto) {
+        // TODO: category id 여부 체크
         boardMapper.insert(requestDto);
     }
 
@@ -37,20 +42,20 @@ public class BoardDao implements BoardMapper {
     public void delete(BoardDeleteRequestDto requestDto) {
         BoardResponseDto board = select(requestDto.getArticle_id());
         if (board == null) {
-            throw new IllegalArgumentException(requestDto.getArticle_id() + "번의 게시글이 존재하지 않습니다.");
+            throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
         }
         boardMapper.delete(requestDto);
-        BoardResponseDto deletedBoard = select(requestDto.getArticle_id());
-        if (deletedBoard != null) {
-            throw new RuntimeException(requestDto.getArticle_id() + "번의 게시글이 삭제되지 않았습니다.");
-        }
+//        BoardResponseDto deletedBoard = select(requestDto.getArticle_id());
+//        if (deletedBoard != null) {
+//            throw new RuntimeException(requestDto.getArticle_id() + "번의 게시글이 삭제되지 않았습니다.");
+//        }
     }
 
     @Override
     public void update(BoardUpdateRequestDto requestDto) {
         BoardResponseDto board = select(requestDto.getArticle_id());
         if (board == null) {
-            throw new IllegalArgumentException(requestDto.getArticle_id() + "번의 게시글이 존재하지 않습니다.");
+            throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
         }
         // [TODO] category_id에서 category가 category 목록에 포함 되어있는지 확인하는 로직 구현 필요
         boardMapper.update(requestDto);
