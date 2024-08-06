@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ArticleLikeDaoTest {
+class BoardLikeDaoTest {
     @Autowired
-    private ArticleLikeDao articleLikeDao;
+    private BoardLikeDao boardLikeDao;
 
     @Disabled
     @DisplayName("article like selectAll test")

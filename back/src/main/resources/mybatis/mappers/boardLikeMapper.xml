@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="board.pjt.back.mapper.ArticleLikeMapper">
-    <select id="selectAll" resultType="ArticleLikeDto">
+<mapper namespace="board.pjt.back.mapper.BoardLikeMapper">
+    <select id="selectAll" resultType="BoardLikeResponseDto">
         SELECT *
         FROM article_like
     </select>
@@ -12,19 +12,19 @@
         FROM article_like
         WHERE article_like_id = #{article_like_id}
     </select>
-    <select id="findByArticleLikeId" parameterType="int" resultType="ArticleLikeDto">
+    <select id="findByBoardLikeId" parameterType="int" resultType="BoardLikeResponseDto">
         SELECT *
         FROM article_like
         WHERE article_id = #{article_id}
     </select>
-    <delete id="delete" parameterType="int">
+    <delete id="delete" parameterType="BoardToggleLikeRequestDto">
         DELETE
         FROM article_like
-        WHERE article_like_id = #{article_like_id}
+        WHERE created_by = #{created_by}
     </delete>
-    <insert id="insert" parameterType="ArticleLikeDto">
+    <insert id="insert" parameterType="BoardToggleLikeRequestDto">
         INSERT INTO article_like
-            (article_like_id, article_id, created_at, created_by)
-        VALUES (#{article_like_id}, #{article_id}, now(), #{created_by})
+            (article_id, created_at, created_by)
+        VALUES (#{article_id}, now(), #{created_by})
     </insert>
 </mapper>
