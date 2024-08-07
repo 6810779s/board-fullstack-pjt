@@ -3,11 +3,8 @@ package board.pjt.back.controller;
 import board.pjt.back.common.codes.SuccessCode;
 import board.pjt.back.common.response.ApiResponse;
 import board.pjt.back.dao.BoardDao;
-import board.pjt.back.domain.board.BoardCreateRequestDto;
-import board.pjt.back.domain.board.BoardDeleteRequestDto;
-import board.pjt.back.domain.board.BoardResponseDto;
-import board.pjt.back.domain.board.BoardUpdateRequestDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import board.pjt.back.domain.PageHandler;
+import board.pjt.back.domain.board.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,13 +13,23 @@ import java.util.List;
 @RestController
 @RequestMapping("/article")
 public class BoardController {
-    @Autowired
-    private BoardDao boardDao;
+    private final BoardDao boardDao;
+
+    public BoardController(BoardDao boardDao) {
+        this.boardDao = boardDao;
+    }
 
     @GetMapping("/")
     public ResponseEntity<ApiResponse<List<BoardResponseDto>>> getBoardList() {
         List<BoardResponseDto> boardList = boardDao.selectAll();
         ApiResponse<List<BoardResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardList);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/pagination")
+    public ResponseEntity<ApiResponse<PageHandler<BoardResponseDto>>> getBoardListPagination(@RequestBody BoardPaginationRequestDto requestDto) {
+        PageHandler<BoardResponseDto> boardListPagination = boardDao.boardPagination(requestDto);
+        ApiResponse<PageHandler<BoardResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardListPagination);
         return ResponseEntity.ok(response);
     }
 

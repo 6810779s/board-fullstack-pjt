@@ -1,24 +1,28 @@
 package board.pjt.back.dao;
 
 import board.pjt.back.common.constants.ErrorMessages;
-import board.pjt.back.domain.board.BoardCreateRequestDto;
-import board.pjt.back.domain.board.BoardDeleteRequestDto;
-import board.pjt.back.domain.board.BoardResponseDto;
-import board.pjt.back.domain.board.BoardUpdateRequestDto;
+import board.pjt.back.domain.PageHandler;
+import board.pjt.back.domain.board.*;
 import board.pjt.back.mapper.BoardMapper;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Repository
-public class BoardDao implements BoardMapper {
+@Service
+public class BoardDao {
     private final BoardMapper boardMapper;
 
     public BoardDao(BoardMapper boardMapper) {
         this.boardMapper = boardMapper;
     }
 
-    @Override
+    public PageHandler<BoardResponseDto> boardPagination(BoardPaginationRequestDto requestDto) {
+        List<BoardResponseDto> boardList = boardMapper.selectAll();
+        PageHandler<BoardResponseDto> boardResponseDtoPageHandler = new PageHandler<>(boardList.size(), requestDto.getPage(), requestDto.getPageSize());
+        boardResponseDtoPageHandler.setContents(boardList);
+        return boardResponseDtoPageHandler;
+    }
+
     public BoardResponseDto select(Integer article_id) {
         BoardResponseDto dto = boardMapper.select(article_id);
         if (dto == null) {
@@ -27,18 +31,15 @@ public class BoardDao implements BoardMapper {
         return dto;
     }
 
-    @Override
     public List<BoardResponseDto> selectAll() {
         return boardMapper.selectAll();
     }
 
-    @Override
     public void insert(BoardCreateRequestDto requestDto) {
         // TODO: category id 여부 체크
         boardMapper.insert(requestDto);
     }
 
-    @Override
     public void delete(BoardDeleteRequestDto requestDto) {
         BoardResponseDto board = select(requestDto.getArticle_id());
         if (board == null) {
@@ -51,7 +52,6 @@ public class BoardDao implements BoardMapper {
 //        }
     }
 
-    @Override
     public void update(BoardUpdateRequestDto requestDto) {
         BoardResponseDto board = select(requestDto.getArticle_id());
         if (board == null) {
