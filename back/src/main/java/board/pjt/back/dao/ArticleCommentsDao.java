@@ -4,11 +4,11 @@ import board.pjt.back.common.constants.ErrorMessages;
 import board.pjt.back.domain.comment.*;
 import board.pjt.back.mapper.ArticleCommentsMapper;
 import board.pjt.back.mapper.BoardMapper;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Repository
+@Service
 public class ArticleCommentsDao implements ArticleCommentsMapper {
     private final ArticleCommentsMapper commentsMapper;
     private final BoardMapper boardMapper;

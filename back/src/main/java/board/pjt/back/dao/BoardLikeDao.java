@@ -20,7 +20,6 @@ public class BoardLikeDao {
         this.boardLikeMapper = boardLikeMapper;
     }
 
-    //수정 필요
     public BoardLikeListResponseDto findByBoardLikeId(BoardLikeListRequestDto requestDto) {
         List<BoardLikeResponseDto> boardLikeResponseDto = boardLikeMapper.findByBoardLikeId(requestDto);
         BoardLikeListResponseDto boardLikeListResponseDto = new BoardLikeListResponseDto();

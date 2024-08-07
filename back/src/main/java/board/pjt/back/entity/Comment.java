@@ -3,6 +3,7 @@ package board.pjt.back.entity;
 import java.util.Date;
 import java.util.Objects;
 
+
 public class Comment {
     private Integer article_comments_id;
     private String title;

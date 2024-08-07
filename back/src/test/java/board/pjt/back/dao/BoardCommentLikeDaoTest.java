@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ArticleCommentsLikeDaoTest {
+class BoardCommentLikeDaoTest {
     @Autowired
-    private ArticleCommentsLikeDao articleCommentsLikeDao;
+    private CommentLikeDao commentLikeDao;
     @Autowired
     private ArticleCommentsDao articleCommentsDao;
 
