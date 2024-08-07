@@ -7,6 +7,7 @@ public class BoardLikeResponseDto {
     Integer article_id;
     String created_by;
     LocalDateTime created_at;
+    Integer like_cnt;
 
     public BoardLikeResponseDto() {
     }

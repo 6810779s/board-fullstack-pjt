@@ -3,6 +3,7 @@ package board.pjt.back.dao;
 import board.pjt.back.common.constants.ErrorMessages;
 import board.pjt.back.domain.ArticleLikeDto;
 import board.pjt.back.domain.boardLike.BoardLikeListRequestDto;
+import board.pjt.back.domain.boardLike.BoardLikeListResponseDto;
 import board.pjt.back.domain.boardLike.BoardLikeResponseDto;
 import board.pjt.back.domain.boardLike.BoardToggleLikeRequestDto;
 import board.pjt.back.mapper.BoardLikeMapper;
@@ -19,19 +20,25 @@ public class BoardLikeDao {
         this.boardLikeMapper = boardLikeMapper;
     }
 
-    public List<BoardLikeResponseDto> findByBoardLikeId(BoardLikeListRequestDto requestDto) {
-        return boardLikeMapper.findByBoardLikeId(requestDto);
+    //수정 필요
+    public BoardLikeListResponseDto findByBoardLikeId(BoardLikeListRequestDto requestDto) {
+        List<BoardLikeResponseDto> boardLikeResponseDto = boardLikeMapper.findByBoardLikeId(requestDto);
+        BoardLikeListResponseDto boardLikeListResponseDto = new BoardLikeListResponseDto();
+        boardLikeListResponseDto.setLikes(boardLikeResponseDto);
+
+        return boardLikeListResponseDto;
     }
 
     public int toggleBoardLike(BoardToggleLikeRequestDto requestDto) {
         Integer article_id = requestDto.getArticle_id();
+
         if (article_id == null) {
             throw new NullPointerException(ErrorMessages.ARTICLE_NOT_FOUND);
         }
         BoardLikeListRequestDto boardLikeListRequestDto = new BoardLikeListRequestDto();
         boardLikeListRequestDto.setArticle_id(article_id);
-        List<BoardLikeResponseDto> boardLikeList = boardLikeMapper.findByBoardLikeId(boardLikeListRequestDto);
-        boolean isLiked = boardLikeList.stream()
+        List<BoardLikeResponseDto> boardLikeResponseDto = boardLikeMapper.findByBoardLikeId(boardLikeListRequestDto);
+        boolean isLiked = boardLikeResponseDto.stream()
                 .anyMatch(like -> like.getCreated_by().equals(requestDto.getCreated_by()));
         if (isLiked) {
             boardLikeMapper.delete(requestDto);
