@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.pjt.back.mapper.CommentLikeMapper">
+    <select id="findByCommentId" parameterType="CommentLikeListRequestDto" resultType="CommentLikeResponseDto">
+        SELECT *
+        FROM article_comments_like
+        WHERE comment_id = #{comment_id}
+    </select>
+    <insert id="insert" parameterType="CommentLikeToggleRequestDto">
+        INSERT INTO article_comments_like
+            (comment_id, created_at, created_by)
+        VALUES (#{comment_id}, now(), #{created_by})
+    </insert>
+    <delete id="delete" parameterType="CommentLikeToggleRequestDto">
+        DELETE
+        FROM article_comments_like
+        WHERE created_by = #{created_by}
+    </delete>
+</mapper>
