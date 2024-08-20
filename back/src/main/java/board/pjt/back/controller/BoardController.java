@@ -3,8 +3,8 @@ package board.pjt.back.controller;
 import board.pjt.back.common.codes.SuccessCode;
 import board.pjt.back.common.response.ApiResponse;
 import board.pjt.back.dao.BoardDao;
-import board.pjt.back.domain.PageHandler;
-import board.pjt.back.domain.board.*;
+import board.pjt.back.dto.PageHandler;
+import board.pjt.back.dto.board.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping("/article")
 public class BoardController {
     private final BoardDao boardDao;
+
 
     public BoardController(BoardDao boardDao) {
         this.boardDao = boardDao;

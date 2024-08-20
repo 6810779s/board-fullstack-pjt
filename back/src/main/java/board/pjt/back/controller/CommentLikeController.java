@@ -3,9 +3,9 @@ package board.pjt.back.controller;
 import board.pjt.back.common.codes.SuccessCode;
 import board.pjt.back.common.response.ApiResponse;
 import board.pjt.back.dao.CommentLikeDao;
-import board.pjt.back.domain.commentLike.CommentLikeListRequestDto;
-import board.pjt.back.domain.commentLike.CommentLikeListResponseDto;
-import board.pjt.back.domain.commentLike.CommentLikeToggleRequestDto;
+import board.pjt.back.dto.commentLike.CommentLikeListRequestDto;
+import board.pjt.back.dto.commentLike.CommentLikeListResponseDto;
+import board.pjt.back.dto.commentLike.CommentLikeToggleRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,10 +1,10 @@
 package board.pjt.back.dao;
 
 import board.pjt.back.common.constants.ErrorMessages;
-import board.pjt.back.domain.commentLike.CommentLikeListRequestDto;
-import board.pjt.back.domain.commentLike.CommentLikeListResponseDto;
-import board.pjt.back.domain.commentLike.CommentLikeResponseDto;
-import board.pjt.back.domain.commentLike.CommentLikeToggleRequestDto;
+import board.pjt.back.dto.commentLike.CommentLikeListRequestDto;
+import board.pjt.back.dto.commentLike.CommentLikeListResponseDto;
+import board.pjt.back.dto.commentLike.CommentLikeResponseDto;
+import board.pjt.back.dto.commentLike.CommentLikeToggleRequestDto;
 import board.pjt.back.mapper.CommentLikeMapper;
 import org.springframework.stereotype.Service;
 

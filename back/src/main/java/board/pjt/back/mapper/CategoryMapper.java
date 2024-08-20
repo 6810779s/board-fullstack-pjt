@@ -1,6 +1,6 @@
 package board.pjt.back.mapper;
 
-import board.pjt.back.domain.CategoryDto;
+import board.pjt.back.dto.CategoryDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

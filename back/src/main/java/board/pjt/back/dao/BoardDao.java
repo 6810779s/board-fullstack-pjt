@@ -1,8 +1,8 @@
 package board.pjt.back.dao;
 
 import board.pjt.back.common.constants.ErrorMessages;
-import board.pjt.back.domain.PageHandler;
-import board.pjt.back.domain.board.*;
+import board.pjt.back.dto.PageHandler;
+import board.pjt.back.dto.board.*;
 import board.pjt.back.mapper.BoardMapper;
 import org.springframework.stereotype.Service;
 

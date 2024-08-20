@@ -1,7 +1,7 @@
 package board.pjt.back.dao;
 
 import board.pjt.back.common.constants.ErrorMessages;
-import board.pjt.back.domain.comment.*;
+import board.pjt.back.dto.comment.*;
 import board.pjt.back.mapper.ArticleCommentsMapper;
 import board.pjt.back.mapper.BoardMapper;
 import org.springframework.stereotype.Service;
