@@ -1,4 +1,4 @@
-package board.pjt.back.domain;
+package board.pjt.back.dto;
 
 import java.util.Date;
 import java.util.Objects;
