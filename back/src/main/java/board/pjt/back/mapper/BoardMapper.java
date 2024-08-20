@@ -1,9 +1,9 @@
 package board.pjt.back.mapper;
 
-import board.pjt.back.domain.board.BoardCreateRequestDto;
-import board.pjt.back.domain.board.BoardDeleteRequestDto;
-import board.pjt.back.domain.board.BoardResponseDto;
-import board.pjt.back.domain.board.BoardUpdateRequestDto;
+import board.pjt.back.dto.board.BoardCreateRequestDto;
+import board.pjt.back.dto.board.BoardDeleteRequestDto;
+import board.pjt.back.dto.board.BoardResponseDto;
+import board.pjt.back.dto.board.BoardUpdateRequestDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

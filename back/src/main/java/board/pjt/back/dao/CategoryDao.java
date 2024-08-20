@@ -1,6 +1,6 @@
 package board.pjt.back.dao;
 
-import board.pjt.back.domain.CategoryDto;
+import board.pjt.back.dto.CategoryDto;
 import board.pjt.back.mapper.CategoryMapper;
 import org.springframework.stereotype.Repository;
 

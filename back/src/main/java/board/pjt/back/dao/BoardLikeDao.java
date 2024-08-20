@@ -1,11 +1,11 @@
 package board.pjt.back.dao;
 
 import board.pjt.back.common.constants.ErrorMessages;
-import board.pjt.back.domain.ArticleLikeDto;
-import board.pjt.back.domain.boardLike.BoardLikeListRequestDto;
-import board.pjt.back.domain.boardLike.BoardLikeListResponseDto;
-import board.pjt.back.domain.boardLike.BoardLikeResponseDto;
-import board.pjt.back.domain.boardLike.BoardToggleLikeRequestDto;
+import board.pjt.back.dto.ArticleLikeDto;
+import board.pjt.back.dto.boardLike.BoardLikeListRequestDto;
+import board.pjt.back.dto.boardLike.BoardLikeListResponseDto;
+import board.pjt.back.dto.boardLike.BoardLikeResponseDto;
+import board.pjt.back.dto.boardLike.BoardToggleLikeRequestDto;
 import board.pjt.back.mapper.BoardLikeMapper;
 import org.springframework.stereotype.Service;
 
