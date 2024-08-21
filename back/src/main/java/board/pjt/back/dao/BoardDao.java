@@ -4,6 +4,7 @@ import board.pjt.back.common.constants.ErrorMessages;
 import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.board.*;
 import board.pjt.back.mapper.BoardMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class BoardDao {
         return dto;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     public List<BoardResponseDto> selectAll() {
         return boardMapper.selectAll();
     }
