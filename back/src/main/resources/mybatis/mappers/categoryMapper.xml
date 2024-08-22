@@ -4,30 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board.pjt.back.mapper.CategoryMapper">
-    <select id="selectAll" resultType="CategoryDto">
+    <select id="selectAll" resultType="CategorySelectResponseDto">
         SELECT *
         FROM category
     </select>
-    <select id="select" parameterType="int" resultType="CategoryDto">
+    <select id="select" parameterType="CategorySelectRequestDto" resultType="CategorySelectResponseDto">
         SELECT *
         FROM category
         WHERE category_id = #{category_id}
     </select>
-    <update id="update" parameterType="CategoryDto">
-        UPDATE category
-        SET name       = #{name},
-            updated_at = now(),
-            updated_by = 'test@naver.com'
-        WHERE category_id = #{category_id}
-    </update>
-    <insert id="insert" parameterType="CategoryDto">
+    <insert id="insert" parameterType="CategoryEntity">
         INSERT INTO category
-            (category_id, name, created_at, created_by, updated_at, updated_by)
-        VALUES (#{category_id}, #{name}, now(), 'test@naver.com', #{updated_at}, #{updated_by})
+            (name, created_at, created_by)
+        VALUES (#{name}, now(), #{created_by})
     </insert>
-    <delete id="delete" parameterType="int">
+    <delete id="delete" parameterType="CategoryDeleteRequestDto">
         DELETE
         FROM category
         WHERE category_id = #{category_id}
     </delete>
+    <update id="update" parameterType="CategoryUpdateRequestDto">
+        UPDATE category
+        SET name       = #{name},
+            updated_at = now(),
+            updated_by = #{updated_by}
+        WHERE category_id = #{category_id}
+    </update>
 </mapper>
