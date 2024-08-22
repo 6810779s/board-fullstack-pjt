@@ -1,20 +1,23 @@
 package board.pjt.back.mapper;
 
-import board.pjt.back.dto.CategoryDto;
+import board.pjt.back.dto.category.CategoryDeleteRequestDto;
+import board.pjt.back.dto.category.CategorySelectRequestDto;
+import board.pjt.back.dto.category.CategorySelectResponseDto;
+import board.pjt.back.entity.CategoryEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
 public interface CategoryMapper {
+    List<CategorySelectResponseDto> selectAll();
 
-    int insert(CategoryDto dto);
+    CategorySelectResponseDto select(CategorySelectRequestDto requestDto);
 
-    int delete(int category_id);
+    int insert(CategoryEntity requestDto);
 
-    CategoryDto select(int category_id);
+    int delete(CategoryDeleteRequestDto requestDto);
 
-    List<CategoryDto> selectAll();
 
-    int update(CategoryDto dto);
+    int update(CategoryEntity requestDto);
 }

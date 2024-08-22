@@ -1,42 +1,53 @@
 package board.pjt.back.dao;
 
-import board.pjt.back.dto.CategoryDto;
+import board.pjt.back.dto.category.*;
+import board.pjt.back.entity.CategoryEntity;
 import board.pjt.back.mapper.CategoryMapper;
-import org.springframework.stereotype.Repository;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Repository
-public class CategoryDao implements CategoryMapper {
+@Service
+@PreAuthorize("hasRole('ADMIN')")
+public class CategoryDao {
     private final CategoryMapper categoryMapper;
 
     CategoryDao(CategoryMapper categoryMapper) {
+
         this.categoryMapper = categoryMapper;
     }
 
-    @Override
-    public int insert(CategoryDto dto) {
-        return categoryMapper.insert(dto);
-    }
+    public List<CategorySelectResponseDto> selectAll() {
 
-    @Override
-    public int delete(int category_id) {
-        return categoryMapper.delete(category_id);
-    }
-
-    @Override
-    public CategoryDto select(int category_id) {
-        return categoryMapper.select(category_id);
-    }
-
-    @Override
-    public List<CategoryDto> selectAll() {
         return categoryMapper.selectAll();
     }
 
-    @Override
-    public int update(CategoryDto dto) {
-        return categoryMapper.update(dto);
+    public CategorySelectResponseDto select(CategorySelectRequestDto requestDto) {
+
+        return categoryMapper.select(requestDto);
+    }
+
+    public int insert(UserDetails userDetails, CategoryCreateRequestDto requestDto) {
+        CategoryEntity category = new CategoryEntity();
+        category.setName(requestDto.getName());
+        category.setCreated_by(userDetails.getUsername());
+        return categoryMapper.insert(category);
+    }
+
+    public int delete(CategoryDeleteRequestDto requestDto) {
+
+        return categoryMapper.delete(requestDto);
+    }
+
+
+    public int update(UserDetails userDetails, CategoryUpdateRequestDto requestDto) {
+        CategoryEntity category = new CategoryEntity();
+        category.setCategory_id(requestDto.getCategory_id());
+        category.setName(requestDto.getName());
+        category.setUpdated_by(userDetails.getUsername());
+        return categoryMapper.update(category);
     }
 
 
