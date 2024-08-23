@@ -12,14 +12,25 @@
         FROM article_like
         WHERE article_like_id = #{article_like_id}
     </select>
-    <select id="selectMyBoardLikeList" parameterType="UserEntity" resultType="BoardLikeResponseDto">
+    <resultMap id="BoardLikeResponseDtoMap" type="BoardLikeResponseDto">
+        <id property="article_like_id" column="article_like_id"/>
+        <result property="created_by" column="created_by"/>
+        <result property="created_at" column="created_at"/>
+        <association property="board" javaType="BoardLikeBoardInfo">
+            <id property="article_id" column="article_id"/>
+            <result property="title" column="title"/>
+            <result property="created_by" column="created_by"/>
+            <result property="created_at" column="created_at"/>
+        </association>
+    </resultMap>
+    <select id="selectMyBoardLikeList" parameterType="UserEntity" resultMap="BoardLikeResponseDtoMap">
         SELECT al.article_like_id,
                al.created_by,
                al.created_at,
                a.article_id,
                a.title,
-               a.created_at AS article_created_at,
-               a.created_by AS article_created_by
+               a.created_at,
+               a.created_by
         FROM article_like al
                  JOIN article a
                       ON al.article_id = a.article_id

@@ -32,7 +32,7 @@ public class BoardLikeController {
 
     @GetMapping("/pagination/my-list")
     public ResponseEntity<ApiResponse<PageHandler<BoardLikeResponseDto>>> getBoardLikeList(@AuthenticationPrincipal UserDetails userDetails, @RequestBody PaginationRequestDto requestDto) {
-        PageHandler<BoardLikeResponseDto> boardLikeList = boardLikeDao.myBoardLikeList(userDetails, requestDto);
+        PageHandler<BoardLikeResponseDto> boardLikeList = boardLikeDao.myBoardLikePagination(userDetails, requestDto);
         ApiResponse<PageHandler<BoardLikeResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardLikeList);
         return ResponseEntity.ok(response);
     }
