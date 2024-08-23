@@ -37,7 +37,7 @@ public class JWTUtil {
             String role = getRole(expiredToken);
             System.out.println("토큰 재발급");
             // 새 JWT 생성
-            return createJwt(email, role, 60 * 60 * 1000L);  // 1시간의 만료 시간을 가진 새로운 JWT 생성
+            return createJwt(email, role, 600 * 600 * 1000L);  // 1시간의 만료 시간을 가진 새로운 JWT 생성
         } catch (ExpiredJwtException e) {
             // 만료된 토큰의 경우, 새로 발급
             throw new RuntimeException("토큰이 만료되었습니다. 다시 로그인 해주세요.");

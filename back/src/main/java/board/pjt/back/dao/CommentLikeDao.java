@@ -1,11 +1,15 @@
 package board.pjt.back.dao;
 
 import board.pjt.back.common.constants.ErrorMessages;
+import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.commentLike.CommentLikeListRequestDto;
 import board.pjt.back.dto.commentLike.CommentLikeListResponseDto;
 import board.pjt.back.dto.commentLike.CommentLikeResponseDto;
 import board.pjt.back.dto.commentLike.CommentLikeToggleRequestDto;
+import board.pjt.back.dto.common.PaginationRequestDto;
+import board.pjt.back.entity.UserEntity;
 import board.pjt.back.mapper.CommentLikeMapper;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +20,15 @@ public class CommentLikeDao {
 
     public CommentLikeDao(CommentLikeMapper commentLikeMapper) {
         this.commentLikeMapper = commentLikeMapper;
+    }
+
+    public PageHandler<CommentLikeResponseDto> myCommentLikePagination(UserDetails userDetails, PaginationRequestDto requestDto) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(userDetails.getUsername());
+        List<CommentLikeResponseDto> commentLikeResponseDtoList = commentLikeMapper.myCommentLikeList(userEntity);
+        PageHandler<CommentLikeResponseDto> commentLikeResponseDtoPageHandler = new PageHandler<>(commentLikeResponseDtoList.size(), requestDto.getPage(), requestDto.getPageSize());
+        commentLikeResponseDtoPageHandler.setContents(commentLikeResponseDtoList);
+        return commentLikeResponseDtoPageHandler;
     }
 
     public CommentLikeListResponseDto findByCommentId(CommentLikeListRequestDto commentLikeListRequestDto) {

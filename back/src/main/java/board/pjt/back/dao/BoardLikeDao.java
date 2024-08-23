@@ -32,7 +32,7 @@ public class BoardLikeDao {
         return boardLikeListResponseDto;
     }
 
-    public PageHandler<BoardLikeResponseDto> myBoardLikeList(UserDetails userDetails, PaginationRequestDto requestDto) {
+    public PageHandler<BoardLikeResponseDto> myBoardLikePagination(UserDetails userDetails, PaginationRequestDto requestDto) {
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(userDetails.getUsername());
         List<BoardLikeResponseDto> boardLikeListResponseDtoList = boardLikeMapper.selectMyBoardLikeList(userEntity);

@@ -18,4 +18,43 @@
         FROM article_comments_like
         WHERE created_by = #{created_by}
     </delete>
+    <resultMap id="CommentLikeResponseDtoMap" type="CommentLikeResponseDto">
+        <id property="article_comments_like_id" column="article_comments_like_id"/>
+        <result property="created_by" column="created_by"/>
+
+        <!-- Board 매핑 -->
+        <association property="board" javaType="Board">
+            <id property="article_id" column="article_id"/>
+            <result property="title" column="title"/>
+            <result property="created_at" column="created_at"/>
+            <result property="created_by" column="created_by"/>
+        </association>
+
+        <!-- Comment 매핑 -->
+        <association property="comment" javaType="Comment">
+            <id property="article_comments_id" column="article_comments_id"/>
+            <result property="parent_comment_id" column="parent_comment_id"/>
+            <result property="created_at" column="created_at"/>
+            <result property="created_by" column="created_by"/>
+        </association>
+    </resultMap>
+    <select id="myCommentLikeList" parameterType="UserEntity" resultMap="CommentLikeResponseDtoMap">
+        SELECT acl.article_comments_like_id,
+               acl.created_by,
+               a.article_id,
+               a.title,
+               a.created_at,
+               a.created_by,
+               ac.article_comments_id,
+               ac.parent_comment_id,
+               ac.created_at,
+               ac.created_by
+        FROM article_comments_like acl
+                 JOIN article_comments ac
+                      ON acl.comment_id = ac.article_comments_id
+                 JOIN article a
+                      ON ac.article_id = a.article_id
+        WHERE acl.created_by = #{email}
+        ORDER BY acl.created_at DESC
+    </select>
 </mapper>
