@@ -3,10 +3,15 @@ package board.pjt.back.controller;
 import board.pjt.back.common.codes.SuccessCode;
 import board.pjt.back.common.response.ApiResponse;
 import board.pjt.back.dao.BoardLikeDao;
+import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.boardLike.BoardLikeListRequestDto;
 import board.pjt.back.dto.boardLike.BoardLikeListResponseDto;
+import board.pjt.back.dto.boardLike.BoardLikeResponseDto;
 import board.pjt.back.dto.boardLike.BoardToggleLikeRequestDto;
+import board.pjt.back.dto.common.PaginationRequestDto;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,6 +27,13 @@ public class BoardLikeController {
     public ResponseEntity<ApiResponse<BoardLikeListResponseDto>> getBoardLikeList(@RequestBody BoardLikeListRequestDto requestDto) {
         BoardLikeListResponseDto boardLikeList = boardLikeDao.findByBoardLikeId(requestDto);
         ApiResponse<BoardLikeListResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardLikeList);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/pagination/my-list")
+    public ResponseEntity<ApiResponse<PageHandler<BoardLikeResponseDto>>> getBoardLikeList(@AuthenticationPrincipal UserDetails userDetails, @RequestBody PaginationRequestDto requestDto) {
+        PageHandler<BoardLikeResponseDto> boardLikeList = boardLikeDao.myBoardLikeList(userDetails, requestDto);
+        ApiResponse<PageHandler<BoardLikeResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardLikeList);
         return ResponseEntity.ok(response);
     }
 

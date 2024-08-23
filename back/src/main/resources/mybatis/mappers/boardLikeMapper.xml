@@ -12,6 +12,20 @@
         FROM article_like
         WHERE article_like_id = #{article_like_id}
     </select>
+    <select id="selectMyBoardLikeList" parameterType="UserEntity" resultType="BoardLikeResponseDto">
+        SELECT al.article_like_id,
+               al.created_by,
+               al.created_at,
+               a.article_id,
+               a.title,
+               a.created_at AS article_created_at,
+               a.created_by AS article_created_by
+        FROM article_like al
+                 JOIN article a
+                      ON al.article_id = a.article_id
+        WHERE al.created_by = #{email}
+        ORDER BY al.created_at DESC
+    </select>
     <select id="findByBoardLikeId" parameterType="int" resultType="BoardLikeResponseDto">
         SELECT *
         FROM article_like

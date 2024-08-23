@@ -2,11 +2,15 @@ package board.pjt.back.dao;
 
 import board.pjt.back.common.constants.ErrorMessages;
 import board.pjt.back.dto.ArticleLikeDto;
+import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.boardLike.BoardLikeListRequestDto;
 import board.pjt.back.dto.boardLike.BoardLikeListResponseDto;
 import board.pjt.back.dto.boardLike.BoardLikeResponseDto;
 import board.pjt.back.dto.boardLike.BoardToggleLikeRequestDto;
+import board.pjt.back.dto.common.PaginationRequestDto;
+import board.pjt.back.entity.UserEntity;
 import board.pjt.back.mapper.BoardLikeMapper;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +30,16 @@ public class BoardLikeDao {
         boardLikeListResponseDto.setLikes(boardLikeResponseDto);
 
         return boardLikeListResponseDto;
+    }
+
+    public PageHandler<BoardLikeResponseDto> myBoardLikeList(UserDetails userDetails, PaginationRequestDto requestDto) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(userDetails.getUsername());
+        List<BoardLikeResponseDto> boardLikeListResponseDtoList = boardLikeMapper.selectMyBoardLikeList(userEntity);
+        PageHandler<BoardLikeResponseDto> boardLikeResponseDtoPageHandler = new PageHandler<>(boardLikeListResponseDtoList.size(), requestDto.getPage(), requestDto.getPageSize());
+        boardLikeResponseDtoPageHandler.setContents(boardLikeListResponseDtoList);
+        return boardLikeResponseDtoPageHandler;
+
     }
 
     public int toggleBoardLike(BoardToggleLikeRequestDto requestDto) {
