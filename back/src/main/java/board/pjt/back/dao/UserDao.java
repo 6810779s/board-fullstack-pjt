@@ -12,19 +12,12 @@ import java.util.List;
 @Service
 public class UserDao {
     private final UserMapper userMapper;
+
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     UserDao(UserMapper userMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userMapper = userMapper;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
-
-    public UserResponseDto select(String email) {
-        return userMapper.select(email);
-    }
-
-    public List<UserDto> selectAll() {
-        return userMapper.selectAll();
     }
 
     public void insert(UserJoinRequestDto requestDto) {
@@ -41,6 +34,15 @@ public class UserDao {
         data.setNickname(requestDto.getNickname());
         userMapper.insert(data);
     }
+
+    public UserResponseDto select(String email) {
+        return userMapper.select(email);
+    }
+
+    public List<UserDto> selectAll() {
+        return userMapper.selectAll();
+    }
+
 
     public int deleteUser(String email) {
         return userMapper.deleteUser(email);

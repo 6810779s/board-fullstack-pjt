@@ -13,6 +13,12 @@
         FROM article_comments
         ORDER BY created_at DESC
     </select>
+    <select id="selectMyCommentList" parameterType="UserEntity" resultType="CommentResponseDto">
+        SELECT *
+        FROM article_comments
+        WHERE created_by = #{email}
+        ORDER BY created_at DESC
+    </select>
     <select id="selectAllReplyList" resultType="CommentResponseDto">
         SELECT *
         FROM article_comments

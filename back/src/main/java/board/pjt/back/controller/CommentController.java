@@ -3,9 +3,13 @@ package board.pjt.back.controller;
 import board.pjt.back.common.codes.SuccessCode;
 import board.pjt.back.common.response.ApiResponse;
 import board.pjt.back.dao.ArticleCommentsDao;
+import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.comment.*;
+import board.pjt.back.dto.common.PaginationRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +24,13 @@ public class CommentController {
     public ResponseEntity<ApiResponse<List<CommentResponseDto>>> commentList() {
         List<CommentResponseDto> commentList = commentsDao.selectAll();
         ApiResponse<List<CommentResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, commentList);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/pagination/my-list")
+    public ResponseEntity<ApiResponse<PageHandler<CommentResponseDto>>> myCommentList(@AuthenticationPrincipal UserDetails userDetails, @RequestBody PaginationRequestDto requestDto) {
+        PageHandler<CommentResponseDto> commentList = commentsDao.myCommentPagination(userDetails, requestDto);
+        ApiResponse<PageHandler<CommentResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, commentList);
         return ResponseEntity.ok(response);
     }
 
