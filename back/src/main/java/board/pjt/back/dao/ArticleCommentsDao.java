@@ -1,15 +1,19 @@
 package board.pjt.back.dao;
 
 import board.pjt.back.common.constants.ErrorMessages;
+import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.comment.*;
+import board.pjt.back.dto.common.PaginationRequestDto;
+import board.pjt.back.entity.UserEntity;
 import board.pjt.back.mapper.ArticleCommentsMapper;
 import board.pjt.back.mapper.BoardMapper;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ArticleCommentsDao implements ArticleCommentsMapper {
+public class ArticleCommentsDao {
     private final ArticleCommentsMapper commentsMapper;
     private final BoardMapper boardMapper;
 
@@ -20,7 +24,6 @@ public class ArticleCommentsDao implements ArticleCommentsMapper {
     }
 
 
-    @Override
     public CommentResponseDto select(CommentDetailRequestDto requestDto) {
         CommentResponseDto dto = commentsMapper.select(requestDto);
         if (dto == null) {
@@ -29,17 +32,25 @@ public class ArticleCommentsDao implements ArticleCommentsMapper {
         return dto;
     }
 
-    @Override
+
     public List<CommentResponseDto> selectAll() {
         return commentsMapper.selectAll();
     }
 
-    @Override
+    public PageHandler<CommentResponseDto> myCommentPagination(UserDetails userDetails, PaginationRequestDto requestDto) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(userDetails.getUsername());
+        List<CommentResponseDto> myCommentList = commentsMapper.selectMyCommentList(userEntity);
+        PageHandler<CommentResponseDto> commentResponseDtoPageHandler = new PageHandler<>(myCommentList.size(), requestDto.getPage(), requestDto.getPageSize());
+        commentResponseDtoPageHandler.setContents(myCommentList);
+        return commentResponseDtoPageHandler;
+    }
+
     public List<CommentResponseDto> selectAllReplyList(CommentReplyRequestDto requestDto) {
         return commentsMapper.selectAllReplyList(requestDto);
     }
 
-    @Override
+
     public List<CommentResponseDto> selectAllCommentByArticleId(Integer article_id) {
         if (boardMapper.select(article_id) == null) {
             throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
@@ -48,7 +59,6 @@ public class ArticleCommentsDao implements ArticleCommentsMapper {
     }
 
 
-    @Override
     public void insert(CommentCreateRequestDto requestDto) {
         if (boardMapper.select(requestDto.getArticle_id()) == null) {
             throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
@@ -68,7 +78,7 @@ public class ArticleCommentsDao implements ArticleCommentsMapper {
         commentsMapper.insert(requestDto);
     }
 
-    @Override
+
     public void update(CommentUpdateRequestDto requestDto) {
         CommentDetailRequestDto commentDetailRequestDto = setCommentDetailRequestDto(requestDto.getArticle_comments_id());
         CommentResponseDto comment = select(commentDetailRequestDto);
@@ -82,7 +92,7 @@ public class ArticleCommentsDao implements ArticleCommentsMapper {
         }
     }
 
-    @Override
+
     public void delete(CommentDeleteRequestDto requestDto) {
         CommentDetailRequestDto commentDetailRequestDto = setCommentDetailRequestDto(requestDto.getArticle_comments_id());
         CommentResponseDto comment = select(commentDetailRequestDto);

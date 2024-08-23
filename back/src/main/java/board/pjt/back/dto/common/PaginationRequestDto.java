@@ -1,13 +1,13 @@
-package board.pjt.back.dto.board;
+package board.pjt.back.dto.common;
 
-public class BoardPaginationRequestDto {
+public class PaginationRequestDto {
     int page;
     int pageSize;
 
-    public BoardPaginationRequestDto() {
+    public PaginationRequestDto() {
     }
 
-    public BoardPaginationRequestDto(int page, int pageSize) {
+    public PaginationRequestDto(int page, int pageSize) {
         this.page = page;
         this.pageSize = pageSize;
     }

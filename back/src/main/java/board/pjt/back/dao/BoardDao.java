@@ -2,9 +2,15 @@ package board.pjt.back.dao;
 
 import board.pjt.back.common.constants.ErrorMessages;
 import board.pjt.back.dto.PageHandler;
-import board.pjt.back.dto.board.*;
+import board.pjt.back.dto.board.BoardCreateRequestDto;
+import board.pjt.back.dto.board.BoardDeleteRequestDto;
+import board.pjt.back.dto.board.BoardResponseDto;
+import board.pjt.back.dto.board.BoardUpdateRequestDto;
+import board.pjt.back.dto.common.PaginationRequestDto;
+import board.pjt.back.entity.UserEntity;
 import board.pjt.back.mapper.BoardMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,10 +23,19 @@ public class BoardDao {
         this.boardMapper = boardMapper;
     }
 
-    public PageHandler<BoardResponseDto> boardPagination(BoardPaginationRequestDto requestDto) {
+    public PageHandler<BoardResponseDto> boardPagination(PaginationRequestDto requestDto) {
         List<BoardResponseDto> boardList = boardMapper.selectAll();
         PageHandler<BoardResponseDto> boardResponseDtoPageHandler = new PageHandler<>(boardList.size(), requestDto.getPage(), requestDto.getPageSize());
         boardResponseDtoPageHandler.setContents(boardList);
+        return boardResponseDtoPageHandler;
+    }
+
+    public PageHandler<BoardResponseDto> myBoardPagination(UserDetails userDetails, PaginationRequestDto requestDto) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(userDetails.getUsername());
+        List<BoardResponseDto> myBoardList = boardMapper.selectMyBoardList(userEntity);
+        PageHandler<BoardResponseDto> boardResponseDtoPageHandler = new PageHandler<>(myBoardList.size(), requestDto.getPage(), requestDto.getPageSize());
+        boardResponseDtoPageHandler.setContents(myBoardList);
         return boardResponseDtoPageHandler;
     }
 

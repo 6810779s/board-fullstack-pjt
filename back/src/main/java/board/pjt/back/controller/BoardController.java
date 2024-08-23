@@ -4,8 +4,14 @@ import board.pjt.back.common.codes.SuccessCode;
 import board.pjt.back.common.response.ApiResponse;
 import board.pjt.back.dao.BoardDao;
 import board.pjt.back.dto.PageHandler;
-import board.pjt.back.dto.board.*;
+import board.pjt.back.dto.board.BoardCreateRequestDto;
+import board.pjt.back.dto.board.BoardDeleteRequestDto;
+import board.pjt.back.dto.board.BoardResponseDto;
+import board.pjt.back.dto.board.BoardUpdateRequestDto;
+import board.pjt.back.dto.common.PaginationRequestDto;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,10 +33,18 @@ public class BoardController {
         return ResponseEntity.ok(response);
     }
 
+
     @GetMapping("/pagination")
-    public ResponseEntity<ApiResponse<PageHandler<BoardResponseDto>>> getBoardListPagination(@RequestBody BoardPaginationRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<PageHandler<BoardResponseDto>>> getBoardListPagination(@RequestBody PaginationRequestDto requestDto) {
         PageHandler<BoardResponseDto> boardListPagination = boardDao.boardPagination(requestDto);
         ApiResponse<PageHandler<BoardResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardListPagination);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/pagination/my-list")
+    public ResponseEntity<ApiResponse<PageHandler<BoardResponseDto>>> getMyBoardListPagination(@AuthenticationPrincipal UserDetails userDetails, @RequestBody PaginationRequestDto requestDto) {
+        PageHandler<BoardResponseDto> myBoardListPagination = boardDao.myBoardPagination(userDetails, requestDto);
+        ApiResponse<PageHandler<BoardResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, myBoardListPagination);
         return ResponseEntity.ok(response);
     }
 

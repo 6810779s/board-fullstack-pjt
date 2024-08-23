@@ -3,6 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board.pjt.back.mapper.UserMapper">
+    <insert id="insert" parameterType="UserJoinRequestDto">
+        INSERT into user (email, nickname, password, name, birth, created_at, role)
+        VALUES (#{email}, #{nickname}, #{password}, #{name}, #{birth}, now(), "USER")
+    </insert>
+    <select id="selectMyBoardLikeList" parameterType="UserEntity">
+        SELECT *
+        FROM article_like
+        WHERE created_by = #{email}
+        ORDER BY created_at DESC
+    </select>
+    <select id="selectMyBoardList" parameterType="UserEntity">
+        SELECT *
+        FROM article_comments_like
+        WHERE created_by = #{email}
+        ORDER BY created_at DESC
+    </select>
+
     <select id="select" parameterType="string" resultType="UserResponseDto">
         SELECT *
         FROM user
@@ -13,10 +30,6 @@
         FROM user
         ORDER BY email DESC
     </select>
-    <insert id="insert" parameterType="UserJoinRequestDto">
-        INSERT into user (email, nickname, password, name, birth, created_at, role)
-        VALUES (#{email}, #{nickname}, #{password}, #{name}, #{birth}, now(), "USER")
-    </insert>
     <delete id="deleteUser" parameterType="string">
         DELETE
         from user
