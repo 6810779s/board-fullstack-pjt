@@ -1,9 +1,6 @@
 package board.pjt.back.mapper;
 
-import board.pjt.back.dto.board.BoardCreateRequestDto;
-import board.pjt.back.dto.board.BoardDeleteRequestDto;
-import board.pjt.back.dto.board.BoardResponseDto;
-import board.pjt.back.dto.board.BoardUpdateRequestDto;
+import board.pjt.back.dto.board.*;
 import board.pjt.back.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -12,7 +9,11 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
-    BoardResponseDto select(@Param("article_id") Integer article_id);
+    BoardDetailResponseDto select(@Param("article_id") Integer article_id);
+
+    BoardDetailResponseDto getPrevArticle(Integer article);
+
+    BoardDetailResponseDto getNextArticle(Integer article);
 
     List<BoardResponseDto> selectAll();
 

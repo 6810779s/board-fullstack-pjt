@@ -10,10 +10,42 @@
         FROM article
         ORDER BY article_id DESC
     </select>
-    <select id="select" parameterType="int" resultType="BoardResponseDto">
+    <resultMap id="BoardDetailMap" type="BoardDetailResponseDto">
+        <id property="article_id" column="article_id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="created_by" column="created_by"/>
+        <result property="created_at" column="created_at"/>
+        <association property="category" javaType="CategorySelectResponseDto">
+            <id property="category_id" column="category_id"/>
+            <result property="name" column="name"/>
+        </association>
+    </resultMap>
+    <select id="select" parameterType="int" resultMap="BoardDetailMap">
+        SELECT a.article_id,
+               a.title,
+               a.content,
+               a.content,
+               a.created_by,
+               a.created_at,
+               c.category_id,
+               c.name
+        FROM article a
+                 JOIN category c
+                      ON a.category_id = c.category_id
+        WHERE a.article_id = #{article_id}
+    </select>
+    <select id="getPrevArticle" resultType="BoardDetailResponseDto">
         SELECT *
         FROM article
-        WHERE article_id = #{article_id}
+        WHERE article_id &lt; #{article_id}
+        ORDER BY article_id DESC LIMIT 1
+    </select>
+    <select id="getNextArticle" resultType="BoardDetailResponseDto">
+        SELECT *
+        FROM article
+        WHERE article_id &gt; #{article_id}
+        ORDER BY article_id ASC LIMIT 1
     </select>
     <select id="selectMyBoardList" parameterType="UserEntity" resultType="BoardResponseDto">
         SELECT *
