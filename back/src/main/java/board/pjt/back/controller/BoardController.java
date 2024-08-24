@@ -4,10 +4,7 @@ import board.pjt.back.common.codes.SuccessCode;
 import board.pjt.back.common.response.ApiResponse;
 import board.pjt.back.dao.BoardDao;
 import board.pjt.back.dto.PageHandler;
-import board.pjt.back.dto.board.BoardCreateRequestDto;
-import board.pjt.back.dto.board.BoardDeleteRequestDto;
-import board.pjt.back.dto.board.BoardResponseDto;
-import board.pjt.back.dto.board.BoardUpdateRequestDto;
+import board.pjt.back.dto.board.*;
 import board.pjt.back.dto.common.PaginationRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -49,9 +46,9 @@ public class BoardController {
     }
 
     @GetMapping("/{article_id}")
-    public ResponseEntity<ApiResponse<BoardResponseDto>> getBoard(@PathVariable Integer article_id) {
-        BoardResponseDto board = boardDao.select(article_id);
-        ApiResponse<BoardResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, board);
+    public ResponseEntity<ApiResponse<BoardDetailResponseDto>> getBoard(@PathVariable Integer article_id) {
+        BoardDetailResponseDto board = boardDao.select(article_id);
+        ApiResponse<BoardDetailResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, board);
         return ResponseEntity.ok(response);
     }
 
