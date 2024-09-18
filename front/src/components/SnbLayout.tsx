@@ -1,12 +1,12 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
 const SnbLayout = () => {
-  return (
-    <div>
-      Snb
-      <Outlet />
-    </div>
-  );
+    return (
+        <div>
+            Snb
+            <Outlet />
+        </div>
+    );
 };
 
 export default SnbLayout;

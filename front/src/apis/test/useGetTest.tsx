@@ -1,17 +1,18 @@
-import { QUERY_KEYS } from "@apis/QueryKeys";
-import { api } from "@apis/axios";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from '@tanstack/react-query';
+
+import { QUERY_KEYS } from '@apis/QueryKeys';
+import { api } from '@apis/axios';
 
 const getTest = async () => {
-  return await api.get(QUERY_KEYS.TEST.test()[0]).then((res) => {
-    console.log("res", res);
-    return res.data;
-  });
+    return await api.get(QUERY_KEYS.TEST.test()[0]).then((res) => {
+        console.log('res', res);
+        return res.data;
+    });
 };
 
 export const useGetTest = () => {
-  return useQuery({
-    queryKey: QUERY_KEYS.TEST.test(),
-    queryFn: () => getTest(),
-  });
+    return useQuery({
+        queryKey: QUERY_KEYS.TEST.test(),
+        queryFn: () => getTest(),
+    });
 };
