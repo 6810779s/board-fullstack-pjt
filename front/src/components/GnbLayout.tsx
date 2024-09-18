@@ -1,12 +1,12 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
 const GnbLayout = () => {
-  return (
-    <div>
-      GNB
-      <Outlet />
-    </div>
-  );
+    return (
+        <div>
+            GNB
+            <Outlet />
+        </div>
+    );
 };
 
 export default GnbLayout;
