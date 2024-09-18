@@ -7,8 +7,8 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react-hooks/recommended",
-        "plugin:prettier/recommended"
-        // "plugin:storybook/recommended"
+        "plugin:prettier/recommended",
+        "plugin:storybook/recommended"
     ],
     "ignorePatterns": ["dist", "craco.config.js", ".eslintrc.json"],
     "parser": "@typescript-eslint/parser",
