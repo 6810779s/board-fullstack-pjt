@@ -1,7 +1,5 @@
 import { Button, Stack } from '@mui/material';
 
-import './button.css';
-
 export interface ButtonProps {
     /** Is this the principal call to action on the page? */
     primary?: boolean;
@@ -17,21 +15,14 @@ export interface ButtonProps {
 
 /** Primary UI component for user interaction */
 export const ButtonStorybook = ({
-    primary = false,
     size = 'medium',
     backgroundColor,
     label,
     ...props
 }: ButtonProps) => {
-    const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
     return (
         <Stack>
-            <Button
-                type="button"
-                className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-                style={{ backgroundColor }}
-                {...props}
-            >
+            <Button type="button" size={size} style={{ backgroundColor }} {...props}>
                 {label}
             </Button>
         </Stack>
