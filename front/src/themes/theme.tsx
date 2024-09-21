@@ -10,11 +10,7 @@ declare module '@mui/material/Typography' {
         'main/small': true;
     }
 }
-// declare module '@mui/material/Pagination' {
-//     interface PaginationPropsColorOverrides {
-//         black: true;
-//     }
-// }
+
 export const theme = createTheme({
     palette: palette,
     components: {
@@ -42,11 +38,19 @@ export const theme = createTheme({
             },
             styleOverrides: {
                 root: {
-                    'li > button': { width: '32px', border: `1px solid ${palette.grey[200]}` },
-                    '& .Mui-selected': {
-                        background: palette.common.black,
-                        color: palette.common.white,
+                    'li > button': {
+                        'width': '32px',
+                        'border': `1px solid ${palette.grey[200]}`,
+                        'borderRadius': '6px',
+                        '&.Mui-selected': {
+                            'background': palette.common.black,
+                            'color': palette.common.white,
+                            '&:hover': {
+                                background: palette.grey[700],
+                            },
+                        },
                     },
+
                     'svg': { width: '14px', height: '14px' },
 
                     '& .MuiPaginationItem-firstLast': {
@@ -60,6 +64,24 @@ export const theme = createTheme({
 
                     '& .Mui-disabled': {
                         svg: { color: palette.grey[300] },
+                    },
+                },
+            },
+        },
+        MuiIconButton: {
+            styleOverrides: {
+                root: {
+                    padding: 0,
+                },
+            },
+        },
+        MuiChip: {
+            styleOverrides: {
+                root: {
+                    'color': palette.text.main,
+                    'fontSize': '14px',
+                    '& .MuiChip-deleteIcon': {
+                        color: palette.grey[500],
                     },
                 },
             },
