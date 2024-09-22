@@ -4,10 +4,31 @@ import { CaretDoubleLeft, CaretDoubleRight, CaretLeft, CaretRight } from '@phosp
 // import { CaretDoubleLeft, CaretDoubleRight, CaretLeft, CaretRight } from '@assets/index';
 import { palette } from './palette';
 
+declare module '@mui/material/Button' {
+    interface ButtonPropsVariantOverrides {
+        Primary: true;
+        WhiteOutlined: true;
+        BlackContained: true;
+        WhiteContained: true;
+        WhiteContainedBlackOutlined: true;
+        Error: true;
+        ErrorOutlined: true;
+        WhiteOutlinedIconButton: true;
+        LightGrey: true;
+    }
+}
+
 declare module '@mui/material/Typography' {
     interface TypographyPropsVariantOverrides {
         'main': true;
         'main/small': true;
+    }
+}
+
+declare module '@mui/material/Dialog' {
+    interface DialogPropsVariantOverrides {
+        confirm: true;
+        error: true;
     }
 }
 
@@ -82,6 +103,105 @@ export const theme = createTheme({
                     'fontSize': '14px',
                     '& .MuiChip-deleteIcon': {
                         color: palette.grey[500],
+                    },
+                },
+            },
+        },
+        MuiButton: {
+            defaultProps: {
+                variant: 'BlackContained',
+            },
+            styleOverrides: {
+                root: {
+                    fontSize: '14px',
+                },
+            },
+            variants: [
+                {
+                    props: { variant: 'BlackContained' },
+                    style: {
+                        background: palette.common.black,
+                        color: palette.common.white,
+                    },
+                },
+                {
+                    props: { variant: 'WhiteOutlined' },
+                    style: {
+                        background: 'transparent',
+                        color: palette.common.white,
+                        border: `1px solid ${palette.common.white}`,
+                    },
+                },
+                {
+                    props: { variant: 'WhiteContained' },
+                    style: {
+                        background: palette.common.white,
+                        color: palette.text.main,
+                    },
+                },
+                {
+                    props: { variant: 'WhiteContainedBlackOutlined' },
+                    style: {
+                        background: palette.common.white,
+                        color: palette.common.black,
+                        border: `1px solid ${palette.common.black}`,
+                    },
+                },
+                {
+                    props: { variant: 'Error' },
+                    style: {
+                        background: palette.error[500],
+                        color: palette.common.white,
+                    },
+                },
+                {
+                    props: { variant: 'ErrorOutlined' },
+                    style: {
+                        background: 'transparent',
+                        color: palette.common.white,
+                        border: `1px solid ${palette.error[500]}`,
+                    },
+                },
+                {
+                    props: { variant: 'WhiteOutlinedIconButton' },
+                    style: {
+                        background: 'transparent',
+                        color: palette.common.white,
+                        border: `1px solid ${palette.common.white}`,
+                    },
+                },
+                {
+                    props: { variant: 'Primary' },
+                    style: {
+                        background: palette.primary[500],
+                        color: palette.common.white,
+                    },
+                },
+                {
+                    props: { variant: 'LightGrey' },
+                    style: {
+                        background: palette.grey[100],
+                        border: `1px solid ${palette.grey[200]}`,
+                        color: palette.grey[500],
+                    },
+                },
+            ],
+        },
+        MuiTabs: {
+            styleOverrides: {
+                root: {
+                    '& .MuiTabs-indicator': {
+                        backgroundColor: palette.common.black,
+                    },
+                    'borderBottom': `1px solid ${palette.common.white}`,
+                    'height': '43px',
+                    '& .MuiButtonBase-root': {
+                        '&.Mui-selected': {
+                            color: palette.text.main,
+                        },
+
+                        'height': '100%',
+                        'color': palette.grey[400],
                     },
                 },
             },
