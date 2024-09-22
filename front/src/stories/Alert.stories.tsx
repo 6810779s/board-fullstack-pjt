@@ -6,13 +6,20 @@ import { Meta, StoryFn } from '@storybook/react';
 import Alert, { AlertProps } from '@/components/Alert';
 
 const meta = {
-    title: 'Example/Dialog',
+    title: 'Example/Alert',
     component: Dialog,
     parameters: { backgrounds: { default: 'dark' }, layout: 'centered' },
     tags: ['autodocs'],
-    argTypes: {},
+    argTypes: {
+        variant: {
+            options: ['confirm', 'error'],
+            control: {
+                type: 'select',
+            },
+        },
+    },
     args: {},
-} satisfies Meta<typeof Dialog>;
+} satisfies Meta<typeof Alert>;
 
 export default meta;
 
