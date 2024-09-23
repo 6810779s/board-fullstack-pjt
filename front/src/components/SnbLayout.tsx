@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-const SnbLayout = () => {
+export const SnbLayout = () => {
     return (
         <div>
             Snb
@@ -8,5 +8,3 @@ const SnbLayout = () => {
         </div>
     );
 };
-
-export default SnbLayout;
