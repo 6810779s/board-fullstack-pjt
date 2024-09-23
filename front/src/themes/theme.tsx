@@ -206,5 +206,37 @@ export const theme = createTheme({
                 },
             },
         },
+        MuiTextField: {
+            defaultProps: { variant: 'outlined', size: 'small' },
+            styleOverrides: {
+                root: {
+                    '& .MuiOutlinedInput-root': {
+                        'borderRadius': '6px',
+                        '& input': {
+                            '&.Mui-disabled': {
+                                '-webkit-text-fill-color': palette.text.disabled,
+                                'background': palette.grey[50],
+                            },
+                            '&::placeholder': { color: palette.text.placeholder, opacity: 1 },
+                        },
+                        '& fieldset': {
+                            borderColor: palette.grey[200],
+                        },
+                        '&:hover fieldset': {
+                            borderColor: palette.primary[500],
+                        },
+                        '&.Mui-focused fieldset': {
+                            borderColor: palette.primary[500],
+                        },
+                        '&.Mui-disabled fieldset': {
+                            borderColor: palette.grey[200],
+                        },
+                    },
+                },
+            },
+        },
+        MuiSelect: {
+            defaultProps: { size: 'small' },
+        },
     },
 });

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import GnbLayout from '@components/GnbLayout';
-import SnbLayout from '@components/SnbLayout';
+import { GnbLayout } from '@components/GnbLayout';
+import { SnbLayout } from '@components/SnbLayout';
 
 import Login from '@pages/accounts/Login';
 import SignUp from '@pages/accounts/SignUp';
