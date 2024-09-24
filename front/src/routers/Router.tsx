@@ -1,8 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { GnbLayout } from '@components/GnbLayout';
-import { SnbLayout } from '@components/SnbLayout';
-
+import { GnbLayout } from '@/components/gnb/GnbLayout';
 import { Login } from '@/pages/auth/login';
 import { SignUp } from '@/pages/auth/signUp';
 import { BoardDetail } from '@/pages/board/boardDetail';
@@ -11,48 +9,64 @@ import { BoardRegister } from '@/pages/board/boardRegister';
 import { Error } from '@/pages/error';
 import { Home } from '@/pages/home';
 import { MyPage } from '@/pages/myPage/myPage';
+import { UserPage } from '@/pages/myPage/userPage';
+import { ProjectReviewDetail } from '@/pages/projectReview/projectReviewDetail';
+import { ProjectReviewList } from '@/pages/projectReview/projectReviewList';
+import { ProjectReviewRegister } from '@/pages/projectReview/projectReviewRegister';
 
 import { Redirect } from './Redirect';
 
 export const router = createBrowserRouter([
     {
-        path: '/',
         element: <GnbLayout />,
         children: [
+            //로그인
+            { path: 'login', element: <Login /> },
+            //회원가입
+            { path: 'sign-up', element: <SignUp /> },
+            //홈
+            { path: 'home', element: <Home /> },
+            //게시판 목록
             {
-                path: '',
-                element: <SnbLayout />,
+                path: 'board-list',
+                element: <BoardList />,
+            },
+            //게시판 상세
+            {
+                path: 'board/:id',
+                element: <BoardDetail />,
+            },
+            //게시판 등록
+            {
+                path: 'board-register',
+                element: <BoardRegister />,
+            },
+            //프로젝트 리뷰 목록
+            {
+                path: 'project-review-list',
+                element: <ProjectReviewList />,
+            },
+            //프로젝트 리뷰 상세
+            {
+                path: 'project-review/:id',
+                element: <ProjectReviewDetail />,
+            },
+            //프로젝트 리뷰 등록
+            {
+                path: 'project-register',
+                element: <ProjectReviewRegister />,
+            },
+            //마이페이지
+            {
+                path: 'my-page',
+                element: <MyPage />,
                 children: [
-                    //로그인
-                    { path: '/login', element: <Login /> },
-                    //회원가입
-                    { path: '/signUp', element: <SignUp /> },
-                    //홈
-                    { path: '/home', element: <Home /> },
-                    //게시판 목록
-                    {
-                        path: '/board',
-                        element: <BoardList />,
-                    },
-                    //게시판 상세
-                    {
-                        path: 'detail/:id',
-                        element: <BoardDetail />,
-                    },
-                    //게시판 등록
-                    {
-                        path: 'register',
-                        element: <BoardRegister />,
-                    },
-                    //프로젝트 리뷰 목록
-                    //프로젝트 리뷰 상세
-                    //프로젝트 리뷰 등록
-                    //마이페이지
                     //마이페이지 - 타회원
-                    { path: '/myPage', element: <MyPage /> },
-                    { path: '*', element: <Redirect /> },
+                    { path: ':user-email', element: <UserPage /> },
                 ],
             },
+
+            { path: '*', element: <Redirect /> },
         ],
         errorElement: <Error />,
     },

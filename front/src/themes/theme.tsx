@@ -35,8 +35,27 @@ declare module '@mui/material/Dialog' {
 export const theme = createTheme({
     palette: palette,
     components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                'a': { textDecoration: 'none', color: palette.text.main },
+                '&::webkit-scrollbar': { width: '8px' },
+                '&::webkit-scrollbar-thumb': {
+                    backgroundColor: palette.grey[400],
+                    backgroundClip: 'padding-box',
+                    borderRadius: '3px',
+                },
+            },
+        },
         MuiTypography: {
             defaultProps: { variant: 'main' },
+            variants: [
+                {
+                    props: {
+                        variant: 'main',
+                    },
+                    style: { color: palette.text.main },
+                },
+            ],
         },
 
         MuiPagination: {
