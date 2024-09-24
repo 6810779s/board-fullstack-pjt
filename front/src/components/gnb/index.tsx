@@ -1,14 +1,16 @@
 import React from 'react';
 
-import { Stack, Typography } from '@mui/material';
+import { Drawer, IconButton, Stack, Typography } from '@mui/material';
 import { List } from '@phosphor-icons/react';
 
 import { palette } from '@/themes';
 
 import { LinkComponent } from '../LinkComponent';
+import { SNB } from '../snb';
 
 export const GNB = () => {
     const [dummyLogin, setDummyLogin] = React.useState<boolean>(true);
+    const [open, setOpen] = React.useState<boolean>(false);
     return (
         <Stack
             direction="row"
@@ -21,7 +23,9 @@ export const GNB = () => {
                 background: palette.common.white,
             }}
         >
-            <List size={30} />
+            <IconButton onClick={() => setOpen(true)}>
+                <List size={30} />
+            </IconButton>
             <Typography
                 flex={1}
                 sx={{ color: palette.text.main, fontSize: '25px', fontWeight: 700 }}
@@ -45,6 +49,9 @@ export const GNB = () => {
                     />
                 </Stack>
             )}
+            <Drawer open={open} onClose={() => setOpen(false)}>
+                {<SNB setOpen={setOpen} />}
+            </Drawer>
         </Stack>
     );
 };
