@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Stack, StackProps } from '@mui/material';
 
+import { Footer } from './Footer';
 import { Header } from './header';
 import { Profile } from './profile';
 
@@ -14,6 +15,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({ children, ...props }) =>
             <Stack flex={1} sx={{ height: '100%', overflow: 'scroll' }}>
                 {children}
             </Stack>
+            <Footer />
         </Stack>
     );
 };
