@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
             //회원가입
             { path: 'sign-up', element: <SignUp /> },
             //홈
-            { path: 'home', element: <Home /> },
+            { index: true, element: <Home /> },
             //팀원 구하기 게시판 목록
             {
                 path: 'board-list',
