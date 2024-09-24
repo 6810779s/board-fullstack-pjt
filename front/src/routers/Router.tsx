@@ -26,17 +26,17 @@ export const router = createBrowserRouter([
             { path: 'sign-up', element: <SignUp /> },
             //홈
             { path: 'home', element: <Home /> },
-            //게시판 목록
+            //팀원 구하기 게시판 목록
             {
                 path: 'board-list',
                 element: <BoardList />,
             },
-            //게시판 상세
+            //팀원 구하기 게시판 상세
             {
                 path: 'board/:id',
                 element: <BoardDetail />,
             },
-            //게시판 등록
+            //팀원 구하기 게시판 등록
             {
                 path: 'board-register',
                 element: <BoardRegister />,
