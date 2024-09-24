@@ -36,7 +36,6 @@ const Alert: React.FC<AlertProps> = ({ variant, title, content, onConfirm, ...pr
                 },
             }}
         >
-            {' '}
             <DialogTitle>
                 <Stack direction={'row'} gap={'10px'}>
                     <Stack

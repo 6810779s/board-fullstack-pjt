@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-
 import { Stack, Typography } from '@mui/material';
 import { List } from '@phosphor-icons/react';
 
 import { palette } from '@/themes';
+
+import { LinkComponent } from '../LinkComponent';
 
 export const GNB = () => {
     const [dummyLogin, setDummyLogin] = React.useState<boolean>(true);
@@ -31,28 +31,18 @@ export const GNB = () => {
 
             {dummyLogin ? (
                 <Stack direction="row" gap="40px" alignItems="center">
-                    <Typography>
-                        <Link to="/">Home</Link>
-                    </Typography>
-                    <Typography>
-                        <Link to="/my-page">Mypage</Link>
-                    </Typography>
-                    <Typography>
-                        <Link to="/" onClick={() => setDummyLogin(false)}>
-                            Logout
-                        </Link>
-                    </Typography>
+                    <LinkComponent to="/" content="Home" />
+                    <LinkComponent to="/my-page" content="Mypage" />
+                    <LinkComponent to="/" content="Logout" onClick={() => setDummyLogin(false)} />
                 </Stack>
             ) : (
                 <Stack direction="row" gap="40px" alignItems="center">
-                    <Typography>
-                        <Link to="/">Home</Link>
-                    </Typography>
-                    <Typography>
-                        <Link to="/login" onClick={() => setDummyLogin(true)}>
-                            Login
-                        </Link>
-                    </Typography>
+                    <LinkComponent to="/" content="Home" />
+                    <LinkComponent
+                        to="/login"
+                        content="Login"
+                        onClick={() => setDummyLogin(true)}
+                    />
                 </Stack>
             )}
         </Stack>
