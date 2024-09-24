@@ -1,3 +1,5 @@
+import { PageLayout } from '@/components/PageLayout';
+
 export const MyPage = () => {
-    return <div>마이페이지</div>;
+    return <PageLayout>마이페이지</PageLayout>;
 };

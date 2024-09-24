@@ -1,3 +1,5 @@
+import { PageLayout } from '@/components/PageLayout';
+
 export const BoardList = () => {
-    return <div>게시판 목록</div>;
+    return <PageLayout>게시판 목록</PageLayout>;
 };
