@@ -132,7 +132,11 @@ export const theme = createTheme({
             },
             styleOverrides: {
                 root: {
-                    fontSize: '14px',
+                    'height': '38.5px',
+                    'fontSize': '14px',
+                    '&:hover': {
+                        opacity: 0.8,
+                    },
                 },
             },
             variants: [
