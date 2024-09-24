@@ -1,3 +1,5 @@
+import { PageLayout } from '@/components/PageLayout';
+
 export const ProjectReviewList = () => {
-    return <div>PJT리뷰 목록</div>;
+    return <PageLayout>PJT리뷰 목록</PageLayout>;
 };

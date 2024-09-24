@@ -1,13 +1,5 @@
-import { Stack } from '@mui/material';
-
-import { Profile } from '@/components/profile';
-import { Header } from '@/components/profile/Header';
+import { PageLayout } from '@/components/PageLayout';
 
 export const Home = () => {
-    return (
-        <Stack>
-            <Header />
-            <Profile />
-        </Stack>
-    );
+    return <PageLayout>Home</PageLayout>;
 };
