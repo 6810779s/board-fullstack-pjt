@@ -43,6 +43,11 @@ export const GNB = () => {
                 <Stack direction="row" gap="40px" alignItems="center">
                     <LinkComponent to="/" content="Home" />
                     <LinkComponent
+                        to="/sign-up"
+                        content="sign up"
+                        onClick={() => setDummyLogin(true)}
+                    />
+                    <LinkComponent
                         to="/login"
                         content="Login"
                         onClick={() => setDummyLogin(true)}

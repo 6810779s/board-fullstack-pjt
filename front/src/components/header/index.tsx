@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { Button, Stack, Typography, styled } from '@mui/material';
 
 import { palette } from '@/themes';
@@ -8,6 +10,7 @@ const ButtonStyle = styled(Button)({
     width: '240px',
 });
 export const Header = () => {
+    const navigate = useNavigate();
     const [dummyLogin, setDummyLogin] = React.useState<boolean>(false);
     return (
         <Stack
@@ -33,7 +36,7 @@ export const Header = () => {
                     <ButtonStyle variant="WhiteOutlined" onClick={() => setDummyLogin(true)}>
                         로그인
                     </ButtonStyle>
-                    <ButtonStyle>회원가입</ButtonStyle>
+                    <ButtonStyle onClick={() => navigate('/sign-up')}>회원가입</ButtonStyle>
                 </Stack>
             )}
         </Stack>
