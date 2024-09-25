@@ -13,7 +13,7 @@ export const Profile = () => {
             direction="row"
             justifyContent="space-between"
             alignItems="center"
-            sx={{ height: '180px', background: palette.grey[800], padding: '60px 170px' }}
+            sx={{ height: '180px', background: palette.grey[800], padding: '40px 170px' }}
         >
             <Stack direction="row" gap="40px">
                 <Box

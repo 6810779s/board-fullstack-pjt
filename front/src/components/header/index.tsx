@@ -18,7 +18,7 @@ export const Header = () => {
             alignItems="center"
             gap="24px"
             sx={{
-                height: '288px',
+                padding: '60px 170px',
                 background: palette.grey[800],
                 borderBottom: `1px solid ${palette.grey[700]}`,
             }}
