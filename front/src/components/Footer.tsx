@@ -9,7 +9,7 @@ export const Footer = () => {
             alignItems="center"
             sx={{ height: '220px', background: palette.common.white }}
         >
-            <Typography sx={{ fontSize: '20px' }}>
+            <Typography sx={{ fontSize: '20px', padding: '60px 170px' }}>
                 © 2024 Eunhee’s PJT reviewer. All Rights Reserved.
             </Typography>
         </Stack>
