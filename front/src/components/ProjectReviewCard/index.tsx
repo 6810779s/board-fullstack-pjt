@@ -3,7 +3,7 @@ import { CalendarBlank, ChatCircleText, Star, User } from '@phosphor-icons/react
 
 import { palette } from '@/themes';
 
-import { IconWithText } from './IconWithText';
+import { IconWithText } from '../IconWithText';
 
 interface ProjectReviewCardProps {
     imgSrc: string;
@@ -42,18 +42,24 @@ export const ProjectReviewCard: React.FC<ProjectReviewCardProps> = ({
                 <IconWithText
                     icon={<User size={16} color={palette.grey[500]} />}
                     content={`${member} 명`}
+                    gap={10}
+                    color={palette.text.main}
                 />
                 <IconWithText
                     icon={<CalendarBlank size={16} color={palette.grey[500]} />}
                     content={`${startDate} ~ ${endDate}`}
+                    gap={10}
+                    color={palette.text.main}
                 />
                 <IconWithText
                     icon={<ChatCircleText size={16} color={palette.grey[500]} />}
                     content={`댓글 ${commentCnt}건`}
+                    gap={10}
+                    color={palette.text.main}
                 />
                 <Stack direction="row" alignItems="center" gap="3px">
                     {hashTags.map((item) => (
-                        <Typography color={palette.primary[600]}>#{item}</Typography>
+                        <Typography color={palette.primary[700]}>#{item}</Typography>
                     ))}
                 </Stack>
             </CardContent>

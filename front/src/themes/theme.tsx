@@ -22,6 +22,7 @@ declare module '@mui/material/Typography' {
     interface TypographyPropsVariantOverrides {
         'main': true;
         'main/small': true;
+        'main/small/grey': true;
     }
 }
 
@@ -55,6 +56,18 @@ export const theme = createTheme({
                     },
                     style: { color: palette.text.main },
                 },
+                {
+                    props: {
+                        variant: 'main/small',
+                    },
+                    style: { fontSize: '14px', color: palette.text.main },
+                },
+                {
+                    props: {
+                        variant: 'main/small/grey',
+                    },
+                    style: { fontSize: '14px', color: palette.grey[500] },
+                },
             ],
         },
 
@@ -78,6 +91,8 @@ export const theme = createTheme({
             },
             styleOverrides: {
                 root: {
+                    'alignSelf': 'center',
+                    'padding': '60px 0',
                     'li > button': {
                         'width': '32px',
                         'border': `1px solid ${palette.grey[200]}`,

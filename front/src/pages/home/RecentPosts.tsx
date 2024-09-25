@@ -2,12 +2,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, List, ListItem, Stack, Typography } from '@mui/material';
 import { CalendarBlank, ChatCircleText, Clock, User } from '@phosphor-icons/react';
-import { format, formatDistance } from 'date-fns';
-import { ko } from 'date-fns/locale';
+import { format } from 'date-fns';
 
+import { IconWithText } from '@/components/IconWithText';
 import { palette } from '@/themes';
-
-import { IconWithText, TypographyStyle } from './components/IconWithText';
+import { calcTime } from '@/util';
 
 interface TDummyData {
     id: number;
@@ -74,13 +73,6 @@ export const RecentPosts = () => {
             projectName: '부루마블 게임 프로젝트',
         },
     ];
-    const calcTime = (createdAt: string) => {
-        return formatDistance(new Date(createdAt), new Date(), {
-            includeSeconds: true,
-            addSuffix: true,
-            locale: ko,
-        });
-    };
 
     return (
         <Stack>
@@ -118,10 +110,12 @@ export const RecentPosts = () => {
                             sx={{ cursor: 'pointer' }}
                         >
                             <Stack gap="22px" sx={{ width: '180px', padding: '0 25px' }}>
-                                <TypographyStyle>{item.category}</TypographyStyle>
+                                <Typography variant="main/small/grey">{item.category}</Typography>
                                 <Stack gap="2px">
-                                    <TypographyStyle>{calcTime(item.createdAt)}</TypographyStyle>
-                                    <TypographyStyle>{`찜 ${item.like}`}</TypographyStyle>
+                                    <Typography variant="main/small/grey">
+                                        {calcTime(item.createdAt)}
+                                    </Typography>
+                                    <Typography variant="main/small/grey">{`찜 ${item.like}`}</Typography>
                                 </Stack>
                             </Stack>
                             <Stack gap="10px" sx={{ padding: '0 12px' }}>
@@ -144,10 +138,13 @@ export const RecentPosts = () => {
                                         content={`댓글 ${item.totalCommentCnt}`}
                                     />
                                 </Stack>
-                                <TypographyStyle sx={{ height: '48px', textOverflow: 'ellipsis' }}>
+                                <Typography
+                                    variant="main/small/grey"
+                                    sx={{ height: '48px', textOverflow: 'ellipsis' }}
+                                >
                                     {item.content}
-                                </TypographyStyle>
-                                <Typography sx={{ fontSize: '14px', fontWeight: 500 }}>
+                                </Typography>
+                                <Typography variant="main/small" sx={{ fontWeight: 500 }}>
                                     {item.projectName}
                                 </Typography>
                             </Stack>
