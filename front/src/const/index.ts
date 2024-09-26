@@ -117,3 +117,111 @@ export const boardListDummyData: TBoardListDummyData[] = [
         projectName: '게시판 프로젝트',
     },
 ];
+
+export interface TBoardDetailDummyData {
+    category: string;
+    title: string;
+    member: { total: number; participants: number };
+    content: string;
+    createdAt: string;
+    writer: {
+        nickname: string;
+        tags: string[];
+        message: string;
+        friend: false;
+    };
+    prevBoard: {
+        title: string;
+    };
+    nextBoard: {
+        title: string;
+    };
+    comment: {
+        commentCnt: number;
+        commentsArr: CommentProps[];
+    };
+}
+
+export const boardDetailDummyData: TBoardDetailDummyData = {
+    category: 'category',
+    title: '[Title입니다] 프로젝트에 대한 제목을 써보겠습니다',
+    member: { total: 6, participants: 3 },
+    createdAt: '2024.09.25 17:35',
+    content: '컨텐트 입니데이~',
+    writer: {
+        nickname: 'eun',
+        tags: ['Frontend Developer', 'Backend Developer'],
+        message: '풀스택 개발자 입니다. 디자이너 구합니다.',
+        friend: false,
+    },
+    prevBoard: {
+        title: 'Prev board Title',
+    },
+    nextBoard: {
+        title: 'Next Board Title',
+    },
+    comment: {
+        commentCnt: 2,
+        commentsArr: [
+            {
+                id: 0,
+                nickname: 'eun1',
+                content: '이것에 대한 댓글',
+                createdAt: '2024.09.10 13:09',
+                like: 6,
+                replyComment: {
+                    replyCommentCnt: 2,
+                    replyCommentArr: [
+                        {
+                            id: 100,
+                            createdAt: '2024.02.12 14:09',
+                            nickname: 'eun1-1',
+                            content: '댓글에 대한 답글1',
+                        },
+                        {
+                            id: 101,
+                            createdAt: '2024.02.12 14:29',
+                            nickname: 'eun1-1',
+                            content: '댓글에 대한 답글2',
+                        },
+                    ],
+                },
+            },
+            {
+                id: 1,
+                nickname: 'eun123',
+                content: '이것에 대한 댓글33',
+                createdAt: '2024.09.10 13:09',
+                like: 100,
+                replyComment: {
+                    replyCommentCnt: 1,
+                    replyCommentArr: [
+                        {
+                            id: 101,
+                            createdAt: '2024.02.12 14:29',
+                            nickname: 'eun1-1',
+                            content: '댓글에 대한 답글2',
+                        },
+                    ],
+                },
+            },
+        ],
+    },
+};
+
+export interface CommentProps {
+    id: number;
+    nickname: string;
+    content: string;
+    replyComment: {
+        replyCommentCnt: number;
+        replyCommentArr: {
+            id: number;
+            createdAt: string;
+            nickname: string;
+            content: string;
+        }[];
+    };
+    like: number;
+    createdAt: string;
+}
