@@ -252,8 +252,8 @@ export const theme = createTheme({
                         'borderRadius': '6px',
                         '& input': {
                             '&.Mui-disabled': {
-                                '-webkit-text-fill-color': palette.text.disabled,
-                                'background': palette.grey[50],
+                                WebkitTextFillColor: palette.text.disabled,
+                                background: palette.grey[50],
                             },
                             '&::placeholder': { color: palette.text.placeholder, opacity: 1 },
                         },
