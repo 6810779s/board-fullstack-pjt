@@ -1,4 +1,15 @@
-import { List, MenuItem, Pagination, Select, Stack, TextField, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
+import {
+    Button,
+    List,
+    MenuItem,
+    Pagination,
+    Select,
+    Stack,
+    TextField,
+    Typography,
+} from '@mui/material';
 import { MagnifyingGlass, Trophy } from '@phosphor-icons/react';
 
 import { PageLayout } from '@/components/PageLayout';
@@ -9,13 +20,22 @@ import { BoardListItem } from './components/BoardListItem';
 import { PostCard } from './components/PostCard';
 
 export const BoardList = () => {
+    const navigate = useNavigate();
     return (
         <PageLayout>
             <Stack flex={1} gap="30px">
                 <Stack>
-                    <Stack direction="row" alignItems="center" gap="10px" sx={{ height: '68px' }}>
-                        <Trophy color={palette.grey[500]} size={20} />
-                        <Typography>Top 3</Typography>
+                    <Stack direction="row" justifyContent="space-between" alignItems="center">
+                        <Stack
+                            direction="row"
+                            alignItems="center"
+                            gap="10px"
+                            sx={{ height: '68px' }}
+                        >
+                            <Trophy color={palette.grey[500]} size={20} />
+                            <Typography>Top 3</Typography>
+                        </Stack>
+                        <Button onClick={() => navigate('/board-register')}>글쓰기</Button>
                     </Stack>
                     <Stack direction="row" gap="63px">
                         {boardListTopThreeDummyData.map((item) => (
