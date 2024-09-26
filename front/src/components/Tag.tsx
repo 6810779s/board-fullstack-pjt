@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { IconButton, Stack, Typography } from '@mui/material';
+import { IconButton, Stack, StackProps, Typography } from '@mui/material';
 import { XCircle } from '@phosphor-icons/react';
 
 import { palette } from '@/themes';
 
-interface TagProps {
+interface TagProps extends StackProps {
     onDelete?: () => void;
     label: string;
 }
-export const Tag: React.FC<TagProps> = ({ label, onDelete }) => {
+export const Tag: React.FC<TagProps> = ({ label, onDelete, ...props }) => {
     return (
         <Stack
             direction={'row'}
@@ -21,13 +21,14 @@ export const Tag: React.FC<TagProps> = ({ label, onDelete }) => {
                 color: palette.text.main,
                 borderRadius: '2px',
                 border: `1px solid ${palette.grey[300]}`,
+                ...props.sx,
             }}
             onClick={onDelete ? onDelete : () => {}}
         >
             <Typography fontSize={'14px'}> {label}</Typography>
             {onDelete && (
                 <IconButton>
-                    <XCircle weight="fill" color={palette.grey[500]} height={'100%'} />
+                    <XCircle weight="fill" color={palette.grey[400]} size={15} height={'100%'} />
                 </IconButton>
             )}
         </Stack>
