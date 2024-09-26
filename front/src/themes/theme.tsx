@@ -182,7 +182,7 @@ export const theme = createTheme({
                     style: {
                         background: palette.common.white,
                         color: palette.common.black,
-                        border: `1px solid ${palette.common.black}`,
+                        border: `1px solid ${palette.grey[400]}`,
                     },
                 },
                 {
