@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ReactQuill from 'react-quill-new';
-import 'react-quill/dist/quill.snow.css';
+import 'react-quill-new/dist/quill.snow.css';
 
 import { Stack } from '@mui/material';
 import Delta from 'quill-delta';
