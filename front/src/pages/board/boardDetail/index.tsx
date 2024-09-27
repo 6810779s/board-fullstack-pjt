@@ -9,6 +9,7 @@ import { CommentContainer } from '@/components/comment/CommentContainer';
 import { boardDetailDummyData } from '@/const';
 import { palette } from '@/themes';
 
+import { LikeButtonForBoard } from './components/LikeButtonForBoard';
 import { OtherBoards } from './components/OtherBoards';
 import UserProfile from './components/UserProfile';
 
@@ -16,7 +17,8 @@ export const BoardDetail = () => {
     const { id } = useParams();
     return (
         <PageLayout alignItems="center">
-            <Stack flex={1} gap="15px" sx={{ width: '770px' }}>
+            <Stack flex={1} gap="15px" sx={{ width: '770px', position: 'relative' }}>
+                <LikeButtonForBoard />
                 <Typography sx={{ fontWeight: 700, textAlign: 'right' }}>
                     {boardDetailDummyData.category}
                 </Typography>
