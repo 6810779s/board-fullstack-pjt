@@ -1,17 +1,10 @@
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import {
-    Button,
-    List,
-    MenuItem,
-    Pagination,
-    Select,
-    Stack,
-    TextField,
-    Typography,
-} from '@mui/material';
-import { MagnifyingGlass, Trophy } from '@phosphor-icons/react';
+import { Button, List, Pagination, Stack, Typography } from '@mui/material';
+import { Trophy } from '@phosphor-icons/react';
 
+import { SearchAndSelect } from '@/components/\bsearchAndSelect';
 import { PageLayout } from '@/components/PageLayout';
 import { boardListDummyData, boardListTopThreeDummyData } from '@/const';
 import { palette } from '@/themes';
@@ -20,6 +13,9 @@ import { BoardListItem } from './components/BoardListItem';
 import { PostCard } from './components/PostCard';
 
 export const BoardList = () => {
+    const { control } = useForm<{ selectValue: 'ALL' | 'ONE' | 'TWO'; textValue: string }>({
+        defaultValues: { selectValue: 'ALL', textValue: '' },
+    });
     const navigate = useNavigate();
     return (
         <PageLayout>
@@ -54,27 +50,21 @@ export const BoardList = () => {
                         ))}
                     </Stack>
                 </Stack>
-                <Stack direction="row" gap="15px">
-                    <Select value={'ALL'}>
-                        <MenuItem value="ALL">전체</MenuItem>
-                        <MenuItem value="WRITER">글쓴이</MenuItem>
-                        <MenuItem value="CONTENT">내용</MenuItem>
-                    </Select>
-                    <TextField
-                        placeholder="검색어 입력"
-                        slotProps={{
-                            input: {
-                                endAdornment: (
-                                    <MagnifyingGlass color={palette.grey[500]} size={20} />
-                                ),
-                            },
-                        }}
-                    />
-                </Stack>
+                <SearchAndSelect
+                    selectName="selectValue"
+                    textFieldName="textValue"
+                    control={control}
+                    select_list={[
+                        { value: 'ALL', label: '전체' },
+                        { value: 'ONE', label: '하나' },
+                        { value: 'TWO', label: '둘' },
+                    ]}
+                />
                 <Stack>
                     <List disablePadding>
                         {boardListDummyData.map((item) => (
                             <BoardListItem
+                                key={`boardList-${item.id}`}
                                 id={item.id}
                                 category={item.category}
                                 like={item.like}

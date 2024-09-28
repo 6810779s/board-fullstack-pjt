@@ -33,9 +33,18 @@ export const ProjectReviewCard: React.FC<ProjectReviewCardProps> = ({
                 <Stack direction="row" alignItems="center" gap="1px">
                     {Array.from({ length: 5 }).map((_, index) => {
                         if (index > starCnt - 1) {
-                            return <Star color={palette.error[500]} size={10} />;
+                            return (
+                                <Star key={`star-${index}`} color={palette.error[500]} size={10} />
+                            );
                         } else {
-                            return <Star weight="fill" color={palette.error[500]} size={10} />;
+                            return (
+                                <Star
+                                    key={`star-${index}`}
+                                    weight="fill"
+                                    color={palette.error[500]}
+                                    size={10}
+                                />
+                            );
                         }
                     })}
                 </Stack>
@@ -58,8 +67,10 @@ export const ProjectReviewCard: React.FC<ProjectReviewCardProps> = ({
                     color={palette.text.main}
                 />
                 <Stack direction="row" alignItems="center" gap="3px">
-                    {hashTags.map((item) => (
-                        <Typography color={palette.primary[700]}>#{item}</Typography>
+                    {hashTags.map((item, index) => (
+                        <Typography key={`${item}-${index}`} color={palette.primary[700]}>
+                            #{item}
+                        </Typography>
                     ))}
                 </Stack>
             </CardContent>
