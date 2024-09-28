@@ -1,7 +1,6 @@
 import { PaginationItem, createTheme } from '@mui/material';
 import { CaretDoubleLeft, CaretDoubleRight, CaretLeft, CaretRight } from '@phosphor-icons/react';
 
-// import { CaretDoubleLeft, CaretDoubleRight, CaretLeft, CaretRight } from '@assets/index';
 import { palette } from './palette';
 
 declare module '@mui/material/Button' {

@@ -93,7 +93,7 @@ export const RecentPosts = () => {
             <List disablePadding>
                 {dummyData.map((item, idx) => (
                     <ListItem
-                        key={item.id}
+                        key={`${item.id}`}
                         disablePadding
                         sx={{
                             padding: '18px 0',

@@ -22,8 +22,8 @@ export const ParticipantProject = () => {
                     <TextField placeholder="보유하고 있는 기술을 등록해보세요." />
                 </Stack>
                 <Stack direction="row" gap="4px">
-                    {dummyData.map((item) => (
-                        <Tag label={item} />
+                    {dummyData.map((item, index) => (
+                        <Tag key={`${item}-${index}`} label={item} />
                     ))}
                 </Stack>
                 <Button sx={{ width: '240px' }}>제출하기</Button>

@@ -89,8 +89,8 @@ export const SNB: React.FC<SNBProps> = ({ setOpen }) => {
             onClick={() => setOpen(false)}
         >
             <Stack>
-                {SNB_MENU.map((item) => (
-                    <Stack>
+                {SNB_MENU.map((item, index) => (
+                    <Stack key={`${item.category}-${index}`}>
                         <Typography
                             sx={{
                                 height: '45px',
@@ -103,8 +103,9 @@ export const SNB: React.FC<SNBProps> = ({ setOpen }) => {
                             {item.category}
                         </Typography>
                         <List>
-                            {item.children.map((child) => (
+                            {item.children.map((child, index) => (
                                 <ListItem
+                                    key={`${child.category}-${index}`}
                                     disablePadding
                                     sx={{
                                         height: '45px',
