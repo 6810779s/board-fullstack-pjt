@@ -41,14 +41,16 @@ export const ProjectReviewRegister = () => {
                         />
                     </Label>
                     <Label title="기술 스택">
-                        <TextfieldWithBtn
-                            variant="outlined"
-                            onClick={() => {}}
-                            width="100%"
-                            placeholder="기술 스택"
-                        />
-                        <Stack direction="row" sx={{ minHeight: '60px', alignItems: 'center' }}>
-                            <Chip label="JAVA" onDelete={() => {}} />
+                        <Stack gap="10px">
+                            <TextfieldWithBtn
+                                variant="outlined"
+                                onClick={() => {}}
+                                width="100%"
+                                placeholder="기술 스택"
+                            />
+                            <Stack direction="row" flexWrap="wrap" gap="10px">
+                                <Chip label="JAVA" onDelete={() => {}} />
+                            </Stack>
                         </Stack>
                     </Label>
                     <Label title="참여 인원">

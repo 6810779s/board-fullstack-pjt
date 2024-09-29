@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, Stack, Typography } from '@mui/material';
 
-import { ProjectReviewCard } from '@/components/ProjectReviewCard';
+import { ProjectReviewCard } from '@/components/projectReviewCard';
 
 export const ProjectReview = () => {
     const navigate = useNavigate();

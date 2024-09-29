@@ -21,6 +21,7 @@ export const Tag: React.FC<TagProps> = ({ label, onDelete, ...props }) => {
                 color: palette.text.main,
                 borderRadius: '2px',
                 border: `1px solid ${palette.grey[300]}`,
+                maxWidth: 'fit-content',
                 ...props.sx,
             }}
             onClick={onDelete ? onDelete : () => {}}
