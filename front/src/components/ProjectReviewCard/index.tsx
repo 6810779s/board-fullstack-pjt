@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-import { Card, CardContent, CardMedia, Stack, Typography } from '@mui/material';
-import { CalendarBlank, ChatCircleText, Star, User } from '@phosphor-icons/react';
+import { Card, CardContent, CardMedia, Rating, Stack, Typography } from '@mui/material';
+import { CalendarBlank, ChatCircleText, User } from '@phosphor-icons/react';
 
 import { palette } from '@/themes';
 
@@ -22,7 +22,6 @@ interface ProjectReviewCardProps {
 export const ProjectReviewCard: React.FC<ProjectReviewCardProps> = ({
     imgSrc,
     title,
-    starCnt,
     member,
     startDate,
     endDate,
@@ -41,24 +40,7 @@ export const ProjectReviewCard: React.FC<ProjectReviewCardProps> = ({
             <CardMedia image={imgSrc} sx={{ width: '100%', height: '170px' }} />
             <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
                 <Typography sx={{ fontSize: '20px', fontWeight: 700 }}>{title}</Typography>
-                <Stack direction="row" alignItems="center" gap="1px">
-                    {Array.from({ length: 5 }).map((_, index) => {
-                        if (index > starCnt - 1) {
-                            return (
-                                <Star key={`star-${index}`} color={palette.error[500]} size={10} />
-                            );
-                        } else {
-                            return (
-                                <Star
-                                    key={`star-${index}`}
-                                    weight="fill"
-                                    color={palette.error[500]}
-                                    size={10}
-                                />
-                            );
-                        }
-                    })}
-                </Stack>
+                <Rating readOnly value={3} size="small" />
                 <IconWithText
                     icon={<User size={16} color={palette.grey[500]} />}
                     content={`${member} 명`}

@@ -46,6 +46,19 @@ export const theme = createTheme({
                 },
             },
         },
+
+        MuiRating: {
+            defaultProps: {
+                precision: 0.5,
+            },
+            styleOverrides: {
+                root: {
+                    '& .MuiRating-icon': {
+                        color: palette.error[500],
+                    },
+                },
+            },
+        },
         MuiTypography: {
             defaultProps: { variant: 'main' },
             variants: [
@@ -132,6 +145,7 @@ export const theme = createTheme({
         MuiChip: {
             styleOverrides: {
                 root: {
+                    'background': palette.grey[200],
                     'color': palette.text.main,
                     'fontSize': '14px',
                     '& .MuiChip-deleteIcon': {
@@ -151,6 +165,7 @@ export const theme = createTheme({
                     '&:hover': {
                         opacity: 0.8,
                     },
+                    'textTransform': 'none',
                 },
             },
             variants: [
