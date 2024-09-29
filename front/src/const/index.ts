@@ -225,3 +225,46 @@ export interface CommentProps {
     like: number;
     createdAt: string;
 }
+
+export const projectReview = [
+    {
+        imgSrc: '/src/assets/book_img.svg',
+        title: '자바 실시간 채팅 프로그램',
+        starCnt: 3,
+        member: 3,
+        startDate: '2024.05.02',
+        endDate: '2024.06.07',
+        commentCnt: 5,
+        hashTags: ['JAVA', 'Spring', 'React'],
+    },
+    {
+        imgSrc: '/src/assets/code_img.svg',
+        title: '자바 실시간 채팅 프로그램',
+        starCnt: 3,
+        member: 3,
+        startDate: '2024.05.02',
+        endDate: '2024.06.07',
+        commentCnt: 5,
+        hashTags: ['JAVA', 'Spring', 'React'],
+    },
+    {
+        imgSrc: '/src/assets/code2_img.svg',
+        title: '자바 실시간 채팅 프로그램',
+        starCnt: 3,
+        member: 3,
+        startDate: '2024.05.02',
+        endDate: '2024.06.07',
+        commentCnt: 5,
+        hashTags: ['JAVA', 'Spring', 'React'],
+    },
+    {
+        imgSrc: '/src/assets/computer_img.svg',
+        title: '자바 실시간 채팅 프로그램',
+        starCnt: 3,
+        member: 3,
+        startDate: '2024.05.02',
+        endDate: '2024.06.07',
+        commentCnt: 5,
+        hashTags: ['JAVA', 'Spring', 'React'],
+    },
+];

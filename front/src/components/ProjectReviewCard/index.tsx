@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Card, CardContent, CardMedia, Stack, Typography } from '@mui/material';
 import { CalendarBlank, ChatCircleText, Star, User } from '@phosphor-icons/react';
 
@@ -14,6 +16,8 @@ interface ProjectReviewCardProps {
     endDate: string;
     commentCnt: number;
     hashTags: string[];
+    minWidth?: string;
+    flex?: string;
 }
 export const ProjectReviewCard: React.FC<ProjectReviewCardProps> = ({
     imgSrc,
@@ -24,10 +28,17 @@ export const ProjectReviewCard: React.FC<ProjectReviewCardProps> = ({
     endDate,
     commentCnt,
     hashTags,
+    minWidth = 'unset',
+    flex = 'none',
 }) => {
+    const navigate = useNavigate();
     return (
-        <Card variant="outlined">
-            <CardMedia image={imgSrc} sx={{ width: '350px', height: '170px' }} />
+        <Card
+            variant="outlined"
+            sx={{ cursor: 'pointer', minWidth, flex }}
+            onClick={() => navigate('/project-review/1')}
+        >
+            <CardMedia image={imgSrc} sx={{ width: '100%', height: '170px' }} />
             <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
                 <Typography sx={{ fontSize: '20px', fontWeight: 700 }}>{title}</Typography>
                 <Stack direction="row" alignItems="center" gap="1px">

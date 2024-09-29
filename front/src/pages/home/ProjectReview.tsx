@@ -19,7 +19,7 @@ export const ProjectReview = () => {
                 </Button>
             </Stack>
 
-            <Stack flex={1} sx={{ position: 'relative' }}>
+            <Stack flex={{ xs: 1.5, lx: 1 }} sx={{ position: 'relative' }}>
                 {!login && (
                     <Button
                         sx={{
@@ -35,7 +35,15 @@ export const ProjectReview = () => {
                         로그인 하러 가기
                     </Button>
                 )}
-                <Stack direction="row" gap="40px" sx={{ filter: login ? 'none' : 'blur(10px)' }}>
+                <Stack
+                    direction="row"
+                    gap="40px"
+                    justifyContent="flex-end"
+                    flex={1}
+                    sx={{
+                        filter: login ? 'none' : 'blur(10px)',
+                    }}
+                >
                     <ProjectReviewCard
                         imgSrc={'/src/assets/book_img.svg'}
                         title="자바 실시간 채팅 프로그램"
@@ -45,6 +53,7 @@ export const ProjectReview = () => {
                         endDate="2024.06.07"
                         commentCnt={5}
                         hashTags={['JAVA', 'Spring', 'React']}
+                        flex={'1'}
                     />
                     <ProjectReviewCard
                         imgSrc={'/src/assets/code_img.svg'}
@@ -55,6 +64,7 @@ export const ProjectReview = () => {
                         endDate="2024.06.07"
                         commentCnt={5}
                         hashTags={['JAVA', 'Spring', 'React']}
+                        flex={'1'}
                     />
                 </Stack>
             </Stack>
