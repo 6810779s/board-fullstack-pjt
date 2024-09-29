@@ -3,11 +3,12 @@ import { Button, Stack, TextField, TextFieldProps } from '@mui/material';
 export interface TextfieldWithBtnProps extends TextFieldProps<'outlined'> {
     onClick: () => void;
     buttonText?: string;
-    width?: number;
+    width?: string;
+    variant: 'outlined';
 }
 export const TextfieldWithBtn: React.FC<TextfieldWithBtnProps> = ({
     onClick,
-    width = 430,
+    width = '430px',
     buttonText = '등록',
     variant = 'outlined',
     ...props
@@ -16,7 +17,7 @@ export const TextfieldWithBtn: React.FC<TextfieldWithBtnProps> = ({
         <Stack
             direction={'row'}
             alignItems={'center'}
-            sx={{ position: 'relative', paddingRight: '40px', width: `${width}px` }}
+            sx={{ position: 'relative', paddingRight: '40px', width }}
         >
             <TextField variant={variant} {...props} sx={{ flex: 1 }} />
             <Button
