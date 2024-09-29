@@ -1,3 +1,11 @@
+import { Stack } from '@mui/material';
+
+import { PageLayout } from '@/components/PageLayout';
+
 export const ProjectReviewDetail = () => {
-    return <div>PJT 리뷰 상세</div>;
+    return (
+        <PageLayout alignItems="center">
+            <Stack flex={1} gap="40px"></Stack>
+        </PageLayout>
+    );
 };

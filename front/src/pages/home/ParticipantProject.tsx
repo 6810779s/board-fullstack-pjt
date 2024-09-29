@@ -12,7 +12,7 @@ export const ParticipantProject = () => {
                 </Typography>
                 <Typography>나만의 양식을 작성하여 팀원을 구해보세요.</Typography>
             </Stack>
-            <Stack flex={1} gap="40px">
+            <Stack flex={{ xs: 1.5, lx: 1 }} gap="40px">
                 <Stack gap="4px">
                     <Typography sx={{ fontSize: '14px' }}>제목</Typography>
                     <TextField placeholder="제목을 입력하세요" />
