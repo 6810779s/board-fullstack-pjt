@@ -7,7 +7,7 @@ import { Clock, Fire } from '@phosphor-icons/react';
 import { SearchAndSelect } from '@/components/\bsearchAndSelect';
 import { IconWithText } from '@/components/IconWithText';
 import { PageLayout } from '@/components/PageLayout';
-import { ProjectReviewCard } from '@/components/ProjectReviewCard';
+import { ProjectReviewCard } from '@/components/projectReviewCard';
 import { projectReview } from '@/const';
 import { palette } from '@/themes';
 

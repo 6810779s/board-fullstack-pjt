@@ -4,13 +4,13 @@ import { Button, Stack, TextField, Typography } from '@mui/material';
 import { CalendarBlank, ChatCenteredDots, User } from '@phosphor-icons/react';
 
 import { IconWithText } from '@/components/IconWithText';
+import { OtherBoards } from '@/components/OtherBoards';
 import { PageLayout } from '@/components/PageLayout';
 import { CommentContainer } from '@/components/comment/CommentContainer';
 import { boardDetailDummyData } from '@/const';
 import { palette } from '@/themes';
 
 import { LikeButtonForBoard } from './components/LikeButtonForBoard';
-import { OtherBoards } from './components/OtherBoards';
 import UserProfile from './components/UserProfile';
 
 export const BoardDetail = () => {
