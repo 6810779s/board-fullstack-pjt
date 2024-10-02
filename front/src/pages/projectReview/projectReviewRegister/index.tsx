@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import {
     Button,
+    Checkbox,
     Chip,
     MenuItem,
     Rating,
@@ -139,7 +140,19 @@ export const ProjectReviewRegister = () => {
                             }}
                         >
                             <MenuItem value="one">
-                                <MenuItemProfile />
+                                <MenuItemProfile>
+                                    <Checkbox sx={{ justifyContent: 'flex-end' }} />
+                                </MenuItemProfile>
+                            </MenuItem>
+                            <MenuItem value="two">
+                                <MenuItemProfile>
+                                    <Checkbox sx={{ justifyContent: 'flex-end' }} />
+                                </MenuItemProfile>
+                            </MenuItem>
+                            <MenuItem value="three">
+                                <MenuItemProfile>
+                                    <Checkbox sx={{ justifyContent: 'flex-end' }} />
+                                </MenuItemProfile>
                             </MenuItem>
                         </Select>
                     </Label>

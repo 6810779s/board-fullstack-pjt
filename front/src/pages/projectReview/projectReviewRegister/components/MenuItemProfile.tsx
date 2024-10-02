@@ -1,15 +1,19 @@
-import { Box, Checkbox, Stack, Typography } from '@mui/material';
+import React from 'react';
+
+import { Box, Stack, Typography } from '@mui/material';
 
 import { Tag } from '@/components/Tag';
 import { palette } from '@/themes';
 
-export const MenuItemProfile = () => {
+interface MenuItemProfileProps {
+    children: React.ReactNode;
+}
+export const MenuItemProfile: React.FC<MenuItemProfileProps> = ({ children }) => {
     return (
         <Stack
-            flex={1}
             direction="row"
             alignItems="center"
-            sx={{ height: '100px', padding: '10px 12px' }}
+            sx={{ height: '120px', minHeight: '120px', padding: '10px 12px' }}
         >
             <Box
                 sx={{
@@ -21,7 +25,7 @@ export const MenuItemProfile = () => {
             />
             <Stack gap="2px" flex={1} sx={{ marginLeft: '40px' }}>
                 <Typography sx={{ fontWeight: 700 }}>eun</Typography>
-                <Stack direction="row" alignItems="center">
+                <Stack direction="row" alignItems="center" gap="6px">
                     <Tag label="FrontEnd Developer" />
                     <Tag label="BackEnd Developer" />
                 </Stack>
@@ -29,7 +33,7 @@ export const MenuItemProfile = () => {
                     풀스택 개발자 입니다. 디자이너 구합니다.
                 </Typography>
             </Stack>
-            <Checkbox sx={{ justifyContent: 'flex-end' }} />
+            {children}
         </Stack>
     );
 };
