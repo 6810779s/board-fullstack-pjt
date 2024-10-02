@@ -10,6 +10,7 @@ interface IconWithTextProps {
     fontSize?: number;
     color?: string;
     gap?: number;
+    fontWeight?: number;
 }
 
 export const IconWithText: React.FC<IconWithTextProps> = ({
@@ -18,11 +19,20 @@ export const IconWithText: React.FC<IconWithTextProps> = ({
     fontSize = 14,
     color = palette.grey[500],
     gap = 5,
+    fontWeight,
 }) => {
     return (
         <Stack direction="row" alignItems="center" gap={`${gap}px`}>
             {icon}
-            <Typography sx={{ color, fontSize: `${fontSize}px` }}>{content}</Typography>
+            <Typography
+                sx={{
+                    color,
+                    fontSize: `${fontSize}px`,
+                    fontWeight: fontWeight ? fontWeight : 'normal',
+                }}
+            >
+                {content}
+            </Typography>
         </Stack>
     );
 };

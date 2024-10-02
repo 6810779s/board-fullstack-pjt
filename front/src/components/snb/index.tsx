@@ -50,27 +50,27 @@ export const SNB: React.FC<SNBProps> = ({ setOpen }) => {
             children: [
                 {
                     category: '활동내역',
-                    path: '/my-page?active-history',
+                    path: '/my-page?page=active-history',
                     icon: <ClockCounterClockwise color={palette.grey[500]} size={16} />,
                 },
                 {
                     category: '친구목록',
-                    path: '/my-page?friend-list',
+                    path: '/my-page?page=friend-list',
                     icon: <UsersThree color={palette.grey[500]} size={16} />,
                 },
                 {
                     category: '피드백',
-                    path: '/my-page?feedback',
+                    path: '/my-page?page=feedback',
                     icon: <ChatCircleText color={palette.grey[500]} size={16} />,
                 },
                 {
                     category: '프로젝트 리뷰',
-                    path: '/my-page?project-review',
+                    path: '/my-page?page=project-review',
                     icon: <ProjectorScreenChart color={palette.grey[500]} size={16} />,
                 },
                 {
                     category: 'setting',
-                    path: '/my-page?setting',
+                    path: '/my-page?page=setting',
                     icon: <Gear color={palette.grey[500]} size={16} />,
                 },
                 {
