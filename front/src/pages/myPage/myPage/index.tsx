@@ -5,6 +5,7 @@ import { Stack } from '@mui/material';
 import { PageLayout } from '@/components/PageLayout';
 
 import { ActiveHistory } from './activeHistory';
+import { Feedback } from './feedback';
 import { FriendList } from './friendList';
 
 export const MyPage = () => {
@@ -16,6 +17,7 @@ export const MyPage = () => {
             <Stack flex={1} sx={{ width: '770px' }}>
                 {(page === null || page == 'active-history') && <ActiveHistory />}
                 {page === 'friend-list' && <FriendList />}
+                {page === 'feedback' && <Feedback />}
             </Stack>
         </PageLayout>
     );
