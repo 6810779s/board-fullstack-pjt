@@ -1,12 +1,12 @@
 import { Stack, Typography } from '@mui/material';
-import { ChatCircleText } from '@phosphor-icons/react';
+import { ProjectorScreenChart } from '@phosphor-icons/react';
 
 import { IconWithText } from '@/components/IconWithText';
 import { palette } from '@/themes';
 
-import { FeedbackForm } from './FeedbackForm';
+import { ProjectReviewForm } from './ProjectReviewForm';
 
-export const Feedback = () => {
+export const ProjectReview = () => {
     return (
         <Stack flex={1}>
             <Stack
@@ -19,8 +19,8 @@ export const Feedback = () => {
                 }}
             >
                 <IconWithText
-                    icon={<ChatCircleText size={20} color={palette.grey[500]} />}
-                    content="Feedback"
+                    icon={<ProjectorScreenChart size={20} color={palette.grey[500]} />}
+                    content="My Project"
                     fontSize={20}
                     fontWeight={700}
                     color={palette.text.main}
@@ -32,7 +32,7 @@ export const Feedback = () => {
             </Stack>
             <Stack sx={{ height: '760px', overflowY: 'scroll' }}>
                 {Array.from({ length: 10 }).map(() => (
-                    <FeedbackForm />
+                    <ProjectReviewForm />
                 ))}
             </Stack>
         </Stack>

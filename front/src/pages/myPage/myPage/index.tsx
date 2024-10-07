@@ -7,6 +7,7 @@ import { PageLayout } from '@/components/PageLayout';
 import { ActiveHistory } from './activeHistory';
 import { Feedback } from './feedback';
 import { FriendList } from './friendList';
+import { ProjectReview } from './projectReview';
 
 export const MyPage = () => {
     const location = useLocation();
@@ -18,6 +19,7 @@ export const MyPage = () => {
                 {(page === null || page == 'active-history') && <ActiveHistory />}
                 {page === 'friend-list' && <FriendList />}
                 {page === 'feedback' && <Feedback />}
+                {page === 'project-review' && <ProjectReview />}
             </Stack>
         </PageLayout>
     );
