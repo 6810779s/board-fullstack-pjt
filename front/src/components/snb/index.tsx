@@ -22,6 +22,7 @@ import {
     UsersThree,
 } from '@phosphor-icons/react';
 
+import { userEmailDummy } from '@/const';
 import { palette } from '@/themes';
 
 interface SNBProps {
@@ -50,27 +51,27 @@ export const SNB: React.FC<SNBProps> = ({ setOpen }) => {
             children: [
                 {
                     category: '활동내역',
-                    path: '/my-page?page=active-history',
+                    path: `/my-page/${userEmailDummy}?page=active-history`,
                     icon: <ClockCounterClockwise color={palette.grey[500]} size={16} />,
                 },
                 {
                     category: '친구목록',
-                    path: '/my-page?page=friend-list',
+                    path: `/my-page/${userEmailDummy}?page=friend-list`,
                     icon: <UsersThree color={palette.grey[500]} size={16} />,
                 },
                 {
                     category: '피드백',
-                    path: '/my-page?page=feedback',
+                    path: `/my-page/${userEmailDummy}?page=feedback`,
                     icon: <ChatCircleText color={palette.grey[500]} size={16} />,
                 },
                 {
                     category: '프로젝트 리뷰',
-                    path: '/my-page?page=project-review',
+                    path: `/my-page/${userEmailDummy}?page=project-review`,
                     icon: <ProjectorScreenChart color={palette.grey[500]} size={16} />,
                 },
                 {
                     category: 'setting',
-                    path: '/my-page?page=setting',
+                    path: `/my-page/${userEmailDummy}?page=setting`,
                     icon: <Gear color={palette.grey[500]} size={16} />,
                 },
                 {

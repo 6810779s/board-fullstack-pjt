@@ -31,8 +31,8 @@ export const Feedback = () => {
                 >{`(5)`}</Typography>
             </Stack>
             <Stack sx={{ height: '760px', overflowY: 'scroll' }}>
-                {Array.from({ length: 10 }).map(() => (
-                    <FeedbackForm />
+                {Array.from({ length: 10 }).map((_, idx) => (
+                    <FeedbackForm key={idx} />
                 ))}
             </Stack>
         </Stack>

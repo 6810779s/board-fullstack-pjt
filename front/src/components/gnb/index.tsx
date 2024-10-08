@@ -3,6 +3,7 @@ import React from 'react';
 import { Drawer, IconButton, Stack, Typography } from '@mui/material';
 import { List } from '@phosphor-icons/react';
 
+import { userEmailDummy } from '@/const';
 import { palette } from '@/themes';
 
 import { LinkComponent } from '../LinkComponent';
@@ -36,7 +37,7 @@ export const GNB = () => {
             {dummyLogin ? (
                 <Stack direction="row" gap="40px" alignItems="center">
                     <LinkComponent to="/" content="Home" />
-                    <LinkComponent to="/my-page" content="Mypage" />
+                    <LinkComponent to={`/my-page/${userEmailDummy}`} content="Mypage" />
                     <LinkComponent to="/" content="Logout" onClick={() => setDummyLogin(false)} />
                 </Stack>
             ) : (

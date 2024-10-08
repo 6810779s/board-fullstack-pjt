@@ -268,3 +268,4 @@ export const projectReview = [
         hashTags: ['JAVA', 'Spring', 'React'],
     },
 ];
+export const userEmailDummy = 'eunhee'; //이메일이 아닌 닉네임으로
