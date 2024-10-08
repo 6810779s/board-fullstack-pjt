@@ -9,7 +9,7 @@ import { BoardRegister } from '@/pages/board/boardRegister';
 import { Error } from '@/pages/error';
 import { Home } from '@/pages/home';
 import { MyPage } from '@/pages/myPage/myPage';
-import { UserPage } from '@/pages/myPage/userPage';
+import MypageContainer from '@/pages/myPage/myPage/MypageContainer';
 import { ProjectReviewDetail } from '@/pages/projectReview/projectReviewDetail';
 import { ProjectReviewList } from '@/pages/projectReview/projectReviewList';
 import { ProjectReviewRegister } from '@/pages/projectReview/projectReviewRegister';
@@ -58,12 +58,9 @@ export const router = createBrowserRouter([
             },
             //마이페이지
             {
-                path: 'my-page',
+                path: 'my-page/:userNickname',
                 element: <MyPage />,
-                children: [
-                    //마이페이지 - 타회원
-                    { path: ':user-email', element: <UserPage /> },
-                ],
+                children: [{ path: '', element: <MypageContainer /> }],
             },
 
             { path: '*', element: <Redirect /> },

@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Box, Button, Stack, Typography } from '@mui/material';
 
+import { userEmailDummy } from '@/const';
 import { palette } from '@/themes';
 
 import { Tag } from '../Tag';
@@ -39,7 +40,7 @@ export const Profile = () => {
                     </Typography>
                 </Stack>
             </Stack>
-            <Button onClick={() => navigate('/my-page')}>View Profile</Button>
+            <Button onClick={() => navigate(`/my-page/${userEmailDummy}`)}>View Profile</Button>
         </Stack>
     );
 };
