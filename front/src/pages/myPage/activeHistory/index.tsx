@@ -4,6 +4,7 @@ import { Box, Stack, Tab, Tabs } from '@mui/material';
 import { ChatCircleText, ClipboardText, ClockCounterClockwise, Heart } from '@phosphor-icons/react';
 
 import { IconWithText } from '@/components/IconWithText';
+import { NoBoard } from '@/components/NoBoard';
 import { palette } from '@/themes';
 
 import { IconWithInfo } from '../components/IconWithInfo';
@@ -142,10 +143,16 @@ export const ActiveHistory = () => {
                     icon={<ClipboardText size={20} color={palette.grey[500]} />}
                     content="내 게시글"
                 >
-                    <TableComponent
-                        columns={dummy_board_data.columns}
-                        rows={dummy_board_data.rows}
-                    />
+                    {dummy_board_data.rows.length > 0 ? (
+                        <TableComponent
+                            columns={dummy_board_data.columns}
+                            rows={dummy_board_data.rows}
+                        />
+                    ) : (
+                        <Stack height="240px">
+                            <NoBoard content="작성된 게시글이 없습니다." />
+                        </Stack>
+                    )}
                 </TabPanel>
                 <TabPanel
                     value={value}
