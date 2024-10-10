@@ -5,6 +5,7 @@ import { Stack, Tab, Tabs } from '@mui/material';
 import { palette } from '@/themes';
 
 import { Feedback } from '../feedback';
+import { ProjectReview } from '../projectReview';
 import { TabPanel } from './TabPanel';
 import { UserFeedback } from './UserFeedback';
 
@@ -22,6 +23,9 @@ export const UserProfile = () => {
             </Tabs>
             <TabPanel value={value} index={0}>
                 <UserFeedback />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+                <ProjectReview />
             </TabPanel>
             <Feedback />
         </Stack>

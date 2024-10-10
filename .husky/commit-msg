@@ -6,7 +6,7 @@ BRANCH_NAME=$(git symbolic-ref --short HEAD)
 # 브랜치 이름 규칙 확인
 BRANCH_REGEX="^(f|a|config|chore|d|f|b|r|c)\/(front|back)\/[a-z0-9\-]+$"
 if ! [[ "$BRANCH_NAME" =~ $BRANCH_REGEX ]]; then
-  echo "❌ 브랜치 이름이 규칙에 맞지 않습니다. 올바른 형식: (f|a|config|chore|d|f|b|r|c)/(front|back)/기능-설명"
+  echo "❌ 브랜치 이름이 규칙에 맞지 않습니다. 올바른 형식: (f|a|config|chore|d|f|b|r|c)/(front|back)/기능-설명(영어 소문자만 가능)"
   exit 1
 fi
 
