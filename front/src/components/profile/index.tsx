@@ -1,14 +1,19 @@
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Box, Button, Stack, Typography } from '@mui/material';
 
 import { userEmailDummy } from '@/const';
 import { palette } from '@/themes';
 
+import Alert from '../Alert';
 import { Tag } from '../Tag';
 
 export const Profile = () => {
     const navigate = useNavigate();
+    const [open, setOpen] = React.useState<boolean>(false);
+    const { userNickname } = useParams();
     return (
         <Stack
             direction="row"
@@ -40,7 +45,23 @@ export const Profile = () => {
                     </Typography>
                 </Stack>
             </Stack>
-            <Button onClick={() => navigate(`/my-page/${userEmailDummy}`)}>View Profile</Button>
+            {userNickname === userEmailDummy ? (
+                <Button variant="Error" onClick={() => setOpen(true)}>
+                    회월 탈퇴
+                </Button>
+            ) : (
+                <Button onClick={() => navigate(`/my-page/${userEmailDummy}`)}>View Profile</Button>
+            )}
+            <Alert
+                open={open}
+                variant="error"
+                title="회원 탈퇴"
+                content="회원 탈퇴시 아이디 복구가 불가능 합니다. "
+                onClose={() => setOpen(false)}
+                onConfirm={() => {
+                    setOpen(false);
+                }}
+            />
         </Stack>
     );
 };
