@@ -9,13 +9,13 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
-    BoardDetailResponseDto select(@Param("article_id") Integer article_id);
-
-    BoardDetailResponseDto getPrevArticle(Integer article);
-
-    BoardDetailResponseDto getNextArticle(Integer article);
-
     List<BoardResponseDto> selectAll();
+    BoardDetailResponseDto select(@Param("board_id") int board_id);
+
+    BoardDetailResponseDto getPrevBoard(int board_id);
+
+    BoardDetailResponseDto getNextBoard(int board_id);
+
 
     List<BoardResponseDto> selectMyBoardList(UserEntity requestDto);
 
