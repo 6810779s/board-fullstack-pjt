@@ -1,6 +1,5 @@
 package board.pjt.back.mapper;
 
-import board.pjt.back.dto.ArticleLikeDto;
 import board.pjt.back.dto.boardLike.BoardLikeListRequestDto;
 import board.pjt.back.dto.boardLike.BoardLikeResponseDto;
 import board.pjt.back.dto.boardLike.BoardToggleLikeRequestDto;
@@ -18,7 +17,8 @@ public interface BoardLikeMapper {
 
     List<BoardLikeResponseDto> selectMyBoardLikeList(UserEntity userEntity);
 
-    ArticleLikeDto select(int article_id);
+
+
 
 
     int delete(BoardToggleLikeRequestDto requestDto);

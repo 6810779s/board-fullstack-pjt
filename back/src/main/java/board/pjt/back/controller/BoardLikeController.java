@@ -38,8 +38,8 @@ public class BoardLikeController {
     }
 
     @PostMapping("/toggle")
-    public ResponseEntity<ApiResponse<Void>> toggleBoardLike(@RequestBody BoardToggleLikeRequestDto requestDto) {
-        int status = boardLikeDao.toggleBoardLike(requestDto);
+    public ResponseEntity<ApiResponse<Void>> toggleBoardLike(@AuthenticationPrincipal UserDetails userDetails, @RequestBody BoardToggleLikeRequestDto requestDto) {
+        int status = boardLikeDao.toggleBoardLike(userDetails, requestDto);
         ApiResponse<Void> response;
         if (status == 0) {
             response = ApiResponse.of(SuccessCode.DELETE_SUCCESS);

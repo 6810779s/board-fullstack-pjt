@@ -1,7 +1,5 @@
 package board.pjt.back.dao;
 
-import board.pjt.back.common.constants.ErrorMessages;
-import board.pjt.back.dto.ArticleLikeDto;
 import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.boardLike.BoardLikeListRequestDto;
 import board.pjt.back.dto.boardLike.BoardLikeListResponseDto;
@@ -42,17 +40,16 @@ public class BoardLikeDao {
 
     }
 
-    public int toggleBoardLike(BoardToggleLikeRequestDto requestDto) {
-        Integer article_id = requestDto.getArticle_id();
-
-        if (article_id == null) {
-            throw new NullPointerException(ErrorMessages.ARTICLE_NOT_FOUND);
-        }
+    public int toggleBoardLike(UserDetails userDetails, BoardToggleLikeRequestDto requestDto) {
+        int board_id = requestDto.getBoard_id();
+        String email = userDetails.getUsername();
+        requestDto.setCreated_by(email);
         BoardLikeListRequestDto boardLikeListRequestDto = new BoardLikeListRequestDto();
-        boardLikeListRequestDto.setArticle_id(article_id);
+        boardLikeListRequestDto.setBoard_id(board_id);
+        boardLikeListRequestDto.setCreated_by(email);
         List<BoardLikeResponseDto> boardLikeResponseDto = boardLikeMapper.findByBoardLikeId(boardLikeListRequestDto);
         boolean isLiked = boardLikeResponseDto.stream()
-                .anyMatch(like -> like.getCreated_by().equals(requestDto.getCreated_by()));
+                .anyMatch(like -> like.getCreated_by().equals(email));
         if (isLiked) {
             boardLikeMapper.delete(requestDto);
             return 0;
@@ -66,9 +63,6 @@ public class BoardLikeDao {
         return boardLikeMapper.selectAll();
     }
 
-    public ArticleLikeDto select(int article_like_id) {
-        return boardLikeMapper.select(article_like_id);
-    }
 
 
 }
