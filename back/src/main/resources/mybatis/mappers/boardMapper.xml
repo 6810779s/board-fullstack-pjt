@@ -7,13 +7,15 @@
 
     <select id="selectAll" resultType="BoardResponseDto">
         SELECT *
-        FROM article
-        ORDER BY article_id DESC
+        FROM board
+        ORDER BY board_id DESC
     </select>
     <resultMap id="BoardDetailMap" type="BoardDetailResponseDto">
-        <id property="article_id" column="article_id"/>
+        <id property="board_id" column="board_id"/>
         <result property="title" column="title"/>
         <result property="content" column="content"/>
+        <result property="rating" column="rating"/>
+        <result property="main_image_path" column="main_image_path"/>
         <result property="created_by" column="created_by"/>
         <result property="created_at" column="created_at"/>
         <association property="category" javaType="CategorySelectResponseDto">
@@ -22,56 +24,56 @@
         </association>
     </resultMap>
     <select id="select" parameterType="int" resultMap="BoardDetailMap">
-        SELECT a.article_id,
-               a.title,
-               a.content,
-               a.content,
-               a.created_by,
-               a.created_at,
-               c.category_id,
+        SELECT b.board_id,
+               b.title,
+               b.content,
+               b.rating,
+               b.main_image_path,
+               b.created_by,
+               b.created_at,
                c.name
-        FROM article a
+        FROM board b
                  JOIN category c
-                      ON a.category_id = c.category_id
-        WHERE a.article_id = #{article_id}
+                      ON b.category_id = c.category_id
+        WHERE b.board_id = #{board_id}
     </select>
-    <select id="getPrevArticle" resultType="BoardDetailResponseDto">
+    <select id="getPrevBoard" resultType="BoardDetailResponseDto">
         SELECT *
-        FROM article
-        WHERE article_id &lt; #{article_id}
-        ORDER BY article_id DESC LIMIT 1
+        FROM board
+        WHERE board_id &lt; #{board_id}
+        ORDER BY board_id DESC LIMIT 1
     </select>
-    <select id="getNextArticle" resultType="BoardDetailResponseDto">
+    <select id="getNextBoard" resultType="BoardDetailResponseDto">
         SELECT *
-        FROM article
-        WHERE article_id &gt; #{article_id}
-        ORDER BY article_id ASC LIMIT 1
+        FROM board
+        WHERE board_id &gt; #{board_id}
+        ORDER BY board_id ASC LIMIT 1
     </select>
     <select id="selectMyBoardList" parameterType="UserEntity" resultType="BoardResponseDto">
         SELECT *
-        FROM article
+        FROM board
         WHERE created_by = #{email}
         ORDER BY created_at DESC
     </select>
     <insert id="insert" parameterType="BoardCreateRequestDto">
-        INSERT INTO article
-        (title, content, category_id, created_at, created_by, updated_at, updated_by)
-        VALUES (#{title}, #{content}, #{category_id}, now(), 'test@naver.com', null,
+        INSERT INTO board
+        (title, content, rating, main_image_path, category_id, created_at, created_by, updated_at, updated_by)
+        VALUES (#{title}, #{content}, #{rating}, #{main_image_path}, #{category_id}, now(), 'test2@daum.net', null,
                 null)
     </insert>
     <insert id="delete" parameterType="int">
         DELETE
-        FROM article
-        WHERE article_id = #{article_id}
+        FROM board
+        WHERE board_id = #{board_id}
     </insert>
     <update id="update" parameterType="BoardUpdateRequestDto">
-        UPDATE article
+        UPDATE board
         SET title       = #{title},
             content     = #{content},
             category_id = #{category_id},
             updated_at  = now(),
-            updated_by  = 'test@naver.com'
-        WHERE article_id = #{article_id}
+            updated_by  = 'test2@daum.net'
+        WHERE board_id = #{board_id}
     </update>
 
 </mapper>

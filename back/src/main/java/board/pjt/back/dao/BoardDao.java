@@ -35,11 +35,11 @@ public class BoardDao {
         return boardResponseDtoPageHandler;
     }
 
-    public BoardDetailResponseDto select(Integer article_id) {
+    public BoardDetailResponseDto select(int board_id) {
 
-        BoardDetailResponseDto dto = boardMapper.select(article_id);
-        dto.setNextArticle(boardMapper.getNextArticle(article_id));
-        dto.setPrevArticle(boardMapper.getPrevArticle(article_id));
+        BoardDetailResponseDto dto = boardMapper.select(board_id);
+        dto.setNextBoard(boardMapper.getNextBoard(board_id));
+        dto.setPrevBoard(boardMapper.getPrevBoard(board_id));
         if (dto == null) {
             throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
         }
@@ -57,7 +57,7 @@ public class BoardDao {
     }
 
     public void delete(BoardDeleteRequestDto requestDto) {
-        BoardDetailResponseDto board = select(requestDto.getArticle_id());
+        BoardDetailResponseDto board = select(requestDto.getBoard_id());
         if (board == null) {
             throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
         }
@@ -69,18 +69,18 @@ public class BoardDao {
     }
 
     public void update(BoardUpdateRequestDto requestDto) {
-        BoardDetailResponseDto board = select(requestDto.getArticle_id());
+        BoardDetailResponseDto board = select(requestDto.getBoard_id());
         if (board == null) {
             throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
         }
         // [TODO] category_id에서 category가 category 목록에 포함 되어있는지 확인하는 로직 구현 필요
         boardMapper.update(requestDto);
-        BoardDetailResponseDto updateBoard = select(requestDto.getArticle_id());
+        BoardDetailResponseDto updateBoard = select(requestDto.getBoard_id());
 
         if (updateBoard == null ||
                 !updateBoard.getTitle().equals(requestDto.getTitle()) ||
                 !updateBoard.getContent().equals(requestDto.getContent())) {
-            throw new RuntimeException(requestDto.getArticle_id() + "번의 게시글이 업데이트되지 않았습니다.");
+            throw new RuntimeException(requestDto.getBoard_id() + "번의 게시글이 업데이트되지 않았습니다.");
         }
 
     }
