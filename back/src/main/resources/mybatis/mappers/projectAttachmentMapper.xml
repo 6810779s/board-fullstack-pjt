@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.pjt.back.mapper.ProjectAttachmentMapper">
+    <insert id="createProjectAttachmentList" parameterType="ProjectAttachmentCreateListRequestDto">
+        INSERT INTO project_attachment (board_id, file_name, file_path, file_type, upload_at)
+        VALUES
+        <foreach collection="project_attachment" item="item" separator=",">
+            (#{board_id}, #{item.file_name}, #{item.file_path}, #{item.file_type}, now())
+        </foreach>
+    </insert>
+    <delete id="deleteProjectAttachment" parameterType="ProjectAttachmentDeleteRequestDto">
+        DELETE FROM project_attachment
+        WHERE board_id = #{board_id}
+    </delete>
+    <select id="getProjectAttachmentList" parameterType="ProjectAttachmentGetListRequestDto">
+        SELECT * FROM project_attachment
+        WHERE board_id = #{board_id}
+    </select>
+</mapper>
