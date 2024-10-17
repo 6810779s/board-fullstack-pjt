@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.pjt.back.mapper.ProjectStackMapper">
+    <insert id="createProjectStackList" parameterType="ProjectStackCreateListRequestDto">
+        INSERT INTO project_stack (board_id, name, created_at)
+        VALUES
+        <foreach collection="project_stack" item="item" separator=",">
+            (#{board_id}, #{item.name}, now())
+        </foreach>
+    </insert>
+    <select id="getProjectStackList" parameterType="ProjectStackGetListRequestDto" resultType="ProjectStackGetListResponseDto">
+        SELECT *
+        FROM project_stack
+        WHERE board_id = #{board_id}
+
+    </select>
+    <delete id="deleteProjectStack" parameterType="ProjectStackDeleteRequestDto">
+        DELETE FROM project_stack
+        WHERE board_id = #{board_id}
+    </delete>
+</mapper>
