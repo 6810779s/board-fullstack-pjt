@@ -9,13 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class ArticleCommentsDaoTest {
     @Autowired
-    private ArticleCommentsDao articleCommentsDao;
+    private CommentDao commentDao;
 
     @Disabled
     @DisplayName("selectAll Test")
     @Test
     void selectAll() {
-        articleCommentsDao.selectAll();
+        commentDao.selectAll();
     }
 
     @Disabled

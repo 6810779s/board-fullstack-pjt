@@ -5,7 +5,7 @@ import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.comment.*;
 import board.pjt.back.dto.common.PaginationRequestDto;
 import board.pjt.back.entity.UserEntity;
-import board.pjt.back.mapper.ArticleCommentsMapper;
+import board.pjt.back.mapper.CommentMapper;
 import board.pjt.back.mapper.BoardMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -13,19 +13,19 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ArticleCommentsDao {
-    private final ArticleCommentsMapper commentsMapper;
+public class CommentDao {
+    private final CommentMapper commentsMapper;
     private final BoardMapper boardMapper;
 
 
-    public ArticleCommentsDao(ArticleCommentsMapper articleCommentsMapper, BoardMapper boardMapper) {
+    public CommentDao(CommentMapper articleCommentsMapper, BoardMapper boardMapper) {
         this.commentsMapper = articleCommentsMapper;
         this.boardMapper = boardMapper;
     }
 
 
-    public CommentResponseDto select(CommentDetailRequestDto requestDto) {
-        CommentResponseDto dto = commentsMapper.select(requestDto);
+    public CommentResponseDto selectByCommentId(CommentDetailRequestDto requestDto) {
+        CommentResponseDto dto = commentsMapper.selectByCommentId(requestDto);
         if (dto == null) {
             throw new IllegalArgumentException(ErrorMessages.COMMENT_NOT_FOUND);
         }
@@ -55,38 +55,40 @@ public class ArticleCommentsDao {
         if (boardMapper.select(article_id) == null) {
             throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
         }
-        return commentsMapper.selectAllCommentByArticleId(article_id);
+        return commentsMapper.selectAllCommentByBoardId(article_id);
     }
 
 
-    public void insert(CommentCreateRequestDto requestDto) {
-        if (boardMapper.select(requestDto.getArticle_id()) == null) {
+    public void insert(UserDetails userDetails, CommentCreateRequestDto requestDto) {
+        if (boardMapper.select(requestDto.getBoard_id()) == null) {
             throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
         }
         Integer parent_comment_id = requestDto.getParent_comment_id();
         if (parent_comment_id != null) {
             CommentDetailRequestDto commentRequestDto = new CommentDetailRequestDto();
-            commentRequestDto.setArticle_comments_id(parent_comment_id);
-            CommentResponseDto parentComment = commentsMapper.select(commentRequestDto);
+            commentRequestDto.setComment_id(parent_comment_id);
+            CommentResponseDto parentComment = commentsMapper.selectByCommentId(commentRequestDto);
             if (parentComment == null) {
                 throw new IllegalArgumentException(ErrorMessages.COMMENT_NOT_FOUND);
             }
-            if (!parentComment.getArticle_id().equals(requestDto.getArticle_id())) {
-                throw new IllegalArgumentException(ErrorMessages.INVALID_COMMENT);
-            }
+//            if (!parentComment.getBoard_id().equals(requestDto.getBoard_id())) {
+//                throw new IllegalArgumentException(ErrorMessages.INVALID_COMMENT);
+//            }
         }
+        requestDto.setCreated_by(userDetails.getUsername());
         commentsMapper.insert(requestDto);
     }
 
 
-    public void update(CommentUpdateRequestDto requestDto) {
-        CommentDetailRequestDto commentDetailRequestDto = setCommentDetailRequestDto(requestDto.getArticle_comments_id());
-        CommentResponseDto comment = select(commentDetailRequestDto);
+    public void update(UserDetails userDetails, CommentUpdateRequestDto requestDto) {
+        CommentDetailRequestDto commentDetailRequestDto = setCommentDetailRequestDto(requestDto.getComment_id());
+        CommentResponseDto comment = selectByCommentId(commentDetailRequestDto);
         if (comment == null) {
             throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
         }
+        requestDto.setUpdated_by(userDetails.getUsername());
         commentsMapper.update(requestDto);
-        CommentResponseDto updateComment = select(commentDetailRequestDto);
+        CommentResponseDto updateComment = selectByCommentId(commentDetailRequestDto);
         if (updateComment == null || !updateComment.getContent().equals(requestDto.getContent())) {
             throw new RuntimeException("업데이트에 실패하였습니다.");
         }
@@ -94,10 +96,10 @@ public class ArticleCommentsDao {
 
 
     public void delete(CommentDeleteRequestDto requestDto) {
-        CommentDetailRequestDto commentDetailRequestDto = setCommentDetailRequestDto(requestDto.getArticle_comments_id());
-        CommentResponseDto comment = select(commentDetailRequestDto);
+        CommentDetailRequestDto commentDetailRequestDto = setCommentDetailRequestDto(requestDto.getComment_id());
+        CommentResponseDto comment = selectByCommentId(commentDetailRequestDto);
         if (comment == null) {
-            throw new IllegalArgumentException(requestDto.getArticle_comments_id() + "번의 게시글이 존재하지 않습니다.");
+            throw new IllegalArgumentException(requestDto.getComment_id() + "번의 게시글이 존재하지 않습니다.");
         }
 //        CommentResponseDto deletedComment = select(requestDto.getArticle_comments_id());
         commentsMapper.delete(requestDto);
@@ -109,7 +111,7 @@ public class ArticleCommentsDao {
 
     private CommentDetailRequestDto setCommentDetailRequestDto(Integer article_comments_id) {
         CommentDetailRequestDto requestDto = new CommentDetailRequestDto();
-        requestDto.setArticle_comments_id(article_comments_id);
+        requestDto.setComment_id(article_comments_id);
         return requestDto;
     }
 

@@ -3,29 +3,21 @@ package board.pjt.back.dto.comment;
 import java.util.Objects;
 
 public class CommentCreateRequestDto {
-    private Integer article_comments_id;
-    private Integer article_id;
+    private Integer comment_id;
+    private Integer board_id;
     private Integer parent_comment_id;
     private String content;
+    private String created_by;
 
     public CommentCreateRequestDto() {
     }
 
-    public CommentCreateRequestDto(Integer article_comments_id, Integer article_id, Integer parent_comment_id, String content) {
-        this.article_comments_id = article_comments_id;
-        this.article_id = article_id;
+    public CommentCreateRequestDto(Integer comment_id, Integer board_id, Integer parent_comment_id, String content, String created_by) {
+        this.comment_id = comment_id;
+        this.board_id = board_id;
         this.parent_comment_id = parent_comment_id;
         this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return "CommentCreateRequestDto{" +
-                "article_comments_id=" + article_comments_id +
-                ", article_id=" + article_id +
-                ", parent_comment_id=" + parent_comment_id +
-                ", content='" + content + '\'' +
-                '}';
+        this.created_by = created_by;
     }
 
     @Override
@@ -33,28 +25,39 @@ public class CommentCreateRequestDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CommentCreateRequestDto that = (CommentCreateRequestDto) o;
-        return Objects.equals(article_comments_id, that.article_comments_id) && Objects.equals(article_id, that.article_id) && Objects.equals(parent_comment_id, that.parent_comment_id) && Objects.equals(content, that.content);
+        return Objects.equals(comment_id, that.comment_id) && Objects.equals(board_id, that.board_id) && Objects.equals(parent_comment_id, that.parent_comment_id) && Objects.equals(content, that.content) && Objects.equals(created_by, that.created_by);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(article_comments_id, article_id, parent_comment_id, content);
+        return Objects.hash(comment_id, board_id, parent_comment_id, content, created_by);
     }
 
-    public Integer getArticle_comments_id() {
-        return article_comments_id;
+    @Override
+    public String toString() {
+        return "CommentCreateRequestDto{" +
+                "comment_id=" + comment_id +
+                ", board_id=" + board_id +
+                ", parent_comment_id=" + parent_comment_id +
+                ", content='" + content + '\'' +
+                ", created_by='" + created_by + '\'' +
+                '}';
     }
 
-    public void setArticle_comments_id(Integer article_comments_id) {
-        this.article_comments_id = article_comments_id;
+    public Integer getComment_id() {
+        return comment_id;
     }
 
-    public Integer getArticle_id() {
-        return article_id;
+    public void setComment_id(Integer comment_id) {
+        this.comment_id = comment_id;
     }
 
-    public void setArticle_id(Integer article_id) {
-        this.article_id = article_id;
+    public Integer getBoard_id() {
+        return board_id;
+    }
+
+    public void setBoard_id(Integer board_id) {
+        this.board_id = board_id;
     }
 
     public Integer getParent_comment_id() {
@@ -71,5 +74,13 @@ public class CommentCreateRequestDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getCreated_by() {
+        return created_by;
+    }
+
+    public void setCreated_by(String created_by) {
+        this.created_by = created_by;
     }
 }
