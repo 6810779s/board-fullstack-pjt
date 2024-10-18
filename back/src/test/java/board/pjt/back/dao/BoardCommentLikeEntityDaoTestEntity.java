@@ -11,7 +11,7 @@ class BoardCommentLikeEntityDaoTestEntity {
     @Autowired
     private CommentLikeDao commentLikeDao;
     @Autowired
-    private ArticleCommentsDao articleCommentsDao;
+    private CommentDao commentDao;
 
     @Disabled
     @DisplayName("select all test")

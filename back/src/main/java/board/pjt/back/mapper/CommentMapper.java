@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface ArticleCommentsMapper {
-    CommentResponseDto select(CommentDetailRequestDto requestDto);
+public interface CommentMapper {
+    CommentResponseDto selectByCommentId(CommentDetailRequestDto requestDto);
 
     List<CommentResponseDto> selectAll();
 
@@ -16,7 +16,7 @@ public interface ArticleCommentsMapper {
 
     List<CommentResponseDto> selectAllReplyList(CommentReplyRequestDto requestDto);
 
-    List<CommentResponseDto> selectAllCommentByArticleId(Integer article_id);
+    List<CommentResponseDto> selectAllCommentByBoardId(int board_id);
 
     void insert(CommentCreateRequestDto dto);
 

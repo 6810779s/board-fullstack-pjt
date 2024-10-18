@@ -2,7 +2,7 @@ package board.pjt.back.controller;
 
 import board.pjt.back.common.codes.SuccessCode;
 import board.pjt.back.common.response.ApiResponse;
-import board.pjt.back.dao.ArticleCommentsDao;
+import board.pjt.back.dao.CommentDao;
 import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.comment.*;
 import board.pjt.back.dto.common.PaginationRequestDto;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/comment")
 public class CommentController {
     @Autowired
-    private ArticleCommentsDao commentsDao;
+    private CommentDao commentsDao;
 
     @GetMapping("/")
     public ResponseEntity<ApiResponse<List<CommentResponseDto>>> commentList() {
@@ -36,7 +36,7 @@ public class CommentController {
 
     @GetMapping("/detail")
     public ResponseEntity<ApiResponse<CommentResponseDto>> commentDetail(@RequestBody CommentDetailRequestDto requestDto) {
-        CommentResponseDto comment = commentsDao.select(requestDto);
+        CommentResponseDto comment = commentsDao.selectByCommentId(requestDto);
         ApiResponse<CommentResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, comment);
         return ResponseEntity.ok(response);
     }
@@ -48,16 +48,16 @@ public class CommentController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/article/{article_id}")
-    public ResponseEntity<ApiResponse<List<CommentResponseDto>>> commentListByArticleId(@PathVariable Integer article_id) {
-        List<CommentResponseDto> commentList = commentsDao.selectAllCommentByArticleId(article_id);
+    @GetMapping("/board/{board_id}")
+    public ResponseEntity<ApiResponse<List<CommentResponseDto>>> commentListByBoardId(@PathVariable int board_id) {
+        List<CommentResponseDto> commentList = commentsDao.selectAllCommentByArticleId(board_id);
         ApiResponse<List<CommentResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, commentList);
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse<Void>> createComment(@RequestBody CommentCreateRequestDto requestDto) {
-        commentsDao.insert(requestDto);
+    public ResponseEntity<ApiResponse<Void>> createComment(@AuthenticationPrincipal UserDetails userDetails, @RequestBody CommentCreateRequestDto requestDto) {
+        commentsDao.insert(userDetails, requestDto);
         ApiResponse<Void> response = ApiResponse.of(SuccessCode.INSERT_SUCCESS);
         return ResponseEntity.ok(response);
     }
@@ -70,8 +70,8 @@ public class CommentController {
     }
 
     @PatchMapping("/update")
-    public ResponseEntity<ApiResponse<Void>> updateComment(@RequestBody CommentUpdateRequestDto requestDto) {
-        commentsDao.update(requestDto);
+    public ResponseEntity<ApiResponse<Void>> updateComment(@AuthenticationPrincipal UserDetails userDetails, @RequestBody CommentUpdateRequestDto requestDto) {
+        commentsDao.update(userDetails, requestDto);
         ApiResponse<Void> response = ApiResponse.of(SuccessCode.UPDATE_SUCCESS);
         return ResponseEntity.ok(response);
     }
