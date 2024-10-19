@@ -5,56 +5,50 @@
 <mapper namespace="board.pjt.back.mapper.CommentLikeMapper">
     <select id="findByCommentId" parameterType="CommentLikeListRequestDto" resultType="CommentLikeResponseDto">
         SELECT *
-        FROM article_comments_like
+        FROM comment_like
         WHERE comment_id = #{comment_id}
     </select>
     <insert id="insert" parameterType="CommentLikeToggleRequestDto">
-        INSERT INTO article_comments_like
+        INSERT INTO comment_like
             (comment_id, created_at, created_by)
         VALUES (#{comment_id}, now(), #{created_by})
     </insert>
     <delete id="delete" parameterType="CommentLikeToggleRequestDto">
         DELETE
-        FROM article_comments_like
+        FROM comment_like
         WHERE created_by = #{created_by}
     </delete>
     <resultMap id="CommentLikeResponseDtoMap" type="CommentLikeResponseDto">
-        <id property="article_comments_like_id" column="article_comments_like_id"/>
+        <id property="comment_like_id" column="comment_like_id"/>
         <result property="created_by" column="created_by"/>
-
-        <!-- Board 매핑 -->
         <association property="board" javaType="Board">
-            <id property="article_id" column="article_id"/>
+            <id property="board_id" column="board_id"/>
             <result property="title" column="title"/>
             <result property="created_at" column="created_at"/>
             <result property="created_by" column="created_by"/>
         </association>
-
-        <!-- Comment 매핑 -->
         <association property="comment" javaType="Comment">
-            <id property="article_comments_id" column="article_comments_id"/>
+            <id property="comment_id" column="comment_id"/>
             <result property="parent_comment_id" column="parent_comment_id"/>
             <result property="created_at" column="created_at"/>
             <result property="created_by" column="created_by"/>
         </association>
     </resultMap>
     <select id="myCommentLikeList" parameterType="UserEntity" resultMap="CommentLikeResponseDtoMap">
-        SELECT acl.article_comments_like_id,
-               acl.created_by,
-               a.article_id,
-               a.title,
-               a.created_at,
-               a.created_by,
-               ac.article_comments_id,
-               ac.parent_comment_id,
-               ac.created_at,
-               ac.created_by
-        FROM article_comments_like acl
-                 JOIN article_comments ac
-                      ON acl.comment_id = ac.article_comments_id
-                 JOIN article a
-                      ON ac.article_id = a.article_id
-        WHERE acl.created_by = #{email}
-        ORDER BY acl.created_at DESC
+        SELECT cl.comment_like_id,
+               cl.created_by,
+               b.board_id,
+               b.title,
+               b.created_at,
+               b.created_by,
+               c.comment_id,
+               c.parent_comment_id,
+               c.created_at,
+               c.created_by
+        FROM comment_like cl
+        JOIN comment c ON cl.comment_id = c.comment_id
+        JOIN board b ON c.board_id = b.board_id
+        WHERE cl.created_by = #{email}
+        ORDER BY cl.created_at DESC
     </select>
 </mapper>

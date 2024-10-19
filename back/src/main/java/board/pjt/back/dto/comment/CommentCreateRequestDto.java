@@ -3,8 +3,8 @@ package board.pjt.back.dto.comment;
 import java.util.Objects;
 
 public class CommentCreateRequestDto {
-    private Integer comment_id;
-    private Integer board_id;
+    private int comment_id;
+    private int board_id;
     private Integer parent_comment_id;
     private String content;
     private String created_by;
@@ -12,7 +12,7 @@ public class CommentCreateRequestDto {
     public CommentCreateRequestDto() {
     }
 
-    public CommentCreateRequestDto(Integer comment_id, Integer board_id, Integer parent_comment_id, String content, String created_by) {
+    public CommentCreateRequestDto(int comment_id, int board_id, Integer parent_comment_id, String content, String created_by) {
         this.comment_id = comment_id;
         this.board_id = board_id;
         this.parent_comment_id = parent_comment_id;
@@ -44,19 +44,19 @@ public class CommentCreateRequestDto {
                 '}';
     }
 
-    public Integer getComment_id() {
+    public int getComment_id() {
         return comment_id;
     }
 
-    public void setComment_id(Integer comment_id) {
+    public void setComment_id(int comment_id) {
         this.comment_id = comment_id;
     }
 
-    public Integer getBoard_id() {
+    public int getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(Integer board_id) {
+    public void setBoard_id(int board_id) {
         this.board_id = board_id;
     }
 

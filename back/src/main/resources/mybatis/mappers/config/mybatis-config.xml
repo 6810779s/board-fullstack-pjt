@@ -3,13 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <typeAliases>
-        <typeAlias alias="BoardResponseDto" type="board.pjt.back.dto.board.BoardResponseDto"/>
-        <typeAlias alias="BoardCreateRequestDto" type="board.pjt.back.dto.board.BoardCreateRequestDto"/>
-        <typeAlias alias="ArticleCommentsDto" type="board.pjt.back.dto.ArticleCommentsDto"/>
-        <typeAlias alias="ArticleCommentsLikeDto" type="board.pjt.back.dto.ArticleCommentsLikeDto"/>
-        <typeAlias alias="ArticleLikeDto" type="board.pjt.back.dto.ArticleLikeDto"/>
-        <typeAlias alias="CategoryDto" type="board.pjt.back.dto.CategoryDto"/>
-        <typeAlias alias="UserDto" type="board.pjt.back.dto.UserDto"/>
-    </typeAliases>
+<!--    <typeAliases>-->
+<!--        <typeAlias alias="BoardResponseDto" type="board.pjt.back.dto.board.BoardResponseDto"/>-->
+<!--        <typeAlias alias="BoardCreateRequestDto" type="board.pjt.back.dto.board.BoardCreateRequestDto"/>-->
+<!--        <typeAlias alias="CommentsDto" type="board.pjt.back.dto.board"/>-->
+<!--        <typeAlias alias="ArticleCommentsLikeDto" type="board.pjt.back.dto.ArticleCommentsLikeDto"/>-->
+<!--        <typeAlias alias="ArticleLikeDto" type="board.pjt.back.dto.ArticleLikeDto"/>-->
+<!--        <typeAlias alias="CategoryDto" type="board.pjt.back.dto.CategoryDto"/>-->
+<!--        <typeAlias alias="UserDto" type="board.pjt.back.dto.UserDto"/>-->
+<!--    </typeAliases>-->
 </configuration>
