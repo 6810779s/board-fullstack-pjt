@@ -1,9 +1,10 @@
 package board.pjt.back.dto.commentLike;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Comment {
-    private Integer article_comments_id;
+    private int comment_id;
     private Integer parent_comment_id;
     private LocalDateTime created_at;
     private String created_by;
@@ -11,19 +12,42 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(Integer article_comments_id, Integer parent_comment_id, LocalDateTime created_at, String created_by) {
-        this.article_comments_id = article_comments_id;
+    public Comment(int comment_id, Integer parent_comment_id, LocalDateTime created_at, String created_by) {
+        this.comment_id = comment_id;
         this.parent_comment_id = parent_comment_id;
         this.created_at = created_at;
         this.created_by = created_by;
     }
 
-    public Integer getArticle_comments_id() {
-        return article_comments_id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comment comment = (Comment) o;
+        return comment_id == comment.comment_id && Objects.equals(parent_comment_id, comment.parent_comment_id) && Objects.equals(created_at, comment.created_at) && Objects.equals(created_by, comment.created_by);
     }
 
-    public void setArticle_comments_id(Integer article_comments_id) {
-        this.article_comments_id = article_comments_id;
+    @Override
+    public int hashCode() {
+        return Objects.hash(comment_id, parent_comment_id, created_at, created_by);
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "comment_id=" + comment_id +
+                ", parent_comment_id=" + parent_comment_id +
+                ", created_at=" + created_at +
+                ", created_by='" + created_by + '\'' +
+                '}';
+    }
+
+    public int getComment_id() {
+        return comment_id;
+    }
+
+    public void setComment_id(int comment_id) {
+        this.comment_id = comment_id;
     }
 
     public Integer getParent_comment_id() {

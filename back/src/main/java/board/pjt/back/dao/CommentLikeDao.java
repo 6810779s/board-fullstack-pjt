@@ -32,9 +32,14 @@ public class CommentLikeDao {
     }
 
     public CommentLikeListResponseDto findByCommentId(CommentLikeListRequestDto commentLikeListRequestDto) {
-        if (commentLikeListRequestDto.getComment_id() == null) {
-            throw new NullPointerException(ErrorMessages.COMMENT_NOT_FOUND);
-        }
+//        if (commentLikeListRequestDto.getComment_id() == null) {
+//            throw new NullPointerException(ErrorMessages.COMMENT_NOT_FOUND);
+//        }
+
+        // 필요시 아래와 같은 코드를 구현해야됨.
+//        List<CommentLikeResponseDto> commentLikes = commentLikeMapper.findByCommentId(requestDto.getComment_id());
+//        return new CommentLikeListResponseDto(commentLikes, commentLikes.size());
+
         List<CommentLikeResponseDto> commentLikeResponseDto = commentLikeMapper.findByCommentId(commentLikeListRequestDto);
         CommentLikeListResponseDto commentLikeListResponseDto = new CommentLikeListResponseDto();
         commentLikeListResponseDto.setCommentLikeResponseDto(commentLikeResponseDto);
@@ -42,10 +47,11 @@ public class CommentLikeDao {
         return commentLikeListResponseDto;
     }
 
-    public int toggleCommentLike(CommentLikeToggleRequestDto requestDto) {
-        if (requestDto.getComment_id() == null) {
-            throw new NullPointerException(ErrorMessages.COMMENT_NOT_FOUND);
-        }
+    public int toggleCommentLike(UserDetails userDetails, CommentLikeToggleRequestDto requestDto) {
+//        if (requestDto.getComment_id() == null) {
+//            throw new NullPointerException(ErrorMessages.COMMENT_NOT_FOUND);
+//        }
+        requestDto.setCreated_by(userDetails.getUsername());
         CommentLikeListRequestDto commentLikeListRequestDto = new CommentLikeListRequestDto();
         commentLikeListRequestDto.setComment_id(requestDto.getComment_id());
         List<CommentLikeResponseDto> commentLikeResponseDto = commentLikeMapper.findByCommentId(commentLikeListRequestDto);

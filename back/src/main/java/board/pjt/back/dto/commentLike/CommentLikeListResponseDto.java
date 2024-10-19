@@ -4,12 +4,12 @@ import java.util.List;
 
 public class CommentLikeListResponseDto {
     List<CommentLikeResponseDto> commentLikeResponseDto;
-    Integer commentLikeCnt;
+    int commentLikeCnt;
 
     public CommentLikeListResponseDto() {
     }
 
-    public CommentLikeListResponseDto(List<CommentLikeResponseDto> commentLikeResponseDto, Integer commentLikeCnt) {
+    public CommentLikeListResponseDto(List<CommentLikeResponseDto> commentLikeResponseDto, int commentLikeCnt) {
         this.commentLikeResponseDto = commentLikeResponseDto;
         this.commentLikeCnt = commentLikeCnt;
     }
@@ -23,7 +23,7 @@ public class CommentLikeListResponseDto {
         this.commentLikeCnt = commentLikeResponseDto.size();
     }
 
-    public Integer getCommentLikeCnt() {
+    public int getCommentLikeCnt() {
         return commentLikeCnt;
     }
 
