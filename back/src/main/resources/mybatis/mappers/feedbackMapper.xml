@@ -15,4 +15,10 @@
         DELETE FROM feedback
         WHERE feedback_id = #{feedback_id}
     </delete>
+    <update id="updateFeedbackByFeedbackId" parameterType="FeedbackUpdateRequestDto">
+        UPDATE feedback
+        SET content = #{content},
+            rating = #{rating}
+        WHERE feedback_id = #{feedback_id}
+    </update>
 </mapper>

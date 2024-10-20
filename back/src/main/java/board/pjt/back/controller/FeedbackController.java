@@ -3,10 +3,7 @@ package board.pjt.back.controller;
 import board.pjt.back.common.codes.SuccessCode;
 import board.pjt.back.common.response.ApiResponse;
 import board.pjt.back.dao.FeedbackDao;
-import board.pjt.back.dto.feedback.FeedbackCreateRequestDto;
-import board.pjt.back.dto.feedback.FeedbackDeleteRequestDto;
-import board.pjt.back.dto.feedback.FeedbackGetListRequestDto;
-import board.pjt.back.dto.feedback.FeedbackGetListResponseDto;
+import board.pjt.back.dto.feedback.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,6 +40,13 @@ public class FeedbackController {
     public ResponseEntity<ApiResponse<Void>> deleteFeedbackById(@RequestBody FeedbackDeleteRequestDto requestDto){
         feedbackDao.deleteFeedbackById(requestDto);
         ApiResponse<Void> response = ApiResponse.of(SuccessCode.DELETE_SUCCESS);
+        return ResponseEntity.ok(response);
+    }
+
+    @PatchMapping("/")
+    public ResponseEntity<ApiResponse<Void>> updateFeedbackByFeedbackId(@RequestBody FeedbackUpdateRequestDto requestDto){
+        feedbackDao.updateFeedbackByFeedbackId(requestDto);
+        ApiResponse<Void> response = ApiResponse.of(SuccessCode.UPDATE_SUCCESS);
         return ResponseEntity.ok(response);
     }
 }

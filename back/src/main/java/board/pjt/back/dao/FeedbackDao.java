@@ -1,9 +1,6 @@
 package board.pjt.back.dao;
 
-import board.pjt.back.dto.feedback.FeedbackCreateRequestDto;
-import board.pjt.back.dto.feedback.FeedbackDeleteRequestDto;
-import board.pjt.back.dto.feedback.FeedbackGetListRequestDto;
-import board.pjt.back.dto.feedback.FeedbackGetListResponseDto;
+import board.pjt.back.dto.feedback.*;
 import board.pjt.back.mapper.FeedbackMapper;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +24,9 @@ public class FeedbackDao {
 
     public void deleteFeedbackById(FeedbackDeleteRequestDto requestDto){
         feedbackMapper.deleteFeedbackById(requestDto);
+    }
+
+    public void updateFeedbackByFeedbackId(FeedbackUpdateRequestDto requestDto){
+        feedbackMapper.updateFeedbackByFeedbackId(requestDto);
     }
 }
