@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.pjt.back.mapper.ProjectParticipantMapper">
+    <insert id="insert" parameterType="ProjectParticipantCreateRequestDto">
+        INSERT INTO project_participant (board_id, participant, created_at)
+        VALUES
+        <foreach collection="participant_list" item="item" separator=",">
+            (#{board_id}, #{item.participant}, now())
+        </foreach>
+    </insert>
+    <select id="getProjectParticipantByBoardId" parameterType="ProjectParticipantGetByBoardIdRequestDto" resultType="ProjectParticipantGetListByBoardIdResponseDto">
+        SELECT * from
+            project_participant
+        WHERE board_id = #{board_id}
+    </select>
+    <delete id="deleteProjectParticipantByBoardId" parameterType="ProjectParticipantDeleteByBoardIdDto">
+        DELETE FROM project_participant
+        WHERE board_id = #{board_id}
+    </delete>
+</mapper>
