@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.pjt.back.mapper.StatusMessageMapper">
+    <insert id="createStatusMessage" parameterType="StatusMessageCreateRequestDto">
+        INSERT INTO status_message
+            (content, created_at, created_by)
+        VALUES
+            (#{content}, now(), #{created_by})
+    </insert>
+    <select id="getStatusMessage" parameterType="String" resultType="StatusMessageGetListResponseDto">
+        SELECT *
+        FROM status_message
+        WHERE created_by = #{email}
+    </select>
+    <delete id="deleteStatusMessage" parameterType="String">
+        DELETE
+        FROM status_message
+        WHERE created_by = #{email}
+    </delete>
+</mapper>
