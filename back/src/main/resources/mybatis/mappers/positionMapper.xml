@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.pjt.back.mapper.PositionMapper">
+    <select id="getPositionListByEmail" parameterType="PositionGetListRequestDto" resultType="PositionGetListResponseDto">
+        SELECT * FROM position
+        WHERE created_by = #{created_by}
+    </select>
+    <insert id="createPosition" parameterType="PositionCreateRequestDto">
+        INSERT INTO position (name, created_at, created_by)
+        VALUES
+            <foreach collection="position_list" item="item" separator=",">
+                (#{item.name}, now(), #{created_by})
+            </foreach>
+    </insert>
+    <delete id="deletePositionByEmail" parameterType="String">
+        DELETE FROM position
+        WHERE created_by = #{email}
+    </delete>
+</mapper>
