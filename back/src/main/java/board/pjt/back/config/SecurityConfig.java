@@ -52,7 +52,7 @@ public class SecurityConfig {
         http
                 .httpBasic(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(authorizeRequests ->
-                authorizeRequests.requestMatchers("/login/**", "/board/**","/position/**","/feedback/**","/project-participant/**","/project-url/**","/project-stack/**","/project-attachment/**", "/board-like/**", "/comment/**", "/comment-like/**", "/user/**").permitAll()
+                authorizeRequests.requestMatchers("/login/**", "/board/**","/status-message/**","/position/**","/feedback/**","/project-participant/**","/project-url/**","/project-stack/**","/project-attachment/**", "/board-like/**", "/comment/**", "/comment-like/**", "/user/**").permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated());
         http.addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
