@@ -3,13 +3,11 @@ package board.pjt.back.dao;
 import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.common.PaginationRequestDto;
 import board.pjt.back.dto.friend.CreateFriendRequestDto;
-import board.pjt.back.dto.friendRequest.FriendRequestCreateRequestDto;
-import board.pjt.back.dto.friendRequest.FriendRequestDeleteRequestDto;
-import board.pjt.back.dto.friendRequest.FriendRequestGetResponseDto;
-import board.pjt.back.dto.friendRequest.FriendRequestUpdateRequestDto;
+import board.pjt.back.dto.friendRequest.*;
 import board.pjt.back.enums.friendRequest.Status;
 import board.pjt.back.mapper.FriendMapper;
 import board.pjt.back.mapper.FriendRequestMapper;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,13 +35,36 @@ public class FriendRequestDao {
         friendRequestMapper.deleteFriendRequest(requestDto);
     }
 
-    public void updateFriendRequest(FriendRequestUpdateRequestDto requestDto){
-        if(requestDto.getStatus() == Status.ACCEPTED){
+    public GetSenderEmailByFriendRequestIdResponseDto getSenderEmailByFriendRequestId(GetSenderEmailByFriendRequestIdRequestDto requestDto){
+        return friendRequestMapper.getSenderEmailByFriendRequestId(requestDto);
+    }
+
+    public void updateFriendRequest(UserDetails userDetails, FriendRequestUpdateRequestDto requestDto){
+        // senderEmail 찾는 로직
+        GetSenderEmailByFriendRequestIdRequestDto senderEmailRequestDto = new GetSenderEmailByFriendRequestIdRequestDto();
+        senderEmailRequestDto.setFriend_request_id(requestDto.getFriend_request_id());
+        GetSenderEmailByFriendRequestIdResponseDto senderEmailResponseDto = getSenderEmailByFriendRequestId(senderEmailRequestDto);
+
+        // 로그인한 유저 email
+        String userEmail = userDetails.getUsername();
+
+        //데이터 삭제시 필요한 requestDto
+        FriendRequestDeleteRequestDto deleteRequestDto = new FriendRequestDeleteRequestDto();
+        deleteRequestDto.setReceiver_email(userEmail);
+        deleteRequestDto.setFriend_request_id(requestDto.getFriend_request_id());
+
+        if(requestDto.getStatus() == Status.ACCEPTED && senderEmailResponseDto != null){
             CreateFriendRequestDto createFriendRequestDto = new CreateFriendRequestDto();
-//            createFriendRequestDto.setFriend_email(requestDto.get);
-//            friendMapper.createFriend();
+            createFriendRequestDto.setCreated_by(userEmail);
+            createFriendRequestDto.setFriend_email(senderEmailResponseDto.getSender_email());
+            friendMapper.createFriend(createFriendRequestDto);
+            friendRequestMapper.deleteFriendRequest(deleteRequestDto);
+        } else if (requestDto.getStatus() == Status.CANCELED || requestDto.getStatus()==Status.REJECTED) {
+            friendRequestMapper.deleteFriendRequest(deleteRequestDto);
+        }else{
+            friendRequestMapper.updateFriendRequestStatus(requestDto);
         }
-        friendRequestMapper.updateFriendRequestStatus(requestDto);
+        // 추후 차단 Status.BLOCKED 일때 조건도 필요.
 
     }
 }

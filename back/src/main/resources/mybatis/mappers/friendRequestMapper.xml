@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board.pjt.back.mapper.FriendRequestMapper">
     <resultMap id="getFriendRequestResult" type="FriendRequestGetResponseDto">
+        <id property="friend_request_id" column="friend_request_id"/>
         <result property="sender_email" column="sender_email"/>
         <result property="status" column="status"/>
         <association property="friendDto" javaType="FriendDto">
@@ -26,6 +27,7 @@
     </insert>
     <select id="getFriendRequest" parameterType="String" resultMap="getFriendRequestResult">
         SELECT
+            fr.friend_request_id,
             fr.sender_email,
             fr.status,
             sm.status_message_id,
@@ -51,4 +53,9 @@
         SET status = #{status}
         WHERE friend_request_id = #{friend_request_id}
     </update>
+    <select id="getSenderEmailByFriendRequestId" parameterType="GetSenderEmailByFriendRequestIdRequestDto" resultType="GetSenderEmailByFriendRequestIdResponseDto">
+        SELECT *
+        FROM friend_request
+        WHERE friend_request_id = #{friend_request_id}
+    </select>
 </mapper>
