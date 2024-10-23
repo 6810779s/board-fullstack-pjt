@@ -3,16 +3,43 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board.pjt.back.mapper.FriendRequestMapper">
+    <resultMap id="getFriendRequestResult" type="FriendRequestGetResponseDto">
+        <result property="sender_email" column="sender_email"/>
+        <result property="status" column="status"/>
+        <association property="friendDto" javaType="FriendDto">
+            <association property="statusMessage" javaType="StatusMessageGetListResponseDto">
+                <id property="status_message_id" column="status_message_id"/>
+                <result property="content" column="content"/>
+                <result property="created_by" column="status_created_by"/> <!-- created_by 수정 -->
+            </association>
+            <collection property="positionList" select="getPositionList" column="sender_email"/>
+        </association>
+    </resultMap>
+    <resultMap id="positionListResult" type="PositionGetListResponseDto">
+        <result property="name" column="position_name"/>
+    </resultMap>
     <insert id="createFriendRequest" parameterType="FriendRequestCreateRequestDto">
         INSERT INTO friend_request
             (sender_email, receiver_email, status, created_at)
         VALUE
             (#{sender_email}, #{receiver_email}, #{status}, now())
     </insert>
-    <select id="getFriendRequest" parameterType="String" resultType="FriendRequestGetResponseDto">
-        SELECT *
-        FROM friend_request
+    <select id="getFriendRequest" parameterType="String" resultMap="getFriendRequestResult">
+        SELECT
+            fr.sender_email,
+            fr.status,
+            sm.status_message_id,
+            sm.content,
+            sm.created_by AS status_created_by
+        FROM friend_request fr
+        LEFT JOIN status_message sm ON fr.sender_email = sm.created_by
         WHERE receiver_email = #{receiver_email}
+    </select>
+    <select id="getPositionList" parameterType="String" resultMap="positionListResult">
+        SELECT
+            p.name AS position_name
+        FROM position p
+        WHERE p.created_by = #{sender_email}
     </select>
     <delete id="deleteFriendRequest" parameterType="FriendRequestDeleteRequestDto">
         DELETE FROM friend_request
