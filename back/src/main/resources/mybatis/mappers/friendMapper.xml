@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.pjt.back.mapper.FriendMapper">
+    <resultMap id="GetFriendMap" type="GetFriendResponseDto">
+        <result property="friend_email" column="friend_email" />
+        <association property="friendDto" javaType="FriendDto">
+            <association property="statusMessage" javaType="board.pjt.back.dto.statusMessage.StatusMessageGetListResponseDto">
+                <id property="status_message_id" column="status_message_id"/>
+                <result property="content" column="content"/>
+                <result property="created_by" column="status_created_by"/> <!-- created_by 수정 -->
+            </association>
+            <collection property="positionList" select="getPositionList" column="friend_email"/>
+        </association>
+    </resultMap>
+    <resultMap id="positionListResult" type="board.pjt.back.dto.position.PositionGetListResponseDto">
+        <result property="name" column="position_name"/>
+    </resultMap>
+    <insert id="createFriend" parameterType="CreateFriendRequestDto">
+        INSERT INTO friend (friend_email, created_by, created_at)
+        VALUES (#{friend_email}, #{created_by}, now())
+    </insert>
+    <select id="getFriend" parameterType="String" resultMap="GetFriendMap">
+        SELECT
+            f.friend_email,
+            f.created_by AS friend_created_by,
+            sm.status_message_id,
+            sm.content,
+            sm.created_by AS status_created_by
+        FROM friend f
+                 LEFT JOIN status_message sm ON f.friend_email = sm.created_by
+        WHERE f.created_by = #{created_by}
+    </select>
+    <select id="getPositionList" parameterType="String" resultMap="positionListResult">
+        SELECT
+            p.name AS position_name
+        FROM position p
+        WHERE p.created_by = #{friend_email}
+    </select>
+    <delete id="deleteFriend" parameterType="DeleteFriendRequestDto">
+        DELETE FROM friend
+        WHERE friend_email = #{friend_email}
+    </delete>
+</mapper>
