@@ -2,10 +2,13 @@ package board.pjt.back.dao;
 
 import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.common.PaginationRequestDto;
+import board.pjt.back.dto.friend.CreateFriendRequestDto;
 import board.pjt.back.dto.friendRequest.FriendRequestCreateRequestDto;
 import board.pjt.back.dto.friendRequest.FriendRequestDeleteRequestDto;
 import board.pjt.back.dto.friendRequest.FriendRequestGetResponseDto;
 import board.pjt.back.dto.friendRequest.FriendRequestUpdateRequestDto;
+import board.pjt.back.enums.friendRequest.Status;
+import board.pjt.back.mapper.FriendMapper;
 import board.pjt.back.mapper.FriendRequestMapper;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +17,10 @@ import java.util.List;
 @Service
 public class FriendRequestDao {
     private final FriendRequestMapper friendRequestMapper;
-
-    public FriendRequestDao(FriendRequestMapper friendRequestMapper) {
+    private final FriendMapper friendMapper;
+    public FriendRequestDao(FriendRequestMapper friendRequestMapper,FriendMapper friendMapper) {
         this.friendRequestMapper = friendRequestMapper;
+        this.friendMapper = friendMapper;
     }
     public void createFriendRequest(FriendRequestCreateRequestDto requestDto){
         friendRequestMapper.createFriendRequest(requestDto);
@@ -34,6 +38,11 @@ public class FriendRequestDao {
     }
 
     public void updateFriendRequest(FriendRequestUpdateRequestDto requestDto){
+        if(requestDto.getStatus() == Status.ACCEPTED){
+            CreateFriendRequestDto createFriendRequestDto = new CreateFriendRequestDto();
+//            createFriendRequestDto.setFriend_email(requestDto.get);
+//            friendMapper.createFriend();
+        }
         friendRequestMapper.updateFriendRequestStatus(requestDto);
 
     }
