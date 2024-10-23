@@ -5,10 +5,7 @@ import board.pjt.back.common.response.ApiResponse;
 import board.pjt.back.dao.FriendRequestDao;
 import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.common.PaginationRequestDto;
-import board.pjt.back.dto.friendRequest.FriendRequestCreateRequestDto;
-import board.pjt.back.dto.friendRequest.FriendRequestDeleteRequestDto;
-import board.pjt.back.dto.friendRequest.FriendRequestGetResponseDto;
-import board.pjt.back.dto.friendRequest.FriendRequestUpdateRequestDto;
+import board.pjt.back.dto.friendRequest.*;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -48,9 +45,16 @@ public class FriendRequestController {
     }
 
     @PatchMapping("/status")
-    public ResponseEntity<ApiResponse<Void>> updateFriendRequest(@RequestBody FriendRequestUpdateRequestDto requestDto){
-        friendRequestDao.updateFriendRequest(requestDto);
+    public ResponseEntity<ApiResponse<Void>> updateFriendRequest(@AuthenticationPrincipal UserDetails userDetails, @RequestBody FriendRequestUpdateRequestDto requestDto){
+        friendRequestDao.updateFriendRequest(userDetails, requestDto);
         ApiResponse<Void> response = ApiResponse.of(SuccessCode.UPDATE_SUCCESS);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/sender-email")
+    public ResponseEntity<ApiResponse<GetSenderEmailByFriendRequestIdResponseDto>> getSenderEmailByFriendRequestId(@RequestBody GetSenderEmailByFriendRequestIdRequestDto requestDto){
+        GetSenderEmailByFriendRequestIdResponseDto senderEmail = friendRequestDao.getSenderEmailByFriendRequestId(requestDto);
+        ApiResponse<GetSenderEmailByFriendRequestIdResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, senderEmail);
         return ResponseEntity.ok(response);
     }
 }

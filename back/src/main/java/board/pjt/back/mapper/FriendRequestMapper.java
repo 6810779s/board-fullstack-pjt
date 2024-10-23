@@ -1,10 +1,7 @@
 package board.pjt.back.mapper;
 
 import board.pjt.back.dto.PageHandler;
-import board.pjt.back.dto.friendRequest.FriendRequestCreateRequestDto;
-import board.pjt.back.dto.friendRequest.FriendRequestDeleteRequestDto;
-import board.pjt.back.dto.friendRequest.FriendRequestGetResponseDto;
-import board.pjt.back.dto.friendRequest.FriendRequestUpdateRequestDto;
+import board.pjt.back.dto.friendRequest.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -16,5 +13,8 @@ public interface FriendRequestMapper {
     List<FriendRequestGetResponseDto> getFriendRequest(String receiver_email);
 
     void deleteFriendRequest(FriendRequestDeleteRequestDto dto);
-void updateFriendRequestStatus(FriendRequestUpdateRequestDto dto);
+
+    void updateFriendRequestStatus(FriendRequestUpdateRequestDto dto);
+
+    GetSenderEmailByFriendRequestIdResponseDto getSenderEmailByFriendRequestId(GetSenderEmailByFriendRequestIdRequestDto dto);
 }
