@@ -21,7 +21,6 @@ public class FriendDao {
     }
 
     public List<GetFriendResponseDto> getFriend(String created_by){
-        System.out.println("created_by !!="+created_by);
         return friendMapper.getFriend(created_by);
     }
 
