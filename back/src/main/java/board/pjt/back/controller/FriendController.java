@@ -32,16 +32,13 @@ public class FriendController {
 
     @GetMapping("/")
     public ResponseEntity<ApiResponse<List<GetFriendResponseDto>>> getFriend(@AuthenticationPrincipal UserDetails userDetails){
-        System.out.println("userdetail = "+userDetails.getUsername());
         List<GetFriendResponseDto> friendList = friendDao.getFriend(userDetails.getUsername());
-        System.out.println("frinedList="+friendList.toString());
         ApiResponse<List<GetFriendResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, friendList);
         return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/")
     public ResponseEntity<ApiResponse<Void>> deleteFriend(@RequestBody DeleteFriendRequestDto requestDto){
-        System.out.println("requestDto="+requestDto.toString());
         friendDao.deleteFriend(requestDto);
         ApiResponse<Void> response = ApiResponse.of(SuccessCode.DELETE_SUCCESS);
         return ResponseEntity.ok(response);
