@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.pjt.back.mapper.FriendRequestMapper">
+    <insert id="createFriendRequest" parameterType="FriendRequestCreateRequestDto">
+        INSERT INTO friend_request
+            (sender_email, receiver_email, status, created_at)
+        VALUE
+            (#{sender_email}, #{receiver_email}, #{status}, now())
+    </insert>
+    <select id="getFriendRequest" parameterType="String" resultType="FriendRequestGetResponseDto">
+        SELECT *
+        FROM friend_request
+        WHERE receiver_email = #{receiver_email}
+    </select>
+    <delete id="deleteFriendRequest" parameterType="FriendRequestDeleteRequestDto">
+        DELETE FROM friend_request
+        WHERE friend_request_id = #{friend_request_id}
+        AND receiver_email = #{receiver_email}
+    </delete>
+    <update id="updateFriendRequestStatus" parameterType="FriendRequestUpdateRequestDto">
+        UPDATE friend_request
+        SET status = #{status}
+        WHERE friend_request_id = #{friend_request_id}
+    </update>
+</mapper>
