@@ -36,7 +36,6 @@ public class BoardDao {
     }
 
     public BoardDetailResponseDto select(int board_id) {
-
         BoardDetailResponseDto dto = boardMapper.select(board_id);
         dto.setNextBoard(boardMapper.getNextBoard(board_id));
         dto.setPrevBoard(boardMapper.getPrevBoard(board_id));

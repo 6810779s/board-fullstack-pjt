@@ -9,7 +9,7 @@ public class ApiResponse<T> {
     private final int divisionCode;
     private final String message;
     private final LocalDateTime timestamp;
-    private T data;
+    private T body;
 
     public ApiResponse() {
         this.status = "SUCCESS";
@@ -25,12 +25,12 @@ public class ApiResponse<T> {
         this.timestamp = LocalDateTime.now();
     }
 
-    public ApiResponse(final SuccessCode code, final T data) {
+    public ApiResponse(final SuccessCode code, final T body) {
         this.status = code.getStatus();
         this.divisionCode = code.getDivisionCode();
         this.message = code.getMessage();
         this.timestamp = LocalDateTime.now();
-        this.data = data;
+        this.body = body;
     }
 
     public static <T> ApiResponse<T> of(final SuccessCode code) {
@@ -38,8 +38,8 @@ public class ApiResponse<T> {
     }
 
     // Static factory method with SuccessCode and data
-    public static <T> ApiResponse<T> of(final SuccessCode code, final T data) {
-        return new ApiResponse<>(code, data);
+    public static <T> ApiResponse<T> of(final SuccessCode code, final T body) {
+        return new ApiResponse<>(code, body);
     }
 
     public String getStatus() {
@@ -58,7 +58,7 @@ public class ApiResponse<T> {
         return timestamp;
     }
 
-    public T getData() {
-        return data;
+    public T getBody() {
+        return body;
     }
 }
