@@ -15,6 +15,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @Configuration
@@ -38,6 +41,24 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("http://localhost:5173")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH");
+
+            }
+            @Override
+            public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                registry.addResourceHandler("/uploads/**")
+                        .addResourceLocations("file:/Users/eunheejang/Desktop/uploads/");
+            }
+        };
+
+
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -47,12 +68,12 @@ public class SecurityConfig {
         //Form 로그인 방식 disable
         http
                 .formLogin(AbstractHttpConfigurer::disable); // ((auth)->auth.disable())
-
         //http basic 인증 방식 disable
         http
                 .httpBasic(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(authorizeRequests ->
-                authorizeRequests.requestMatchers("/login/**","/friend/**","/friend-request/**", "/board/**","/status-message/**","/position/**","/feedback/**","/project-participant/**","/project-url/**","/project-stack/**","/project-attachment/**", "/board-like/**", "/comment/**", "/comment-like/**", "/user/**").permitAll()
+                authorizeRequests.requestMatchers("/uploads/**").permitAll()
+                        .requestMatchers("/login/**","/friend/**", "/profile-image/**","/friend-request/**", "/board/**","/status-message/**","/position/**","/feedback/**","/project-participant/**","/project-url/**","/project-stack/**","/project-attachment/**", "/board-like/**", "/comment/**", "/comment-like/**", "/user/**").permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated());
         http.addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
