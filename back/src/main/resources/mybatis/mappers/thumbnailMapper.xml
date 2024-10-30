@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.pjt.back.mapper.ThumbnailMapper">
+    <insert id="createThumbnail" parameterType="CreateThumbnailRequestDto">
+        INSERT INTO thumbnail
+        (board_id, file_name, file_path, file_extension, created_at, created_by)
+        VALUES
+        (#{board_id}, #{file_name}, #{file_path}, #{file_extension}, now(), #{created_by})
+    </insert>
+    <select id="getThumbnail" parameterType="GetThumbnailRequestDto" resultType="GetThumbnailResponseDto">
+        SELECT *
+        FROM thumbnail
+        WHERE board_id = #{board_id}
+    </select>
+    <update id="updateThumbnail" parameterType="UpdateThumbnailRequestDto">
+        UPDATE FROM thumbnail
+        SET file_name = #{file_name},
+            file_path = #{file_path},
+            file_extension = #{file_extension},
+            updated_at = now(),
+            updated_by = #{updated_by}
+        WHERE board_id = #{board_id}
+    </update>
+    <delete id="deleteThumbnail" parameterType="DeleteThumbnailRequestDto">
+        DELETE
+        FROM thumbnail
+        WHERE board_id = #{board_id}
+    </delete>
+</mapper>
