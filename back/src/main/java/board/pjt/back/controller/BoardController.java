@@ -64,7 +64,6 @@ public class BoardController {
         boardDao.delete(requestDto);
         ApiResponse<Void> response = ApiResponse.of(SuccessCode.DELETE_SUCCESS);
         return ResponseEntity.ok(response);
-
     }
 
     @PatchMapping("/update")

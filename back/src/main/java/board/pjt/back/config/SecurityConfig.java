@@ -73,7 +73,7 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests.requestMatchers("/uploads/**").permitAll()
-                        .requestMatchers("/login/**","/friend/**", "/profile-image/**","/friend-request/**", "/board/**","/status-message/**","/position/**","/feedback/**","/project-participant/**","/project-url/**","/project-stack/**","/project-attachment/**", "/board-like/**", "/comment/**", "/comment-like/**", "/user/**").permitAll()
+                        .requestMatchers("/login/**","/friend/**","/thumbnail/**", "/profile-image/**","/friend-request/**", "/board/**","/status-message/**","/position/**","/feedback/**","/project-participant/**","/project-url/**","/project-stack/**","/project-attachment/**", "/board-like/**", "/comment/**", "/comment-like/**", "/user/**").permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated());
         http.addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);

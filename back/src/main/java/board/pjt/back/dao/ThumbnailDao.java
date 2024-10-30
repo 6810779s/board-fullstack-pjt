@@ -1,0 +1,29 @@
+package board.pjt.back.dao;
+
+import board.pjt.back.dto.thumbnail.*;
+import board.pjt.back.mapper.ThumbnailMapper;
+import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ThumbnailDao {
+    private final ThumbnailMapper thumbnailMapper;
+
+    public ThumbnailDao(ThumbnailMapper thumbnailMapper) {
+        this.thumbnailMapper = thumbnailMapper;
+    }
+
+    public void createThumbnail(CreateThumbnailRequestDto requestDto){
+        System.out.println("dao"+requestDto.toString());
+        thumbnailMapper.createThumbnail(requestDto);
+    }
+    public GetThumbnailResponseDto getThumbnail(GetThumbnailRequestDto requestDto){
+        return thumbnailMapper.getThumbnail(requestDto);
+    }
+    public void updateThumbnail(UpdateThumbnailRequestDto requestDto){
+        thumbnailMapper.updateThumbnail(requestDto);
+    }
+    public void deleteThumbnail(DeleteThumbnailRequestDto requestDto){
+        thumbnailMapper.deleteThumbnail(requestDto);
+    }
+}
