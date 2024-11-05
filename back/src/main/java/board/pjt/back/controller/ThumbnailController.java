@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 
@@ -44,16 +43,13 @@ public class ThumbnailController {
         String fileName = BasicThumbnail.THUMBNAIL_FILE_NAME;
         String filePath = Paths.get(BasicThumbnail.THUMBNAIL_FILE_PATH).toString();
         String fileExtension = BasicThumbnail.THUMBNAIL_FILE_EXTENSION;
-        System.out.println("create=");
         if(file !=null && !file.isEmpty()){
             Map<String, String> fileDetails =  fileUtil.createFile(file);
             fileName = fileDetails.get("fileName");
             filePath = fileDetails.get("filePath");
             fileExtension = fileDetails.get("fileExtension");
-            System.out.println("file != null");
         }
         CreateThumbnailRequestDto createThumbnailRequestDto = new CreateThumbnailRequestDto(1000,userDetails.getUsername(), fileName, filePath, fileExtension);
-        System.out.println("createThumbnailRequestDto="+createThumbnailRequestDto.toString());
         thumbnailDao.createThumbnail(createThumbnailRequestDto);
         ApiResponse<Void> response = ApiResponse.of(SuccessCode.INSERT_SUCCESS);
         return ResponseEntity.ok(response);
