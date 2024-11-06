@@ -9,13 +9,18 @@
         VALUES
         (#{board_id}, #{file_name}, #{file_path}, #{file_extension}, now(), #{created_by})
     </insert>
-    <select id="getThumbnail" parameterType="GetThumbnailRequestDto" resultType="GetThumbnailResponseDto">
+    <select id="getThumbnail" parameterType="int" resultType="GetThumbnailResponseDto">
         SELECT *
         FROM thumbnail
         WHERE board_id = #{board_id}
     </select>
+    <select id="getThumbnailPathByBoardId" parameterType="int" resultType="String">
+        SELECT file_path
+        FROM thumbnail
+        WHERE board_id = #{board_id}
+    </select>
     <update id="updateThumbnail" parameterType="UpdateThumbnailRequestDto">
-        UPDATE FROM thumbnail
+        UPDATE thumbnail
         SET file_name = #{file_name},
             file_path = #{file_path},
             file_extension = #{file_extension},
