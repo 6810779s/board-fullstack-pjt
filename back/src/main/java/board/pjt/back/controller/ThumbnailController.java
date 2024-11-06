@@ -29,8 +29,7 @@ public class ThumbnailController {
 
     @GetMapping("/")
     public ResponseEntity<ApiResponse<GetThumbnailResponseDto>> getThumbnail(@RequestParam int board_id){
-        GetThumbnailRequestDto requestDto = new GetThumbnailRequestDto(board_id);
-        GetThumbnailResponseDto thumbnail = thumbnailDao.getThumbnail(requestDto);
+        GetThumbnailResponseDto thumbnail = thumbnailDao.getThumbnail(board_id);
         ApiResponse<GetThumbnailResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, thumbnail);
         return ResponseEntity.ok(response);
     }
@@ -56,7 +55,23 @@ public class ThumbnailController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ApiResponse<Void>> updateThumbnail(@RequestBody UpdateThumbnailRequestDto requestDto){
+    public ResponseEntity<ApiResponse<Void>> updateThumbnail(@AuthenticationPrincipal UserDetails userDetails,@RequestParam("board_id") int board_id, @RequestParam(value="file", required = false)MultipartFile file){
+        FileUtil fileUtil = new FileUtil(thumbnailUploadDir);
+        String fileName = BasicThumbnail.THUMBNAIL_FILE_NAME;
+        String filePath = Paths.get(BasicThumbnail.THUMBNAIL_FILE_PATH).toString();
+        String fileExtension = BasicThumbnail.THUMBNAIL_FILE_EXTENSION;
+        String email = userDetails.getUsername();
+        String oldFilePath = thumbnailDao.getThumbnailPathByBoardId(board_id);
+        if (oldFilePath != null && !oldFilePath.equals(BasicThumbnail.THUMBNAIL_FILE_PATH)){
+            fileUtil.deleteExistingImage(oldFilePath);
+        }
+        if(file !=null && !file.isEmpty()){
+            Map<String, String> fileDetails =  fileUtil.createFile(file);
+            fileName = fileDetails.get("fileName");
+            filePath = fileDetails.get("filePath");
+            fileExtension = fileDetails.get("fileExtension");
+        }
+        UpdateThumbnailRequestDto requestDto = new UpdateThumbnailRequestDto(fileName, filePath, fileExtension, email, board_id);
         thumbnailDao.updateThumbnail(requestDto);
         ApiResponse<Void> response = ApiResponse.of(SuccessCode.UPDATE_SUCCESS);
         return ResponseEntity.ok(response);

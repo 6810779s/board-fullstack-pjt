@@ -27,7 +27,7 @@
         WHERE email = #{email}
     </delete>
     <select id="getProfileImagePathByEmail" parameterType="String" resultType="String">
-        SELECT *
+        SELECT file_path
         FROM profile_image
         WHERE email = #{email}
     </select>

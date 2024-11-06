@@ -54,4 +54,13 @@ public class FileUtil {
         }
     }
 
+    public void deleteExistingImage(String filePath) {
+        try {
+            Path path = Paths.get(filePath);
+            Files.deleteIfExists(path);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to delete the old profile image.");
+        }
+    }
+
 }

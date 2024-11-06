@@ -17,13 +17,17 @@ public class ThumbnailDao {
         System.out.println("dao"+requestDto.toString());
         thumbnailMapper.createThumbnail(requestDto);
     }
-    public GetThumbnailResponseDto getThumbnail(GetThumbnailRequestDto requestDto){
-        return thumbnailMapper.getThumbnail(requestDto);
+    public GetThumbnailResponseDto getThumbnail(int board_id){
+        return thumbnailMapper.getThumbnail(board_id);
     }
     public void updateThumbnail(UpdateThumbnailRequestDto requestDto){
         thumbnailMapper.updateThumbnail(requestDto);
     }
     public void deleteThumbnail(DeleteThumbnailRequestDto requestDto){
         thumbnailMapper.deleteThumbnail(requestDto);
+    }
+
+    public String getThumbnailPathByBoardId(int board_id){
+        return thumbnailMapper.getThumbnailPathByBoardId(board_id);
     }
 }
