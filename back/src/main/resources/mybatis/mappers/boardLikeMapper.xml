@@ -37,7 +37,7 @@
         WHERE bl.created_by = #{email}
         ORDER BY bl.created_at DESC
     </select>
-    <select id="findByBoardLikeId" parameterType="int" resultType="BoardLikeResponseDto">
+    <select id="findByBoardLikeId" parameterType="long" resultType="BoardLikeResponseDto">
         SELECT *
         FROM board_like
         WHERE board_id = #{board_id}

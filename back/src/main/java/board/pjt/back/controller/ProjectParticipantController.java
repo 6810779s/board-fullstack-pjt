@@ -28,7 +28,7 @@ public class ProjectParticipantController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<List<ProjectParticipantGetListByBoardIdResponseDto>>> getProjectParticipantByBoardId(@RequestBody ProjectParticipantGetByBoardIdRequestDto requestDto){
+    public ResponseEntity<ApiResponse<List<ProjectParticipantGetListByBoardIdResponseDto>>> getProjectParticipantByBoardId(@ModelAttribute ProjectParticipantGetByBoardIdRequestDto requestDto){
         List<ProjectParticipantGetListByBoardIdResponseDto> projectParticipantList = projectParticipantDao.getProjectParticipantByBoardId(requestDto);
         ApiResponse<List<ProjectParticipantGetListByBoardIdResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, projectParticipantList);
         return ResponseEntity.ok(response);

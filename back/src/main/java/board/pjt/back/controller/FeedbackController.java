@@ -21,7 +21,7 @@ public class FeedbackController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<List<FeedbackGetListResponseDto>>> getFeedbackListByToUserEmail(@AuthenticationPrincipal UserDetails userDetails, @RequestBody FeedbackGetListRequestDto requestDto){
+    public ResponseEntity<ApiResponse<List<FeedbackGetListResponseDto>>> getFeedbackListByToUserEmail(@AuthenticationPrincipal UserDetails userDetails, @ModelAttribute FeedbackGetListRequestDto requestDto){
         requestDto.setFeedback_to_user_email(userDetails.getUsername());
         List<FeedbackGetListResponseDto> feedbackList = feedbackDao.getFeedbackListByToUserEmail(requestDto);
         ApiResponse<List<FeedbackGetListResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, feedbackList);

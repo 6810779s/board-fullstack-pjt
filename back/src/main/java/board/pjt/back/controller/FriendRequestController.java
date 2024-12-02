@@ -30,7 +30,7 @@ public class FriendRequestController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<PageHandler<FriendRequestGetResponseDto>>> getFriendRequest(@AuthenticationPrincipal UserDetails userDetails, @RequestBody PaginationRequestDto requestDto){
+    public ResponseEntity<ApiResponse<PageHandler<FriendRequestGetResponseDto>>> getFriendRequest(@AuthenticationPrincipal UserDetails userDetails, @ModelAttribute PaginationRequestDto requestDto){
         PageHandler<FriendRequestGetResponseDto> friendRequestGetResponseDtoPageHandler = friendRequestDao.getFriendRequest(userDetails.getUsername(), requestDto);
         ApiResponse<PageHandler<FriendRequestGetResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, friendRequestGetResponseDtoPageHandler);
         return ResponseEntity.ok(response);
@@ -52,7 +52,7 @@ public class FriendRequestController {
     }
 
     @GetMapping("/sender-email")
-    public ResponseEntity<ApiResponse<GetSenderEmailByFriendRequestIdResponseDto>> getSenderEmailByFriendRequestId(@RequestBody GetSenderEmailByFriendRequestIdRequestDto requestDto){
+    public ResponseEntity<ApiResponse<GetSenderEmailByFriendRequestIdResponseDto>> getSenderEmailByFriendRequestId(@ModelAttribute GetSenderEmailByFriendRequestIdRequestDto requestDto){
         GetSenderEmailByFriendRequestIdResponseDto senderEmail = friendRequestDao.getSenderEmailByFriendRequestId(requestDto);
         ApiResponse<GetSenderEmailByFriendRequestIdResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, senderEmail);
         return ResponseEntity.ok(response);

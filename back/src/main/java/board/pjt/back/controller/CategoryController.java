@@ -28,7 +28,7 @@ public class CategoryController {
     }
 
     @GetMapping("/detail")
-    public ResponseEntity<ApiResponse<CategorySelectResponseDto>> getCategoryDetail(@RequestBody CategorySelectRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<CategorySelectResponseDto>> getCategoryDetail(@ModelAttribute CategorySelectRequestDto requestDto) {
         CategorySelectResponseDto categoryDetail = categoryDao.select(requestDto);
         ApiResponse<CategorySelectResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, categoryDetail);
         return ResponseEntity.ok(response);

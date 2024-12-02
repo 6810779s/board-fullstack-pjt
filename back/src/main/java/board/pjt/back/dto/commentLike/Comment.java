@@ -50,7 +50,7 @@ public class Comment {
         this.comment_id = comment_id;
     }
 
-    public long getParent_comment_id() {
+    public Long getParent_comment_id() {
         return parent_comment_id;
     }
 

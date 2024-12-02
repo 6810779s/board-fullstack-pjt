@@ -24,14 +24,15 @@ public class BoardLikeController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<BoardLikeListResponseDto>> getBoardLikeList(@RequestBody BoardLikeListRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<BoardLikeListResponseDto>> getBoardLikeList(@ModelAttribute BoardLikeListRequestDto requestDto) {
+        System.out.println("requestDto="+requestDto.toString());
         BoardLikeListResponseDto boardLikeList = boardLikeDao.findByBoardLikeId(requestDto);
         ApiResponse<BoardLikeListResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardLikeList);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/pagination/my-list")
-    public ResponseEntity<ApiResponse<PageHandler<BoardLikeResponseDto>>> getBoardLikeList(@AuthenticationPrincipal UserDetails userDetails, @RequestBody PaginationRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<PageHandler<BoardLikeResponseDto>>> getBoardLikeList(@AuthenticationPrincipal UserDetails userDetails, @ModelAttribute PaginationRequestDto requestDto) {
         PageHandler<BoardLikeResponseDto> boardLikeList = boardLikeDao.myBoardLikePagination(userDetails, requestDto);
         ApiResponse<PageHandler<BoardLikeResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardLikeList);
         return ResponseEntity.ok(response);
