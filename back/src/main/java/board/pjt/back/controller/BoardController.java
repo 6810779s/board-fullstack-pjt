@@ -32,7 +32,7 @@ public class BoardController {
 
 
     @GetMapping("/pagination")
-    public ResponseEntity<ApiResponse<PageHandler<BoardResponseDto>>> getBoardListPagination(@RequestBody PaginationRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<PageHandler<BoardResponseDto>>> getBoardListPagination(@RequestParam PaginationRequestDto requestDto) {
         PageHandler<BoardResponseDto> boardListPagination = boardDao.boardPagination(requestDto);
         ApiResponse<PageHandler<BoardResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardListPagination);
         return ResponseEntity.ok(response);
@@ -46,7 +46,7 @@ public class BoardController {
     }
 
     @GetMapping("/{board_id}")
-    public ResponseEntity<ApiResponse<BoardDetailResponseDto>> getBoard(@PathVariable int board_id) {
+    public ResponseEntity<ApiResponse<BoardDetailResponseDto>> getBoard(@PathVariable long board_id) {
         BoardDetailResponseDto board = boardDao.select(board_id);
         ApiResponse<BoardDetailResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, board);
         return ResponseEntity.ok(response);

@@ -4,15 +4,14 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class BoardLikeResponseDto {
-    int board_like_id;
-//    BoardLikeBoardInfo board;
+    long board_like_id;
     String created_by;
     LocalDateTime created_at;
 
     public BoardLikeResponseDto() {
     }
 
-    public BoardLikeResponseDto(int board_like_id, String created_by, LocalDateTime created_at) {
+    public BoardLikeResponseDto(long board_like_id, String created_by, LocalDateTime created_at) {
         this.board_like_id = board_like_id;
         this.created_by = created_by;
         this.created_at = created_at;
@@ -40,11 +39,11 @@ public class BoardLikeResponseDto {
                 '}';
     }
 
-    public int getBoard_like_id() {
+    public long getBoard_like_id() {
         return board_like_id;
     }
 
-    public void setBoard_like_id(int board_like_id) {
+    public void setBoard_like_id(long board_like_id) {
         this.board_like_id = board_like_id;
     }
 

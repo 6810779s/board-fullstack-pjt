@@ -3,12 +3,12 @@ package board.pjt.back.dto.projectParticipant;
 import java.util.Objects;
 
 public class ProjectParticipantDeleteByBoardIdDto {
-    private int board_id;
+    private long board_id;
 
     public ProjectParticipantDeleteByBoardIdDto() {
     }
 
-    public ProjectParticipantDeleteByBoardIdDto(int board_id) {
+    public ProjectParticipantDeleteByBoardIdDto(long board_id) {
         this.board_id = board_id;
     }
 
@@ -32,11 +32,11 @@ public class ProjectParticipantDeleteByBoardIdDto {
                 '}';
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 }

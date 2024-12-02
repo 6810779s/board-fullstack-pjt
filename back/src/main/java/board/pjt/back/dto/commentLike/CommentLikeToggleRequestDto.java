@@ -3,13 +3,13 @@ package board.pjt.back.dto.commentLike;
 import java.util.Objects;
 
 public class CommentLikeToggleRequestDto {
-    int comment_id;
+    long comment_id;
     String created_by;
 
     public CommentLikeToggleRequestDto() {
     }
 
-    public CommentLikeToggleRequestDto(int comment_id, String created_by) {
+    public CommentLikeToggleRequestDto(long comment_id, String created_by) {
         this.comment_id = comment_id;
         this.created_by = created_by;
     }
@@ -35,11 +35,11 @@ public class CommentLikeToggleRequestDto {
                 '}';
     }
 
-    public int getComment_id() {
+    public long getComment_id() {
         return comment_id;
     }
 
-    public void setComment_id(int comment_id) {
+    public void setComment_id(long comment_id) {
         this.comment_id = comment_id;
     }
 

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class BoardDetailResponseDto {
-    private int board_id;
+    private long board_id;
     private String title;
     private String content;
     private CategorySelectResponseDto category;
@@ -20,7 +20,7 @@ public class BoardDetailResponseDto {
     public BoardDetailResponseDto() {
     }
 
-    public BoardDetailResponseDto(int board_id, String title, String content, CategorySelectResponseDto category, int rating, String main_image_path, BoardDetailResponseDto prevBoard, BoardDetailResponseDto nextBoard, String created_by, LocalDateTime created_at) {
+    public BoardDetailResponseDto(long board_id, String title, String content, CategorySelectResponseDto category, int rating, String main_image_path, BoardDetailResponseDto prevBoard, BoardDetailResponseDto nextBoard, String created_by, LocalDateTime created_at) {
         this.board_id = board_id;
         this.title = title;
         this.content = content;
@@ -62,11 +62,11 @@ public class BoardDetailResponseDto {
         return Objects.hash(board_id, title, content, category, rating, main_image_path, prevBoard, nextBoard, created_by, created_at);
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 

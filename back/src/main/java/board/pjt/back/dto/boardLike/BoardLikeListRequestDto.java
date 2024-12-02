@@ -3,13 +3,13 @@ package board.pjt.back.dto.boardLike;
 import java.util.Objects;
 
 public class BoardLikeListRequestDto {
-    int board_id;
+    long board_id;
     String created_by;
 
     public BoardLikeListRequestDto() {
     }
 
-    public BoardLikeListRequestDto(Integer board_id, String created_by) {
+    public BoardLikeListRequestDto(long board_id, String created_by) {
         this.board_id = board_id;
         this.created_by = created_by;
     }
@@ -35,11 +35,11 @@ public class BoardLikeListRequestDto {
                 '}';
     }
 
-    public Integer getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(Integer board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 

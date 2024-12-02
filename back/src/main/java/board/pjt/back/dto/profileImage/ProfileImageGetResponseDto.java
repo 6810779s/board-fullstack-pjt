@@ -3,14 +3,14 @@ package board.pjt.back.dto.profileImage;
 import java.util.Objects;
 
 public class ProfileImageGetResponseDto {
-    private int profile_image_id;
+    private long profile_image_id;
     private String file_extension;
     private String file_name;
 
     public ProfileImageGetResponseDto() {
     }
 
-    public ProfileImageGetResponseDto(int profile_image_id, String file_extension, String file_name) {
+    public ProfileImageGetResponseDto(long profile_image_id, String file_extension, String file_name) {
         this.profile_image_id = profile_image_id;
         this.file_extension = file_extension;
         this.file_name = file_name;
@@ -38,11 +38,11 @@ public class ProfileImageGetResponseDto {
                 '}';
     }
 
-    public int getProfile_image_id() {
+    public long getProfile_image_id() {
         return profile_image_id;
     }
 
-    public void setProfile_image_id(int profile_image_id) {
+    public void setProfile_image_id(long profile_image_id) {
         this.profile_image_id = profile_image_id;
     }
 

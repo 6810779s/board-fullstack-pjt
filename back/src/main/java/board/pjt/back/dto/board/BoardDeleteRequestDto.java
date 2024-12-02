@@ -3,13 +3,13 @@ package board.pjt.back.dto.board;
 import java.util.Objects;
 
 public class BoardDeleteRequestDto {
-    private int board_id;
+    private long board_id;
 
     public BoardDeleteRequestDto() {
 
     }
 
-    public BoardDeleteRequestDto(int board_id) {
+    public BoardDeleteRequestDto(long board_id) {
         this.board_id = board_id;
     }
 
@@ -33,11 +33,11 @@ public class BoardDeleteRequestDto {
         return Objects.hash(board_id);
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 }

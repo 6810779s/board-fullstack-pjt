@@ -1,20 +1,20 @@
 package board.pjt.back.dto.category;
 
 public class CategoryDeleteRequestDto {
-    private Integer category_di;
+    private long category_id;
 
     public CategoryDeleteRequestDto() {
     }
 
-    public CategoryDeleteRequestDto(Integer category_di) {
-        this.category_di = category_di;
+    public CategoryDeleteRequestDto(long category_id) {
+        this.category_id = category_id;
     }
 
-    public Integer getCategory_di() {
-        return category_di;
+    public long getCategory_id() {
+        return category_id;
     }
 
-    public void setCategory_di(Integer category_di) {
-        this.category_di = category_di;
+    public void setCategory_id(long category_id) {
+        this.category_id = category_id;
     }
 }

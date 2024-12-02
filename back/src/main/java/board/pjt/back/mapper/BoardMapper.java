@@ -10,11 +10,11 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
     List<BoardResponseDto> selectAll();
-    BoardDetailResponseDto select(@Param("board_id") int board_id);
+    BoardDetailResponseDto select(@Param("board_id") long board_id);
 
-    BoardDetailResponseDto getPrevBoard(int board_id);
+    BoardDetailResponseDto getPrevBoard(long board_id);
 
-    BoardDetailResponseDto getNextBoard(int board_id);
+    BoardDetailResponseDto getNextBoard(long board_id);
 
 
     List<BoardResponseDto> selectMyBoardList(UserEntity requestDto);

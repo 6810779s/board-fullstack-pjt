@@ -4,15 +4,15 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Comment {
-    private int comment_id;
-    private Integer parent_comment_id;
+    private long comment_id;
+    private Long parent_comment_id;
     private LocalDateTime created_at;
     private String created_by;
 
     public Comment() {
     }
 
-    public Comment(int comment_id, Integer parent_comment_id, LocalDateTime created_at, String created_by) {
+    public Comment(long comment_id, Long parent_comment_id, LocalDateTime created_at, String created_by) {
         this.comment_id = comment_id;
         this.parent_comment_id = parent_comment_id;
         this.created_at = created_at;
@@ -42,19 +42,19 @@ public class Comment {
                 '}';
     }
 
-    public int getComment_id() {
+    public long getComment_id() {
         return comment_id;
     }
 
-    public void setComment_id(int comment_id) {
+    public void setComment_id(long comment_id) {
         this.comment_id = comment_id;
     }
 
-    public Integer getParent_comment_id() {
+    public long getParent_comment_id() {
         return parent_comment_id;
     }
 
-    public void setParent_comment_id(Integer parent_comment_id) {
+    public void setParent_comment_id(Long parent_comment_id) {
         this.parent_comment_id = parent_comment_id;
     }
 

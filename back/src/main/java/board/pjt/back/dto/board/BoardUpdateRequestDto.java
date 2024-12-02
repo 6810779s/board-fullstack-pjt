@@ -3,10 +3,10 @@ package board.pjt.back.dto.board;
 import java.util.Objects;
 
 public class BoardUpdateRequestDto {
-    private int board_id;
+    private long board_id;
     private String title;
     private String content;
-    private int category_id;
+    private long category_id;
 
     public BoardUpdateRequestDto() {
     }
@@ -34,11 +34,11 @@ public class BoardUpdateRequestDto {
         return Objects.hash(board_id, title, content, category_id);
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 
@@ -58,11 +58,11 @@ public class BoardUpdateRequestDto {
         this.content = content;
     }
 
-    public int getCategory_id() {
+    public long getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(int category_id) {
+    public void setCategory_id(long category_id) {
         this.category_id = category_id;
     }
 }

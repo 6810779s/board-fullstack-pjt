@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class CategoryEntity {
-    private Integer category_id;
+    private long category_id;
     private String name;
     private Date created_at;
     private String created_by;
@@ -14,7 +14,7 @@ public class CategoryEntity {
     public CategoryEntity() {
     }
 
-    public CategoryEntity(Integer category_id, String name, Date created_at, String created_by, Date updated_at, String updated_by) {
+    public CategoryEntity(long category_id, String name, Date created_at, String created_by, Date updated_at, String updated_by) {
         this.category_id = category_id;
         this.name = name;
         this.created_at = created_at;
@@ -48,11 +48,11 @@ public class CategoryEntity {
                 '}';
     }
 
-    public Integer getCategory_id() {
+    public long getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(Integer category_id) {
+    public void setCategory_id(long category_id) {
         this.category_id = category_id;
     }
 

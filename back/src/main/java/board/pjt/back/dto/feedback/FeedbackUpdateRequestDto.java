@@ -3,14 +3,14 @@ package board.pjt.back.dto.feedback;
 import java.util.Objects;
 
 public class FeedbackUpdateRequestDto {
-    private int feedback_id;
+    private long feedback_id;
     private String content;
     private int rating;
 
     public FeedbackUpdateRequestDto() {
     }
 
-    public FeedbackUpdateRequestDto(int feedback_id, String content, int rating) {
+    public FeedbackUpdateRequestDto(long feedback_id, String content, int rating) {
         this.feedback_id = feedback_id;
         this.content = content;
         this.rating = rating;
@@ -38,11 +38,11 @@ public class FeedbackUpdateRequestDto {
                 '}';
     }
 
-    public int getFeedback_id() {
+    public long getFeedback_id() {
         return feedback_id;
     }
 
-    public void setFeedback_id(int feedback_id) {
+    public void setFeedback_id(long feedback_id) {
         this.feedback_id = feedback_id;
     }
 

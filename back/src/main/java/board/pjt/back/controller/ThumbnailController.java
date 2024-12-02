@@ -28,7 +28,7 @@ public class ThumbnailController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<GetThumbnailResponseDto>> getThumbnail(@RequestParam int board_id){
+    public ResponseEntity<ApiResponse<GetThumbnailResponseDto>> getThumbnail(@RequestParam long board_id){
         GetThumbnailResponseDto thumbnail = thumbnailDao.getThumbnail(board_id);
         ApiResponse<GetThumbnailResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, thumbnail);
         return ResponseEntity.ok(response);
@@ -55,7 +55,7 @@ public class ThumbnailController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ApiResponse<Void>> updateThumbnail(@AuthenticationPrincipal UserDetails userDetails,@RequestParam("board_id") int board_id, @RequestParam(value="file", required = false)MultipartFile file){
+    public ResponseEntity<ApiResponse<Void>> updateThumbnail(@AuthenticationPrincipal UserDetails userDetails,@RequestParam("board_id") long board_id, @RequestParam(value="file", required = false)MultipartFile file){
         FileUtil fileUtil = new FileUtil(thumbnailUploadDir);
         String fileName = BasicThumbnail.THUMBNAIL_FILE_NAME;
         String filePath = Paths.get(BasicThumbnail.THUMBNAIL_FILE_PATH).toString();

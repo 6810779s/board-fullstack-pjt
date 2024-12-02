@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.Objects;
 
 public class CommentResponseDto {
-    private Integer parent_comment_id;
-    private int comment_id;
-    private int board_id;
+    private Long parent_comment_id;
+    private long comment_id;
+    private long board_id;
     private String content;
     private LocalDateTime created_at;
     private String created_by;
@@ -17,7 +17,7 @@ public class CommentResponseDto {
     public CommentResponseDto() {
     }
 
-    public CommentResponseDto(Integer parent_comment_id, int comment_id, int board_id, String content, LocalDateTime created_at, String created_by, LocalDateTime updated_at, String updated_by) {
+    public CommentResponseDto(Long parent_comment_id, long comment_id, long board_id, String content, LocalDateTime created_at, String created_by, LocalDateTime updated_at, String updated_by) {
         this.parent_comment_id = parent_comment_id;
         this.comment_id = comment_id;
         this.board_id = board_id;
@@ -55,27 +55,27 @@ public class CommentResponseDto {
                 '}';
     }
 
-    public Integer getParent_comment_id() {
+    public long getParent_comment_id() {
         return parent_comment_id;
     }
 
-    public void setParent_comment_id(Integer parent_comment_id) {
+    public void setParent_comment_id(Long parent_comment_id) {
         this.parent_comment_id = parent_comment_id;
     }
 
-    public int getComment_id() {
+    public long getComment_id() {
         return comment_id;
     }
 
-    public void setComment_id(int comment_id) {
+    public void setComment_id(long comment_id) {
         this.comment_id = comment_id;
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 

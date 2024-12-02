@@ -35,12 +35,12 @@ public class BoardDao {
         return boardResponseDtoPageHandler;
     }
 
-    public BoardDetailResponseDto select(int board_id) {
+    public BoardDetailResponseDto select(long board_id) {
         BoardDetailResponseDto dto = boardMapper.select(board_id);
         dto.setNextBoard(boardMapper.getNextBoard(board_id));
         dto.setPrevBoard(boardMapper.getPrevBoard(board_id));
         if (dto == null) {
-            throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
+            throw new IllegalArgumentException(ErrorMessages.BOARD_NOT_FOUND);
         }
         return dto;
     }
@@ -58,7 +58,7 @@ public class BoardDao {
     public void delete(BoardDeleteRequestDto requestDto) {
         BoardDetailResponseDto board = select(requestDto.getBoard_id());
         if (board == null) {
-            throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
+            throw new IllegalArgumentException(ErrorMessages.BOARD_NOT_FOUND);
         }
         boardMapper.delete(requestDto);
 //        BoardResponseDto deletedBoard = select(requestDto.getArticle_id());
@@ -70,7 +70,7 @@ public class BoardDao {
     public void update(BoardUpdateRequestDto requestDto) {
         BoardDetailResponseDto board = select(requestDto.getBoard_id());
         if (board == null) {
-            throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
+            throw new IllegalArgumentException(ErrorMessages.BOARD_NOT_FOUND);
         }
         // [TODO] category_id에서 category가 category 목록에 포함 되어있는지 확인하는 로직 구현 필요
         boardMapper.update(requestDto);

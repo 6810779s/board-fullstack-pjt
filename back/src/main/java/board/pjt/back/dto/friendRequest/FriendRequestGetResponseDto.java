@@ -6,7 +6,7 @@ import board.pjt.back.enums.friendRequest.Status;
 import java.util.Objects;
 
 public class FriendRequestGetResponseDto {
-    private int friend_request_id;
+    private long friend_request_id;
     private String sender_email;
     private FriendDto friendDto;
     private Status status;
@@ -14,7 +14,7 @@ public class FriendRequestGetResponseDto {
     public FriendRequestGetResponseDto() {
     }
 
-    public FriendRequestGetResponseDto(int friend_request_id, String sender_email, FriendDto friendDto, Status status) {
+    public FriendRequestGetResponseDto(long friend_request_id, String sender_email, FriendDto friendDto, Status status) {
         this.friend_request_id = friend_request_id;
         this.sender_email = sender_email;
         this.friendDto = friendDto;
@@ -44,11 +44,11 @@ public class FriendRequestGetResponseDto {
                 '}';
     }
 
-    public int getFriend_request_id() {
+    public long getFriend_request_id() {
         return friend_request_id;
     }
 
-    public void setFriend_request_id(int friend_request_id) {
+    public void setFriend_request_id(long friend_request_id) {
         this.friend_request_id = friend_request_id;
     }
 

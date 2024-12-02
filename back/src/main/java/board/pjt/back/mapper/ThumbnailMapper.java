@@ -6,10 +6,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ThumbnailMapper {
 void createThumbnail(CreateThumbnailRequestDto dto);
-GetThumbnailResponseDto getThumbnail(int board_id);
+GetThumbnailResponseDto getThumbnail(long board_id);
 void updateThumbnail(UpdateThumbnailRequestDto dto);
 void deleteThumbnail(DeleteThumbnailRequestDto dto);
 
-String getThumbnailPathByBoardId(int board_id);
+String getThumbnailPathByBoardId(long board_id);
 
 }

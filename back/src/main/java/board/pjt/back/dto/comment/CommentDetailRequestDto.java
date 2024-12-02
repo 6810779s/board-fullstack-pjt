@@ -3,12 +3,12 @@ package board.pjt.back.dto.comment;
 import java.util.Objects;
 
 public class CommentDetailRequestDto {
-    private int comment_id;
+    private long comment_id;
 
     public CommentDetailRequestDto() {
     }
 
-    public CommentDetailRequestDto(int comment_id) {
+    public CommentDetailRequestDto(long comment_id) {
         this.comment_id = comment_id;
     }
 
@@ -32,11 +32,11 @@ public class CommentDetailRequestDto {
                 '}';
     }
 
-    public int getComment_id() {
+    public long getComment_id() {
         return comment_id;
     }
 
-    public void setComment_id(int comment_id) {
+    public void setComment_id(long comment_id) {
         this.comment_id = comment_id;
     }
 }

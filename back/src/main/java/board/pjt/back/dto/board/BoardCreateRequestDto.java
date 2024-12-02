@@ -7,12 +7,12 @@ public class BoardCreateRequestDto {
     private String content;
     private int rating;
     private String main_image_path;
-    private int category_id;
+    private long category_id;
 
     public BoardCreateRequestDto() {
     }
 
-    public BoardCreateRequestDto(String title, String content, int rating, String main_image_path, int category_id) {
+    public BoardCreateRequestDto(String title, String content, int rating, String main_image_path, long category_id) {
         this.title = title;
         this.content = content;
         this.rating = rating;
@@ -76,11 +76,11 @@ public class BoardCreateRequestDto {
         this.main_image_path = main_image_path;
     }
 
-    public int getCategory_id() {
+    public long getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(int category_id) {
+    public void setCategory_id(long category_id) {
         this.category_id = category_id;
     }
 }

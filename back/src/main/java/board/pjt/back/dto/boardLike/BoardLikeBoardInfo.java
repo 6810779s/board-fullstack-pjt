@@ -1,29 +1,46 @@
 package board.pjt.back.dto.boardLike;
 
-import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class BoardLikeBoardInfo {
-    private Integer article_id;
-    private String title;
-    private LocalDateTime created_at;
-    private String created_by;
+    long board_id;
+    String title;
 
     public BoardLikeBoardInfo() {
     }
 
-    public BoardLikeBoardInfo(Integer article_id, String title, LocalDateTime created_at, String created_by) {
-        this.article_id = article_id;
+    public BoardLikeBoardInfo(long board_id, String title) {
+        this.board_id = board_id;
         this.title = title;
-        this.created_at = created_at;
-        this.created_by = created_by;
     }
 
-    public Integer getArticle_id() {
-        return article_id;
+    @Override
+    public String toString() {
+        return "BoardLikeBoardInfo{" +
+                "board_id=" + board_id +
+                ", title='" + title + '\'' +
+                '}';
     }
 
-    public void setArticle_id(Integer article_id) {
-        this.article_id = article_id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BoardLikeBoardInfo that = (BoardLikeBoardInfo) o;
+        return board_id == that.board_id && Objects.equals(title, that.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(board_id, title);
+    }
+
+    public long getBoard_id() {
+        return board_id;
+    }
+
+    public void setBoard_id(long board_id) {
+        this.board_id = board_id;
     }
 
     public String getTitle() {
@@ -32,21 +49,5 @@ public class BoardLikeBoardInfo {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public LocalDateTime getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
-    }
-
-    public String getCreated_by() {
-        return created_by;
-    }
-
-    public void setCreated_by(String created_by) {
-        this.created_by = created_by;
     }
 }

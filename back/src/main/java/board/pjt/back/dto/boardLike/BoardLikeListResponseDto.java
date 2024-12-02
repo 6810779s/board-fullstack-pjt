@@ -4,7 +4,7 @@ import java.util.List;
 
 public class BoardLikeListResponseDto {
     private List<BoardLikeResponseDto> likes;
-    private Integer totalLikes;
+    private int totalLikes;
 
     public BoardLikeListResponseDto() {
     }
@@ -23,7 +23,7 @@ public class BoardLikeListResponseDto {
         this.totalLikes = likes.size();
     }
 
-    public Integer getTotalLikes() {
+    public int getTotalLikes() {
         return totalLikes;
     }
 

@@ -3,12 +3,12 @@ package board.pjt.back.dto.feedback;
 import java.util.Objects;
 
 public class FeedbackDeleteRequestDto {
-    private int feedback_id;
+    private long feedback_id;
 
     public FeedbackDeleteRequestDto() {
     }
 
-    public FeedbackDeleteRequestDto(int feedback_id) {
+    public FeedbackDeleteRequestDto(long feedback_id) {
         this.feedback_id = feedback_id;
     }
 
@@ -32,11 +32,11 @@ public class FeedbackDeleteRequestDto {
                 '}';
     }
 
-    public int getFeedback_id() {
+    public long getFeedback_id() {
         return feedback_id;
     }
 
-    public void setFeedback_id(int feedback_id) {
+    public void setFeedback_id(long feedback_id) {
         this.feedback_id = feedback_id;
     }
 }

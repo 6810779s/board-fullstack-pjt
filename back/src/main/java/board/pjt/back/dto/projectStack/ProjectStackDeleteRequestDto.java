@@ -3,12 +3,12 @@ package board.pjt.back.dto.projectStack;
 import java.util.Objects;
 
 public class ProjectStackDeleteRequestDto {
-    private int board_id;
+    private long board_id;
 
     public ProjectStackDeleteRequestDto() {
     }
 
-    public ProjectStackDeleteRequestDto(int board_id) {
+    public ProjectStackDeleteRequestDto(long board_id) {
         this.board_id = board_id;
     }
 
@@ -32,11 +32,11 @@ public class ProjectStackDeleteRequestDto {
                 '}';
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 }

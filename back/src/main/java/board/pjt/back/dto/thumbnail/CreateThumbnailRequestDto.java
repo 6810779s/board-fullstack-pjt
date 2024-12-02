@@ -3,7 +3,7 @@ package board.pjt.back.dto.thumbnail;
 import java.util.Objects;
 
 public class CreateThumbnailRequestDto {
-    private int board_id;
+    private long board_id;
     private String file_name;
     private String file_path;
     private String file_extension;
@@ -12,7 +12,7 @@ public class CreateThumbnailRequestDto {
     public CreateThumbnailRequestDto() {
     }
 
-    public CreateThumbnailRequestDto(int board_id, String created_by,String file_name, String file_path, String file_extension) {
+    public CreateThumbnailRequestDto(long board_id, String created_by,String file_name, String file_path, String file_extension) {
         this.board_id = board_id;
         this.created_by = created_by;
         this.file_name = file_name;
@@ -76,11 +76,11 @@ public class CreateThumbnailRequestDto {
         this.created_by = created_by;
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 }

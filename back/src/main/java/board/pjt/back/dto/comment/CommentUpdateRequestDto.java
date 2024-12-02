@@ -1,7 +1,7 @@
 package board.pjt.back.dto.comment;
 
 public class CommentUpdateRequestDto {
-    private int comment_id;
+    private long comment_id;
     private String content;
 
     private String updated_by;
@@ -9,13 +9,13 @@ public class CommentUpdateRequestDto {
     public CommentUpdateRequestDto() {
     }
 
-    public CommentUpdateRequestDto(int comment_id, String content, String updated_by) {
+    public CommentUpdateRequestDto(long comment_id, String content, String updated_by) {
         this.comment_id = comment_id;
         this.content = content;
         this.updated_by = updated_by;
     }
 
-    public int getComment_id() {
+    public long getComment_id() {
         return comment_id;
     }
 
@@ -23,7 +23,7 @@ public class CommentUpdateRequestDto {
         return content;
     }
 
-    public void setComment_id(int comment_id) {
+    public void setComment_id(long comment_id) {
         this.comment_id = comment_id;
     }
 

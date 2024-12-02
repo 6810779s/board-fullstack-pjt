@@ -49,8 +49,8 @@ public class CommentController {
     }
 
     @GetMapping("/board/{board_id}")
-    public ResponseEntity<ApiResponse<List<CommentResponseDto>>> commentListByBoardId(@PathVariable int board_id) {
-        List<CommentResponseDto> commentList = commentsDao.selectAllCommentByArticleId(board_id);
+    public ResponseEntity<ApiResponse<List<CommentResponseDto>>> commentListByBoardId(@PathVariable long board_id) {
+        List<CommentResponseDto> commentList = commentsDao.selectAllCommentByBoardId(board_id);
         ApiResponse<List<CommentResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, commentList);
         return ResponseEntity.ok(response);
     }

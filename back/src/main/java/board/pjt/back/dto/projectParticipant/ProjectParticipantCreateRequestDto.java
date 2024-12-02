@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class ProjectParticipantCreateRequestDto {
-    private int board_id;
+    private long board_id;
     private List<ProjectParticipantListDto> participant_list;
 
     public ProjectParticipantCreateRequestDto() {
     }
 
-    public ProjectParticipantCreateRequestDto(int board_id, List<ProjectParticipantListDto> participant_list) {
+    public ProjectParticipantCreateRequestDto(long board_id, List<ProjectParticipantListDto> participant_list) {
         this.board_id = board_id;
         this.participant_list = participant_list;
     }
@@ -36,11 +36,11 @@ public class ProjectParticipantCreateRequestDto {
                 '}';
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 

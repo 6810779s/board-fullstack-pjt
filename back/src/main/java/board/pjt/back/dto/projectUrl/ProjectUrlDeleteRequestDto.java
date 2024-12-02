@@ -3,12 +3,12 @@ package board.pjt.back.dto.projectUrl;
 import java.util.Objects;
 
 public class ProjectUrlDeleteRequestDto {
-    private int board_id;
+    private long board_id;
 
     public ProjectUrlDeleteRequestDto() {
     }
 
-    public ProjectUrlDeleteRequestDto(int board_id) {
+    public ProjectUrlDeleteRequestDto(long board_id) {
         this.board_id = board_id;
     }
 
@@ -32,11 +32,11 @@ public class ProjectUrlDeleteRequestDto {
                 '}';
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 }

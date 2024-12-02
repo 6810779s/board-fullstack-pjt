@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class ProjectUrlCreateRequestDto {
-    private int board_id;
+    private long board_id;
 
     private List<ProjectUrlInfo> project_url;
 
@@ -29,11 +29,11 @@ public class ProjectUrlCreateRequestDto {
                 '}';
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 

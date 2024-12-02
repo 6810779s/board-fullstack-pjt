@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class CategoryDto {
-    private Integer category_id;
+    private long category_id;
     private String name;
     private Date created_at;
     private String created_by;
@@ -44,7 +44,7 @@ public class CategoryDto {
                 '}';
     }
 
-    public Integer getCategory_id() {
+    public long getCategory_id() {
         return category_id;
     }
 
