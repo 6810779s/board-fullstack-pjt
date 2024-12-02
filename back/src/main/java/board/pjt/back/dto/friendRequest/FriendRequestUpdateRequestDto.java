@@ -5,13 +5,13 @@ import board.pjt.back.enums.friendRequest.Status;
 import java.util.Objects;
 
 public class FriendRequestUpdateRequestDto {
-    private int friend_request_id;
+    private long friend_request_id;
     private Status status;
 
     public FriendRequestUpdateRequestDto() {
     }
 
-    public FriendRequestUpdateRequestDto(int friend_request_id, Status status) {
+    public FriendRequestUpdateRequestDto(long friend_request_id, Status status) {
         this.friend_request_id = friend_request_id;
         this.status = status;
     }
@@ -37,11 +37,11 @@ public class FriendRequestUpdateRequestDto {
                 '}';
     }
 
-    public int getFriend_request_id() {
+    public long getFriend_request_id() {
         return friend_request_id;
     }
 
-    public void setFriend_request_id(int friend_request_id) {
+    public void setFriend_request_id(long friend_request_id) {
         this.friend_request_id = friend_request_id;
     }
 

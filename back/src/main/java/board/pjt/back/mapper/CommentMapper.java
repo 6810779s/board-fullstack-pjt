@@ -16,7 +16,7 @@ public interface CommentMapper {
 
     List<CommentResponseDto> selectAllReplyList(CommentReplyRequestDto requestDto);
 
-    List<CommentResponseDto> selectAllCommentByBoardId(int board_id);
+    List<CommentResponseDto> selectAllCommentByBoardId(long board_id);
 
     void insert(CommentCreateRequestDto dto);
 

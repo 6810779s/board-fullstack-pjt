@@ -3,7 +3,7 @@ package board.pjt.back.dto.commentLike;
 import java.util.Objects;
 
 public class CommentLikeResponseDto {
-    int comment_like_id;
+    long comment_like_id;
     String created_by;
     Board board;
     Comment comment;
@@ -12,7 +12,7 @@ public class CommentLikeResponseDto {
     public CommentLikeResponseDto() {
     }
 
-    public CommentLikeResponseDto(int comment_like_id, String created_by, Board board, Comment comment) {
+    public CommentLikeResponseDto(long comment_like_id, String created_by, Board board, Comment comment) {
         this.comment_like_id = comment_like_id;
         this.created_by = created_by;
         this.board = board;
@@ -42,11 +42,11 @@ public class CommentLikeResponseDto {
                 '}';
     }
 
-    public int getComment_like_id() {
+    public long getComment_like_id() {
         return comment_like_id;
     }
 
-    public void setComment_like_id(int comment_like_id) {
+    public void setComment_like_id(long comment_like_id) {
         this.comment_like_id = comment_like_id;
     }
 

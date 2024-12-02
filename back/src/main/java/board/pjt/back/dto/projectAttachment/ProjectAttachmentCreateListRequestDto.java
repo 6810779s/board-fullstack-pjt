@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class ProjectAttachmentCreateListRequestDto {
-    private int board_id;
+    private long board_id;
     private List<ProjectAttachmentInfoDto> project_attachment;
 
     public ProjectAttachmentCreateListRequestDto() {
     }
 
-    public ProjectAttachmentCreateListRequestDto(int board_id, List<ProjectAttachmentInfoDto> project_attachment) {
+    public ProjectAttachmentCreateListRequestDto(long board_id, List<ProjectAttachmentInfoDto> project_attachment) {
         this.board_id = board_id;
         this.project_attachment = project_attachment;
     }
@@ -37,11 +37,11 @@ public class ProjectAttachmentCreateListRequestDto {
                 '}';
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 

@@ -41,7 +41,7 @@ public class BoardLikeDao {
     }
 
     public int toggleBoardLike(UserDetails userDetails, BoardToggleLikeRequestDto requestDto) {
-        int board_id = requestDto.getBoard_id();
+        long board_id = requestDto.getBoard_id();
         String email = userDetails.getUsername();
         requestDto.setCreated_by(email);
         BoardLikeListRequestDto boardLikeListRequestDto = new BoardLikeListRequestDto();

@@ -3,14 +3,14 @@ package board.pjt.back.dto.boardLike;
 import java.util.Objects;
 
 public class BoardToggleLikeRequestDto {
-    int board_id;
+    long board_id;
     String created_by;
 
 
     public BoardToggleLikeRequestDto() {
     }
 
-    public BoardToggleLikeRequestDto(int board_id, String created_by) {
+    public BoardToggleLikeRequestDto(long board_id, String created_by) {
         this.board_id = board_id;
         this.created_by = created_by;
     }
@@ -36,11 +36,11 @@ public class BoardToggleLikeRequestDto {
                 '}';
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 

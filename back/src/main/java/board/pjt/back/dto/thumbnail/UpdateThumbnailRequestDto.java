@@ -7,12 +7,12 @@ public class UpdateThumbnailRequestDto {
     private String file_path;
     private String file_extension;
     private String updated_by;
-    private int board_id;
+    private long board_id;
 
     public UpdateThumbnailRequestDto() {
     }
 
-    public UpdateThumbnailRequestDto(String file_name, String file_path, String file_extension, String updated_by, int board_id) {
+    public UpdateThumbnailRequestDto(String file_name, String file_path, String file_extension, String updated_by, long board_id) {
         this.file_name = file_name;
         this.file_path = file_path;
         this.file_extension = file_extension;
@@ -76,11 +76,11 @@ public class UpdateThumbnailRequestDto {
         this.updated_by = updated_by;
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 }

@@ -9,7 +9,7 @@
         VALUES
         (#{board_id}, #{file_name}, #{file_path}, #{file_extension}, now(), #{created_by})
     </insert>
-    <select id="getThumbnail" parameterType="int" resultType="GetThumbnailResponseDto">
+    <select id="getThumbnail" parameterType="long" resultType="GetThumbnailResponseDto">
         SELECT *
         FROM thumbnail
         WHERE board_id = #{board_id}

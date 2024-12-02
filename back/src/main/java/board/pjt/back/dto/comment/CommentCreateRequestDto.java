@@ -3,16 +3,16 @@ package board.pjt.back.dto.comment;
 import java.util.Objects;
 
 public class CommentCreateRequestDto {
-    private int comment_id;
-    private int board_id;
-    private Integer parent_comment_id;
+    private long comment_id;
+    private long board_id;
+    private Long parent_comment_id;
     private String content;
     private String created_by;
 
     public CommentCreateRequestDto() {
     }
 
-    public CommentCreateRequestDto(int comment_id, int board_id, Integer parent_comment_id, String content, String created_by) {
+    public CommentCreateRequestDto(long comment_id, long board_id, Long parent_comment_id, String content, String created_by) {
         this.comment_id = comment_id;
         this.board_id = board_id;
         this.parent_comment_id = parent_comment_id;
@@ -44,27 +44,27 @@ public class CommentCreateRequestDto {
                 '}';
     }
 
-    public int getComment_id() {
+    public long getComment_id() {
         return comment_id;
     }
 
-    public void setComment_id(int comment_id) {
+    public void setComment_id(long comment_id) {
         this.comment_id = comment_id;
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 
-    public Integer getParent_comment_id() {
+    public Long getParent_comment_id() {
         return parent_comment_id;
     }
 
-    public void setParent_comment_id(Integer parent_comment_id) {
+    public void setParent_comment_id(Long parent_comment_id) {
         this.parent_comment_id = parent_comment_id;
     }
 

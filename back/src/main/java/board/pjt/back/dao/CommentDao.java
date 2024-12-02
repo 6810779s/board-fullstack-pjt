@@ -18,8 +18,8 @@ public class CommentDao {
     private final BoardMapper boardMapper;
 
 
-    public CommentDao(CommentMapper articleCommentsMapper, BoardMapper boardMapper) {
-        this.commentsMapper = articleCommentsMapper;
+    public CommentDao(CommentMapper boardCommentsMapper, BoardMapper boardMapper) {
+        this.commentsMapper = boardCommentsMapper;
         this.boardMapper = boardMapper;
     }
 
@@ -51,19 +51,19 @@ public class CommentDao {
     }
 
 
-    public List<CommentResponseDto> selectAllCommentByArticleId(Integer article_id) {
-        if (boardMapper.select(article_id) == null) {
-            throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
+    public List<CommentResponseDto> selectAllCommentByBoardId(long board_id) {
+        if (boardMapper.select(board_id) == null) {
+            throw new IllegalArgumentException(ErrorMessages.BOARD_NOT_FOUND);
         }
-        return commentsMapper.selectAllCommentByBoardId(article_id);
+        return commentsMapper.selectAllCommentByBoardId(board_id);
     }
 
 
     public void insert(UserDetails userDetails, CommentCreateRequestDto requestDto) {
         if (boardMapper.select(requestDto.getBoard_id()) == null) {
-            throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
+            throw new IllegalArgumentException(ErrorMessages.BOARD_NOT_FOUND);
         }
-        Integer parent_comment_id = requestDto.getParent_comment_id();
+        Long parent_comment_id = requestDto.getParent_comment_id();
         if (parent_comment_id != null) {
             CommentDetailRequestDto commentRequestDto = new CommentDetailRequestDto();
             commentRequestDto.setComment_id(parent_comment_id);
@@ -84,7 +84,7 @@ public class CommentDao {
         CommentDetailRequestDto commentDetailRequestDto = setCommentDetailRequestDto(requestDto.getComment_id());
         CommentResponseDto comment = selectByCommentId(commentDetailRequestDto);
         if (comment == null) {
-            throw new IllegalArgumentException(ErrorMessages.ARTICLE_NOT_FOUND);
+            throw new IllegalArgumentException(ErrorMessages.BOARD_NOT_FOUND);
         }
         requestDto.setUpdated_by(userDetails.getUsername());
         commentsMapper.update(requestDto);
@@ -109,9 +109,9 @@ public class CommentDao {
     }
 
 
-    private CommentDetailRequestDto setCommentDetailRequestDto(Integer article_comments_id) {
+    private CommentDetailRequestDto setCommentDetailRequestDto(long comment_id) {
         CommentDetailRequestDto requestDto = new CommentDetailRequestDto();
-        requestDto.setComment_id(article_comments_id);
+        requestDto.setComment_id(comment_id);
         return requestDto;
     }
 

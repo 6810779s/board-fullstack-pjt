@@ -9,13 +9,13 @@
     </insert>
     <select id="selectMyBoardLikeList" parameterType="UserEntity">
         SELECT *
-        FROM article_like
+        FROM board_like
         WHERE created_by = #{email}
         ORDER BY created_at DESC
     </select>
     <select id="selectMyBoardList" parameterType="UserEntity">
         SELECT *
-        FROM article_comments_like
+        FROM comment_like
         WHERE created_by = #{email}
         ORDER BY created_at DESC
     </select>

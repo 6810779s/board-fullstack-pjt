@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class ProjectUrlEntity {
     private int project_url_id;
-    private int board_id;
+    private long board_id;
     private String url;
     private LocalDateTime created_at;
 
-    public ProjectUrlEntity(int project_url_id, int board_id, String url, LocalDateTime created_at) {
+    public ProjectUrlEntity(int project_url_id, long board_id, String url, LocalDateTime created_at) {
         this.project_url_id = project_url_id;
         this.board_id = board_id;
         this.url = url;
@@ -47,11 +47,11 @@ public class ProjectUrlEntity {
         this.project_url_id = project_url_id;
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 

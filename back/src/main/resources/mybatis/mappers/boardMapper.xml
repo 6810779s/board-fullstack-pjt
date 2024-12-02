@@ -23,7 +23,7 @@
             <result property="name" column="name"/>
         </association>
     </resultMap>
-    <select id="select" parameterType="int" resultMap="BoardDetailMap">
+    <select id="select" parameterType="long" resultMap="BoardDetailMap">
         SELECT b.board_id,
                b.title,
                b.content,
@@ -61,7 +61,7 @@
         VALUES (#{title}, #{content}, #{rating}, #{main_image_path}, #{category_id}, now(), 'test2@daum.net', null,
                 null)
     </insert>
-    <insert id="delete" parameterType="int">
+    <insert id="delete" parameterType="long">
         DELETE
         FROM board
         WHERE board_id = #{board_id}

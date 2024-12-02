@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Board {
-    private int board_id;
+    private long board_id;
     private String title;
     private LocalDateTime created_at;
     private String created_by;
@@ -12,7 +12,7 @@ public class Board {
     public Board() {
     }
 
-    public Board(int board_id, String title, LocalDateTime created_at, String created_by) {
+    public Board(long board_id, String title, LocalDateTime created_at, String created_by) {
         this.board_id = board_id;
         this.title = title;
         this.created_at = created_at;
@@ -42,11 +42,11 @@ public class Board {
                 '}';
     }
 
-    public int getBoard_id() {
+    public long getBoard_id() {
         return board_id;
     }
 
-    public void setBoard_id(int board_id) {
+    public void setBoard_id(long board_id) {
         this.board_id = board_id;
     }
 

@@ -23,7 +23,7 @@ class ArticleCommentsDaoTest {
     @Test
     void select() {
 //        List<ArticleCommentsDto> dtoList = articleCommentsDao.selectAll();
-//        int comment_id = dtoList.get(0).getComments_id();
+//        long comment_id = dtoList.get(0).getComments_id();
 //        ArticleCommentsDto dto = articleCommentsDao.select(comment_id);
 //        assertEquals(dto.getContent(), "test2 content");
     }
@@ -51,7 +51,7 @@ class ArticleCommentsDaoTest {
     @DisplayName("delete test")
     @Test
     void delete() {
-//        int comment_id = articleCommentsDao.selectAll().get(0).getComments_id();
+//        long comment_id = articleCommentsDao.selectAll().get(0).getComments_id();
 //
 //        assertEquals(1, articleCommentsDao.delete(comment_id));
 //        int size = articleCommentsDao.selectAll().size();

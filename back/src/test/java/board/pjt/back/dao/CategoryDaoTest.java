@@ -24,7 +24,7 @@ class CategoryDaoTest {
     @DisplayName("category delete test")
     @Test
     void delete() {
-//        int category_id = categoryDao.selectAll().get(0).getCategory_id();
+//        long category_id = categoryDao.selectAll().get(0).getCategory_id();
 //        assertEquals(1, categoryDao.delete(category_id));
     }
 

@@ -44,7 +44,7 @@ class BoardCommentLikeEntityDaoTestEntity {
     @DisplayName("insert test")
     @Test
     void insert() {
-//        int comment_id = articleCommentsDao.selectAll().get(1).getComments_id();
+//        long comment_id = articleCommentsDao.selectAll().get(1).getComments_id();
 //        ArticleCommentsLikeDto dto = new ArticleCommentsLikeDto(comment_id, "test@naver.com");
 //        assertEquals(1, articleCommentsLikeDao.insert(dto));
     }

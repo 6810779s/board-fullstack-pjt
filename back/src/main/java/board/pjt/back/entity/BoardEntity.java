@@ -4,10 +4,10 @@ import java.util.Date;
 import java.util.Objects;
 
 public class BoardEntity {
-    private Integer article_id;
+    private long board_id;
     private String title;
     private String content;
-    private Integer category_id;
+    private long category_id;
     private Date created_at;
     private String created_by;
     private Date updated_at;
@@ -16,7 +16,7 @@ public class BoardEntity {
     public BoardEntity() {
     }
 
-    public BoardEntity(String title, String content, Integer category_id) {
+    public BoardEntity(String title, String content, long category_id) {
         this.title = title;
         this.content = content;
         this.category_id = category_id;
@@ -25,13 +25,13 @@ public class BoardEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(article_id, title, content, category_id, created_at, created_by, updated_at, updated_by);
+        return Objects.hash(board_id, title, content, category_id, created_at, created_by, updated_at, updated_by);
     }
 
     @Override
     public String toString() {
         return "Board{" +
-                "article_id=" + article_id +
+                "board_id=" + board_id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", category_id=" + category_id +
@@ -42,12 +42,12 @@ public class BoardEntity {
                 '}';
     }
 
-    public Integer getArticle_id() {
-        return article_id;
+    public long getBoard_id() {
+        return board_id;
     }
 
-    public void setArticle_id(Integer article_id) {
-        this.article_id = article_id;
+    public void setBoard_id(long board_id) {
+        this.board_id = board_id;
     }
 
     public String getTitle() {
@@ -66,11 +66,11 @@ public class BoardEntity {
         this.content = content;
     }
 
-    public Integer getCategory_id() {
+    public long getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(Integer category_id) {
+    public void setCategory_id(long category_id) {
         this.category_id = category_id;
     }
 

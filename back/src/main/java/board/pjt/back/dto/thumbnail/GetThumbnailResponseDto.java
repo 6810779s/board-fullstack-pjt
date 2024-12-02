@@ -3,14 +3,14 @@ package board.pjt.back.dto.thumbnail;
 import java.util.Objects;
 
 public class GetThumbnailResponseDto {
-    private int thumbnail_id;
+    private long thumbnail_id;
     private String file_name;
     private String file_extension;
 
     public GetThumbnailResponseDto() {
     }
 
-    public GetThumbnailResponseDto(int thumbnail_id, String file_name, String file_extension) {
+    public GetThumbnailResponseDto(long thumbnail_id, String file_name, String file_extension) {
         this.thumbnail_id = thumbnail_id;
         this.file_name = file_name;
         this.file_extension = file_extension;
@@ -38,11 +38,11 @@ public class GetThumbnailResponseDto {
                 '}';
     }
 
-    public int getThumbnail_id() {
+    public long getThumbnail_id() {
         return thumbnail_id;
     }
 
-    public void setThumbnail_id(int thumbnail_id) {
+    public void setThumbnail_id(long thumbnail_id) {
         this.thumbnail_id = thumbnail_id;
     }
 

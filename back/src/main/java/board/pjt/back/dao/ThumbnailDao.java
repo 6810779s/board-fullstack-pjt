@@ -17,7 +17,9 @@ public class ThumbnailDao {
         System.out.println("dao"+requestDto.toString());
         thumbnailMapper.createThumbnail(requestDto);
     }
-    public GetThumbnailResponseDto getThumbnail(int board_id){
+    public GetThumbnailResponseDto getThumbnail(long board_id){
+        System.out.println("board_id="+board_id);
+        System.out.println("thumbnailMapper.getThumbnail(board_id)="+thumbnailMapper.getThumbnail(board_id));
         return thumbnailMapper.getThumbnail(board_id);
     }
     public void updateThumbnail(UpdateThumbnailRequestDto requestDto){
@@ -27,7 +29,7 @@ public class ThumbnailDao {
         thumbnailMapper.deleteThumbnail(requestDto);
     }
 
-    public String getThumbnailPathByBoardId(int board_id){
+    public String getThumbnailPathByBoardId(long board_id){
         return thumbnailMapper.getThumbnailPathByBoardId(board_id);
     }
 }

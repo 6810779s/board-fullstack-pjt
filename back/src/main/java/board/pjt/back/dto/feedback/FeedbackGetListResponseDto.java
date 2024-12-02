@@ -3,7 +3,7 @@ package board.pjt.back.dto.feedback;
 import java.util.Objects;
 
 public class FeedbackGetListResponseDto {
-    private int feedback_id;
+    private long feedback_id;
     private String content;
     private int rating;
     private String created_by;
@@ -11,7 +11,7 @@ public class FeedbackGetListResponseDto {
     public FeedbackGetListResponseDto() {
     }
 
-    public FeedbackGetListResponseDto(int feedback_id, String content, int rating, String created_by) {
+    public FeedbackGetListResponseDto(long feedback_id, String content, int rating, String created_by) {
         this.feedback_id = feedback_id;
         this.content = content;
         this.rating = rating;
@@ -65,11 +65,11 @@ public class FeedbackGetListResponseDto {
         this.created_by = created_by;
     }
 
-    public int getFeedback_id() {
+    public long getFeedback_id() {
         return feedback_id;
     }
 
-    public void setFeedback_id(int feedback_id) {
+    public void setFeedback_id(long feedback_id) {
         this.feedback_id = feedback_id;
     }
 }

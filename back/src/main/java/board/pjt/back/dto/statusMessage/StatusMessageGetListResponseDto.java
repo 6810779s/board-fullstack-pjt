@@ -3,14 +3,14 @@ package board.pjt.back.dto.statusMessage;
 import java.util.Objects;
 
 public class StatusMessageGetListResponseDto {
-    private int status_message_id;
+    private long status_message_id;
     private String content;
     private String created_by;
 
     public StatusMessageGetListResponseDto() {
     }
 
-    public StatusMessageGetListResponseDto(int status_message_id, String content, String created_by) {
+    public StatusMessageGetListResponseDto(long status_message_id, String content, String created_by) {
         this.status_message_id = status_message_id;
         this.content = content;
         this.created_by = created_by;
@@ -38,11 +38,11 @@ public class StatusMessageGetListResponseDto {
                 '}';
     }
 
-    public int getStatus_message_id() {
+    public long getStatus_message_id() {
         return status_message_id;
     }
 
-    public void setStatus_message_id(int status_message_id) {
+    public void setStatus_message_id(long status_message_id) {
         this.status_message_id = status_message_id;
     }
 

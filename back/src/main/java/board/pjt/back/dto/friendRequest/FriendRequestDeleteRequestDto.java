@@ -3,13 +3,13 @@ package board.pjt.back.dto.friendRequest;
 import java.util.Objects;
 
 public class FriendRequestDeleteRequestDto {
-    private int friend_request_id;
+    private long friend_request_id;
     private String receiver_email;
 
     public FriendRequestDeleteRequestDto() {
     }
 
-    public FriendRequestDeleteRequestDto(int friend_request_id, String receiver_email) {
+    public FriendRequestDeleteRequestDto(long friend_request_id, String receiver_email) {
         this.friend_request_id = friend_request_id;
         this.receiver_email = receiver_email;
     }
@@ -35,11 +35,11 @@ public class FriendRequestDeleteRequestDto {
                 '}';
     }
 
-    public int getFriend_request_id() {
+    public long getFriend_request_id() {
         return friend_request_id;
     }
 
-    public void setFriend_request_id(int friend_request_id) {
+    public void setFriend_request_id(long friend_request_id) {
         this.friend_request_id = friend_request_id;
     }
 
