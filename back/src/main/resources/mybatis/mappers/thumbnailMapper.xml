@@ -14,7 +14,7 @@
         FROM thumbnail
         WHERE board_id = #{board_id}
     </select>
-    <select id="getThumbnailPathByBoardId" parameterType="int" resultType="String">
+    <select id="getThumbnailPathByBoardId" parameterType="long" resultType="String">
         SELECT file_path
         FROM thumbnail
         WHERE board_id = #{board_id}

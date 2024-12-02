@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board.pjt.back.mapper.CommentMapper">
-    <select id="selectByCommentId" parameterType="int" resultType="CommentResponseDto">
+    <select id="selectByCommentId" parameterType="long" resultType="CommentResponseDto">
         SELECT *
         FROM comment
         WHERE comment_id = #{comment_id}
@@ -43,7 +43,7 @@
             updated_by = #{updated_by}
         WHERE comment_id = #{comment_id}
     </update>
-    <delete id="delete" parameterType="int">
+    <delete id="delete" parameterType="long">
         DELETE
         FROM comment
         WHERE comment_id = #{comment_id}

@@ -28,7 +28,7 @@ public class ProjectUrlController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<List<ProjectUrlGetListResponseDto>>> getProjectUrlList(@RequestBody ProjectUrlGetListRequestDto requestDto){
+    public ResponseEntity<ApiResponse<List<ProjectUrlGetListResponseDto>>> getProjectUrlList(@ModelAttribute ProjectUrlGetListRequestDto requestDto){
         List<ProjectUrlGetListResponseDto> projectUrlList = projectUrlDao.getProjectUrlList(requestDto);
         ApiResponse<List<ProjectUrlGetListResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS,projectUrlList);
         return ResponseEntity.ok(response);

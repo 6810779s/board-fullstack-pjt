@@ -26,14 +26,14 @@ public class CommentLikeController {
 //    해당 부분에서 join을 제대로 적용시키지 않음
 //    join을 적용시키고 싶을 시, comment_like 리스트를 받을 수 있는 관련 sql문을 따로 빼줘서 관리해야됨
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<CommentLikeListResponseDto>> getCommentLikeList(@RequestBody CommentLikeListRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<CommentLikeListResponseDto>> getCommentLikeList(@ModelAttribute CommentLikeListRequestDto requestDto) {
         CommentLikeListResponseDto boardLikeListResponseDto = commentLikeDao.findByCommentId(requestDto);
         ApiResponse<CommentLikeListResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardLikeListResponseDto);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/pagination/my-list")
-    public ResponseEntity<ApiResponse<PageHandler<CommentLikeResponseDto>>> getMyCommentLikeList(@AuthenticationPrincipal UserDetails userDetails, @RequestBody PaginationRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<PageHandler<CommentLikeResponseDto>>> getMyCommentLikeList(@AuthenticationPrincipal UserDetails userDetails, @ModelAttribute PaginationRequestDto requestDto) {
         PageHandler<CommentLikeResponseDto> commentLikeResponseDtoPageHandler = commentLikeDao.myCommentLikePagination(userDetails, requestDto);
         ApiResponse<PageHandler<CommentLikeResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, commentLikeResponseDtoPageHandler);
         return ResponseEntity.ok(response);

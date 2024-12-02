@@ -10,7 +10,7 @@ public class CommentReplyRequestDto {
         this.parent_comment_id = parent_comment_id;
     }
 
-    public long getParent_comment_id() {
+    public Long getParent_comment_id() {
         return parent_comment_id;
     }
 }

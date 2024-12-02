@@ -23,7 +23,7 @@ public class PositionController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<List<PositionGetListResponseDto>>> getPositionListByEmail(@AuthenticationPrincipal UserDetails userDetails, @RequestBody PositionGetListRequestDto requestDto){
+    public ResponseEntity<ApiResponse<List<PositionGetListResponseDto>>> getPositionListByEmail(@AuthenticationPrincipal UserDetails userDetails, @ModelAttribute PositionGetListRequestDto requestDto){
         requestDto.setCreated_by(userDetails.getUsername());
         List<PositionGetListResponseDto> positionList = positionDao.getPositionListByEmail(requestDto);
         ApiResponse<List<PositionGetListResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, positionList);

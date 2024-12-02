@@ -28,21 +28,21 @@ public class CommentController {
     }
 
     @GetMapping("/pagination/my-list")
-    public ResponseEntity<ApiResponse<PageHandler<CommentResponseDto>>> myCommentList(@AuthenticationPrincipal UserDetails userDetails, @RequestBody PaginationRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<PageHandler<CommentResponseDto>>> myCommentList(@AuthenticationPrincipal UserDetails userDetails, @ModelAttribute PaginationRequestDto requestDto) {
         PageHandler<CommentResponseDto> commentList = commentsDao.myCommentPagination(userDetails, requestDto);
         ApiResponse<PageHandler<CommentResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, commentList);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/detail")
-    public ResponseEntity<ApiResponse<CommentResponseDto>> commentDetail(@RequestBody CommentDetailRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<CommentResponseDto>> commentDetail(@ModelAttribute CommentDetailRequestDto requestDto) {
         CommentResponseDto comment = commentsDao.selectByCommentId(requestDto);
         ApiResponse<CommentResponseDto> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, comment);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/reply_comment")
-    public ResponseEntity<ApiResponse<List<CommentResponseDto>>> selectAllReplyComment(@RequestBody CommentReplyRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<List<CommentResponseDto>>> selectAllReplyComment(@ModelAttribute CommentReplyRequestDto requestDto) {
         List<CommentResponseDto> replyComment = commentsDao.selectAllReplyList(requestDto);
         ApiResponse<List<CommentResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, replyComment);
         return ResponseEntity.ok(response);

@@ -32,14 +32,15 @@ public class BoardController {
 
 
     @GetMapping("/pagination")
-    public ResponseEntity<ApiResponse<PageHandler<BoardResponseDto>>> getBoardListPagination(@RequestParam PaginationRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<PageHandler<BoardResponseDto>>> getBoardListPagination(@ModelAttribute PaginationRequestDto requestDto) {
         PageHandler<BoardResponseDto> boardListPagination = boardDao.boardPagination(requestDto);
         ApiResponse<PageHandler<BoardResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardListPagination);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/pagination/my-list")
-    public ResponseEntity<ApiResponse<PageHandler<BoardResponseDto>>> getMyBoardListPagination(@AuthenticationPrincipal UserDetails userDetails, @RequestBody PaginationRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<PageHandler<BoardResponseDto>>> getMyBoardListPagination(@AuthenticationPrincipal UserDetails userDetails, @ModelAttribute PaginationRequestDto requestDto) {
+        System.out.println("PaginationRequestDto="+requestDto.toString());
         PageHandler<BoardResponseDto> myBoardListPagination = boardDao.myBoardPagination(userDetails, requestDto);
         ApiResponse<PageHandler<BoardResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, myBoardListPagination);
         return ResponseEntity.ok(response);

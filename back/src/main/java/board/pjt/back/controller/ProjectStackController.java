@@ -29,7 +29,7 @@ public class ProjectStackController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<List<ProjectStackGetListResponseDto>>> getProjectStackList(@RequestBody ProjectStackGetListRequestDto requestDto){
+    public ResponseEntity<ApiResponse<List<ProjectStackGetListResponseDto>>> getProjectStackList(@ModelAttribute ProjectStackGetListRequestDto requestDto){
         List<ProjectStackGetListResponseDto> projectStackList = projectStackDao.getProjectStackList(requestDto);
         ApiResponse<List<ProjectStackGetListResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS,projectStackList);
         return ResponseEntity.ok(response);

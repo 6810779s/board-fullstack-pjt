@@ -36,7 +36,7 @@ public class ProjectAttachmentController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<List<ProjectAttachmentGetListResponseDto>>> getProjectAttachment(@RequestBody ProjectAttachmentGetListRequestDto requestDto){
+    public ResponseEntity<ApiResponse<List<ProjectAttachmentGetListResponseDto>>> getProjectAttachment(@ModelAttribute ProjectAttachmentGetListRequestDto requestDto){
         List<ProjectAttachmentGetListResponseDto> projectAttachmentList =projectAttachmentDao.getProjectAttachmentList(requestDto);
         ApiResponse<List<ProjectAttachmentGetListResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, projectAttachmentList);
         return ResponseEntity.ok(response);
