@@ -6,6 +6,7 @@ import board.pjt.back.dao.ProjectParticipantDao;
 import board.pjt.back.dto.projectParticipant.ProjectParticipantCreateRequestDto;
 import board.pjt.back.dto.projectParticipant.ProjectParticipantGetByBoardIdRequestDto;
 import board.pjt.back.dto.projectParticipant.ProjectParticipantGetListByBoardIdResponseDto;
+import board.pjt.back.dto.projectParticipant.ProjectParticipantGetMyProjectResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,13 @@ public class ProjectParticipantController {
     public ResponseEntity<ApiResponse<Void>> insert(@RequestBody ProjectParticipantCreateRequestDto requestDto){
         projectParticipantDao.insert(requestDto);
         ApiResponse<Void> response = ApiResponse.of(SuccessCode.INSERT_SUCCESS);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/my-project")
+    public ResponseEntity<ApiResponse<List<ProjectParticipantGetMyProjectResponseDto>>> getProjectParticipantMyProject(@RequestParam("userEmail") String userEmail){
+        List<ProjectParticipantGetMyProjectResponseDto> myProjectList = projectParticipantDao.getProjectParticipantMyProject(userEmail);
+        ApiResponse<List<ProjectParticipantGetMyProjectResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, myProjectList);
         return ResponseEntity.ok(response);
     }
 

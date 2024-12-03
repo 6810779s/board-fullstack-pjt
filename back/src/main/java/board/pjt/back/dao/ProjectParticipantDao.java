@@ -1,9 +1,6 @@
 package board.pjt.back.dao;
 
-import board.pjt.back.dto.projectParticipant.ProjectParticipantCreateRequestDto;
-import board.pjt.back.dto.projectParticipant.ProjectParticipantDeleteByBoardIdDto;
-import board.pjt.back.dto.projectParticipant.ProjectParticipantGetByBoardIdRequestDto;
-import board.pjt.back.dto.projectParticipant.ProjectParticipantGetListByBoardIdResponseDto;
+import board.pjt.back.dto.projectParticipant.*;
 import board.pjt.back.mapper.ProjectParticipantMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +13,10 @@ public class ProjectParticipantDao {
 
     public ProjectParticipantDao(ProjectParticipantMapper projectParticipantMapper) {
         this.projectParticipantMapper = projectParticipantMapper;
+    }
+
+    public List<ProjectParticipantGetMyProjectResponseDto> getProjectParticipantMyProject(String userEmail){
+        return projectParticipantMapper.getProjectParticipantMyProject(userEmail);
     }
 
     @Transactional
