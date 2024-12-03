@@ -1,9 +1,6 @@
 package board.pjt.back.mapper;
 
-import board.pjt.back.dto.projectParticipant.ProjectParticipantCreateRequestDto;
-import board.pjt.back.dto.projectParticipant.ProjectParticipantDeleteByBoardIdDto;
-import board.pjt.back.dto.projectParticipant.ProjectParticipantGetByBoardIdRequestDto;
-import board.pjt.back.dto.projectParticipant.ProjectParticipantGetListByBoardIdResponseDto;
+import board.pjt.back.dto.projectParticipant.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,5 +11,6 @@ public interface ProjectParticipantMapper {
 
     List<ProjectParticipantGetListByBoardIdResponseDto> getProjectParticipantByBoardId(ProjectParticipantGetByBoardIdRequestDto dto);
 
+    List<ProjectParticipantGetMyProjectResponseDto> getProjectParticipantMyProject(String useEmail);
     void deleteProjectParticipantByBoardId(ProjectParticipantDeleteByBoardIdDto dto);
 }

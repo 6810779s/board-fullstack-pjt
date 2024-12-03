@@ -15,6 +15,32 @@
             project_participant
         WHERE board_id = #{board_id}
     </select>
+    <resultMap id="ProjectParticipantResultMap" type="ProjectParticipantGetMyProjectResponseDto">
+        <!-- 단순 필드 매핑 -->
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+
+        <!-- 컬렉션 매핑 -->
+        <collection property="stackInfoList" ofType="ProjectStackInfo">
+            <result property="name" column="name" />
+        </collection>
+    </resultMap>
+    <select id="getProjectParticipantMyProject" parameterType="String" resultMap="ProjectParticipantResultMap">
+        SELECT
+            b.title,
+            b.content,
+            ps.name
+        FROM
+            project_participant pp
+                JOIN
+                    board b
+                    ON b.board_id = pp.board_id
+                JOIN
+                    project_stack ps
+                    ON ps.board_id = pp.board_id
+        WHERE
+            pp.participant = #{userEmail}
+    </select>
     <delete id="deleteProjectParticipantByBoardId" parameterType="ProjectParticipantDeleteByBoardIdDto">
         DELETE FROM project_participant
         WHERE board_id = #{board_id}
