@@ -6,12 +6,14 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface BoardMapper {
     List<BoardResponseDto> selectAll();
     BoardDetailResponseDto select(@Param("board_id") long board_id);
 
+    List<BoardMainResponseDto> getBoardByCriteria(Map param);
     BoardDetailResponseDto getPrevBoard(long board_id);
 
     BoardDetailResponseDto getNextBoard(long board_id);

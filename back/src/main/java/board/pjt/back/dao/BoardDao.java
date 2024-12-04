@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BoardDao {
@@ -43,6 +44,10 @@ public class BoardDao {
             throw new IllegalArgumentException(ErrorMessages.BOARD_NOT_FOUND);
         }
         return dto;
+    }
+
+    public List<BoardMainResponseDto> getBoardByCriteria(Map param){
+        return boardMapper.getBoardByCriteria(param);
     }
 
     //    @PreAuthorize("hasRole('ADMIN')")
