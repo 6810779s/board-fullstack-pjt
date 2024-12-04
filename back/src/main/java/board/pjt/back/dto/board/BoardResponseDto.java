@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class BoardResponseDto {
+    private String project_name;
     private long board_id;
     private String title;
     private String content;
@@ -21,7 +22,8 @@ public class BoardResponseDto {
     public BoardResponseDto() {
     }
 
-    public BoardResponseDto(long board_id, String title, String content, long category_id, LocalDateTime created_at, String created_by, LocalDateTime updated_at, String updated_by, int rating, String main_image_path) {
+    public BoardResponseDto(String project_name, long board_id, String title, String content, long category_id, LocalDateTime created_at, String created_by, LocalDateTime updated_at, String updated_by, int rating, String main_image_path) {
+        this.project_name = project_name;
         this.board_id = board_id;
         this.title = title;
         this.content = content;
@@ -34,11 +36,24 @@ public class BoardResponseDto {
         this.main_image_path = main_image_path;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BoardResponseDto that = (BoardResponseDto) o;
+        return board_id == that.board_id && category_id == that.category_id && rating == that.rating && Objects.equals(project_name, that.project_name) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(created_at, that.created_at) && Objects.equals(created_by, that.created_by) && Objects.equals(updated_at, that.updated_at) && Objects.equals(updated_by, that.updated_by) && Objects.equals(main_image_path, that.main_image_path);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(project_name, board_id, title, content, category_id, created_at, created_by, updated_at, updated_by, rating, main_image_path);
+    }
 
     @Override
     public String toString() {
         return "BoardResponseDto{" +
-                "board_id=" + board_id +
+                "project_name='" + project_name + '\'' +
+                ", board_id=" + board_id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", category_id=" + category_id +
@@ -51,17 +66,12 @@ public class BoardResponseDto {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BoardResponseDto that = (BoardResponseDto) o;
-        return board_id == that.board_id && category_id == that.category_id && rating == that.rating && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(created_at, that.created_at) && Objects.equals(created_by, that.created_by) && Objects.equals(updated_at, that.updated_at) && Objects.equals(updated_by, that.updated_by) && Objects.equals(main_image_path, that.main_image_path);
+    public String getProject_name() {
+        return project_name;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(board_id, title, content, category_id, created_at, created_by, updated_at, updated_by, rating, main_image_path);
+    public void setProject_name(String project_name) {
+        this.project_name = project_name;
     }
 
     public long getBoard_id() {

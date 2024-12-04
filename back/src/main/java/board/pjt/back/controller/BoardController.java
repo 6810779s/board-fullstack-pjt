@@ -6,12 +6,15 @@ import board.pjt.back.dao.BoardDao;
 import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.board.*;
 import board.pjt.back.dto.common.PaginationRequestDto;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/board")
@@ -27,6 +30,17 @@ public class BoardController {
     public ResponseEntity<ApiResponse<List<BoardResponseDto>>> getBoardList() {
         List<BoardResponseDto> boardList = boardDao.selectAll();
         ApiResponse<List<BoardResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardList);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/criteria")
+    public ResponseEntity<ApiResponse<List<BoardMainResponseDto>>> getBoardMainList(@ModelAttribute BoardMainRequestDto requestDto){
+        Map<String, Object> params = new HashMap<>();
+        params.put("searchType", requestDto.getSearchType().name());
+        params.put("keyword", requestDto.getKeyword());
+
+        List<BoardMainResponseDto> boardMainList = boardDao.getBoardByCriteria(params);
+        ApiResponse<List<BoardMainResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardMainList);
         return ResponseEntity.ok(response);
     }
 

@@ -7,6 +7,7 @@ import java.util.Objects;
 
 public class BoardDetailResponseDto {
     private long board_id;
+    private String project_name;
     private String title;
     private String content;
     private CategorySelectResponseDto category;
@@ -20,8 +21,9 @@ public class BoardDetailResponseDto {
     public BoardDetailResponseDto() {
     }
 
-    public BoardDetailResponseDto(long board_id, String title, String content, CategorySelectResponseDto category, int rating, String main_image_path, BoardDetailResponseDto prevBoard, BoardDetailResponseDto nextBoard, String created_by, LocalDateTime created_at) {
+    public BoardDetailResponseDto(long board_id, String project_name, String title, String content, CategorySelectResponseDto category, int rating, String main_image_path, BoardDetailResponseDto prevBoard, BoardDetailResponseDto nextBoard, String created_by, LocalDateTime created_at) {
         this.board_id = board_id;
+        this.project_name = project_name;
         this.title = title;
         this.content = content;
         this.category = category;
@@ -37,6 +39,7 @@ public class BoardDetailResponseDto {
     public String toString() {
         return "BoardDetailResponseDto{" +
                 "board_id=" + board_id +
+                ", project_name='" + project_name + '\'' +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", category=" + category +
@@ -54,12 +57,20 @@ public class BoardDetailResponseDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BoardDetailResponseDto that = (BoardDetailResponseDto) o;
-        return board_id == that.board_id && rating == that.rating && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(category, that.category) && Objects.equals(main_image_path, that.main_image_path) && Objects.equals(prevBoard, that.prevBoard) && Objects.equals(nextBoard, that.nextBoard) && Objects.equals(created_by, that.created_by) && Objects.equals(created_at, that.created_at);
+        return board_id == that.board_id && rating == that.rating && Objects.equals(project_name, that.project_name) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(category, that.category) && Objects.equals(main_image_path, that.main_image_path) && Objects.equals(prevBoard, that.prevBoard) && Objects.equals(nextBoard, that.nextBoard) && Objects.equals(created_by, that.created_by) && Objects.equals(created_at, that.created_at);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(board_id, title, content, category, rating, main_image_path, prevBoard, nextBoard, created_by, created_at);
+        return Objects.hash(board_id, project_name, title, content, category, rating, main_image_path, prevBoard, nextBoard, created_by, created_at);
+    }
+
+    public String getProject_name() {
+        return project_name;
+    }
+
+    public void setProject_name(String project_name) {
+        this.project_name = project_name;
     }
 
     public long getBoard_id() {
