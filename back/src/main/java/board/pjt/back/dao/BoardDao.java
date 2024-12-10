@@ -21,7 +21,7 @@ public class BoardDao {
     }
 
     public PageHandler<BoardResponseDto> boardPagination(PaginationRequestDto requestDto) {
-        List<BoardResponseDto> boardList = boardMapper.selectAll();
+        List<BoardResponseDto> boardList = boardMapper.selectAll(null);
         PageHandler<BoardResponseDto> boardResponseDtoPageHandler = new PageHandler<>(boardList.size(), requestDto.getPage(), requestDto.getPageSize());
         boardResponseDtoPageHandler.setContents(boardList);
         return boardResponseDtoPageHandler;
@@ -51,8 +51,8 @@ public class BoardDao {
     }
 
     //    @PreAuthorize("hasRole('ADMIN')")
-    public List<BoardResponseDto> selectAll() {
-        return boardMapper.selectAll();
+    public List<BoardResponseDto> selectAll(Integer limit) {
+        return boardMapper.selectAll(limit);
     }
 
     public void insert(BoardCreateRequestDto requestDto) {
