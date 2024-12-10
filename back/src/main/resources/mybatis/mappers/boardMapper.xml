@@ -5,10 +5,13 @@
 
 <mapper namespace="board.pjt.back.mapper.BoardMapper">
 
-    <select id="selectAll" resultType="BoardResponseDto">
+    <select id="selectAll" parameterType="Integer" resultType="BoardResponseDto">
         SELECT *
         FROM board
-        ORDER BY board_id DESC
+        ORDER BY created_at DESC
+        <if test="limit != null">
+            LIMIT #{limit}
+        </if>
     </select>
     <resultMap id="BoardDetailMap" type="BoardDetailResponseDto">
         <id property="board_id" column="board_id"/>

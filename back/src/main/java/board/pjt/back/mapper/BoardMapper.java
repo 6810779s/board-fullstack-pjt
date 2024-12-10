@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Mapper
 public interface BoardMapper {
-    List<BoardResponseDto> selectAll();
+    List<BoardResponseDto> selectAll(Integer limit);
     BoardDetailResponseDto select(@Param("board_id") long board_id);
 
     List<BoardMainResponseDto> getBoardByCriteria(Map param);
