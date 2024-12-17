@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class BoardMainResponseDto {
+    private long board_id;
     private String title;
     private String category_name;
     private String project_name;
@@ -18,7 +19,8 @@ public class BoardMainResponseDto {
     public BoardMainResponseDto() {
     }
 
-    public BoardMainResponseDto(String title, String category_name, String project_name, String content, int participant_cnt, int participant_limit, LocalDateTime created_at, int like_cnt, int comment_cnt, String main_image_path) {
+    public BoardMainResponseDto(long board_id, String title, String category_name, String project_name, String content, int participant_cnt, int participant_limit, LocalDateTime created_at, int like_cnt, int comment_cnt, String main_image_path) {
+        this.board_id = board_id;
         this.title = title;
         this.category_name = category_name;
         this.project_name = project_name;
@@ -36,18 +38,19 @@ public class BoardMainResponseDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BoardMainResponseDto that = (BoardMainResponseDto) o;
-        return participant_cnt == that.participant_cnt && participant_limit == that.participant_limit && like_cnt == that.like_cnt && comment_cnt == that.comment_cnt && Objects.equals(title, that.title) && Objects.equals(category_name, that.category_name) && Objects.equals(project_name, that.project_name) && Objects.equals(content, that.content) && Objects.equals(created_at, that.created_at) && Objects.equals(main_image_path, that.main_image_path);
+        return board_id == that.board_id && participant_cnt == that.participant_cnt && participant_limit == that.participant_limit && like_cnt == that.like_cnt && comment_cnt == that.comment_cnt && Objects.equals(title, that.title) && Objects.equals(category_name, that.category_name) && Objects.equals(project_name, that.project_name) && Objects.equals(content, that.content) && Objects.equals(created_at, that.created_at) && Objects.equals(main_image_path, that.main_image_path);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, category_name, project_name, content, participant_cnt, participant_limit, created_at, like_cnt, comment_cnt, main_image_path);
+        return Objects.hash(board_id,title, category_name, project_name, content, participant_cnt, participant_limit, created_at, like_cnt, comment_cnt, main_image_path);
     }
 
     @Override
     public String toString() {
         return "BoardMainResponseDto{" +
-                "title='" + title + '\'' +
+                "board_id='" + board_id + '\'' +
+                ", title='" + title + '\'' +
                 ", category_name='" + category_name + '\'' +
                 ", project_name='" + project_name + '\'' +
                 ", content='" + content + '\'' +
@@ -58,6 +61,10 @@ public class BoardMainResponseDto {
                 ", comment_cnt=" + comment_cnt +
                 ", main_image_path='" + main_image_path + '\'' +
                 '}';
+    }
+
+    public long getBoard_id() {
+        return board_id;
     }
 
     public int getParticipant_limit() {
