@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Button, List, Pagination, Stack, Typography } from '@mui/material';
 import { Trophy } from '@phosphor-icons/react';
 
-import { SearchAndSelect } from '@/components/\bsearchAndSelect';
 import { PageLayout } from '@/components/PageLayout';
+import { SearchAndSelect } from '@/components/searchAndSelect';
 import { boardListDummyData, boardListTopThreeDummyData } from '@/const';
 import { palette } from '@/themes';
 
