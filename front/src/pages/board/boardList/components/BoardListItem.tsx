@@ -13,7 +13,8 @@ export const BoardListItem: React.FC<TBoardListDummyData> = ({
     category,
     like,
     title,
-    member,
+    participantCnt,
+    participantLimit,
     createdAt,
     commentCnt,
     content,
@@ -49,7 +50,7 @@ export const BoardListItem: React.FC<TBoardListDummyData> = ({
                 <Stack direction="row" gap="15px">
                     <IconWithText
                         icon={<User color={palette.grey[500]} size={16} />}
-                        content={`${member.total}/${member.participants}`}
+                        content={`${participantLimit}/${participantCnt}`}
                     />
                     <IconWithText
                         icon={<CalendarBlank color={palette.grey[500]} size={16} />}

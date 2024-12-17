@@ -8,35 +8,38 @@ import { CalendarBlank, ChatCircleDots, Heart, User } from '@phosphor-icons/reac
 import { IconWithText } from '@/components/IconWithText';
 import { TBoardListTopThreeDummyData } from '@/const';
 import { palette } from '@/themes';
+import { format } from 'date-fns';
 
 export const PostCard: React.FC<TBoardListTopThreeDummyData> = ({
     id,
     imgSrc,
     title,
-    subTitle,
-    member,
+    projectName,
+    participantCnt,
+    participantLimit,
     createdAt,
     commentCnt,
     like,
     content,
 }) => {
     const navigate = useNavigate();
+    console.log(`${import.meta.env.VITE_BASE_URL}${imgSrc}`)
     return (
         <Stack flex={1} sx={{ cursor: 'pointer' }} onClick={() => navigate(`/board/${id}`)}>
             <Card variant="outlined">
-                <CardMedia image={imgSrc} sx={{ width: '100%', height: '220px' }} />
-                <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                <CardMedia image={`${import.meta.env.VITE_BASE_URL}${imgSrc}`} sx={{ width: '100%', height: '220px' }} />
+                <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
                     <Typography sx={{ fontSize: '25px', fontWeight: 700 }}>{title}</Typography>
-                    <Stack>
-                        <Typography sx={{ fontSize: '22px' }}>{subTitle}</Typography>
+                    <Stack sx={{gap:"10px"}}>
+                        <Typography sx={{ fontSize: '22px' }}>{projectName}</Typography>
                         <Stack direction="row" alignItems="center" gap="15px">
                             <IconWithText
                                 icon={<User color={palette.grey[500]} size={16} />}
-                                content={`${member.total}/${member.participants}`}
+                                content={`${participantLimit}/${participantCnt}`}
                             />
                             <IconWithText
                                 icon={<CalendarBlank color={palette.grey[500]} size={16} />}
-                                content={`${createdAt}`}
+                                content={`${format(createdAt, 'yyyy.MM.dd hh:mm')}`}
                             />
                             <IconWithText
                                 icon={<ChatCircleDots color={palette.grey[500]} size={16} />}
@@ -54,7 +57,7 @@ export const PostCard: React.FC<TBoardListTopThreeDummyData> = ({
                             }}
                         >
                             {content.length}
-                            {content.length > 75 ? content.slice(0, 75) + '...' : content}
+                            {content.length > 150 ? content.slice(0, 150) + '...' : content}
                         </Typography>
                     </Stack>
                 </CardContent>

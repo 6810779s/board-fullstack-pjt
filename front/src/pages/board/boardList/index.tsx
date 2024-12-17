@@ -6,13 +6,15 @@ import { Trophy } from '@phosphor-icons/react';
 
 import { PageLayout } from '@/components/PageLayout';
 import { SearchAndSelect } from '@/components/searchAndSelect';
-import { boardListDummyData, boardListTopThreeDummyData } from '@/const';
+import { boardListDummyData } from '@/const';
 import { palette } from '@/themes';
 
+import { useGetBoard } from '@/apis/home/useGetBoard';
 import { BoardListItem } from './components/BoardListItem';
 import { PostCard } from './components/PostCard';
 
 export const BoardList = () => {
+    const {data:boardTopList} = useGetBoard({limit:3})
     const { control } = useForm<{ selectValue: 'ALL' | 'ONE' | 'TWO'; textValue: string }>({
         defaultValues: { selectValue: 'ALL', textValue: '' },
     });
@@ -34,17 +36,18 @@ export const BoardList = () => {
                         <Button onClick={() => navigate('/board-register')}>글쓰기</Button>
                     </Stack>
                     <Stack direction="row" gap="63px">
-                        {boardListTopThreeDummyData.map((item) => (
+                        {boardTopList?.map((item) => (
                             <PostCard
-                                key={item.id}
-                                id={item.id}
-                                imgSrc={item.imgSrc}
+                                key={item.board_id}
+                                id={item.board_id}
+                                imgSrc={item.main_image_path}
                                 title={item.title}
-                                subTitle={item.subTitle}
-                                member={item.member}
-                                createdAt={item.createdAt}
-                                commentCnt={item.commentCnt}
-                                like={item.like}
+                                projectName={item.project_name}
+                                participantCnt={item.participant_cnt}
+                                participantLimit={item.participant_limit}
+                                createdAt={item.created_at}
+                                commentCnt={item.comment_cnt}
+                                like={item.like_cnt}
                                 content={item.content}
                             />
                         ))}
@@ -69,7 +72,8 @@ export const BoardList = () => {
                                 category={item.category}
                                 like={item.like}
                                 title={item.title}
-                                member={item.member}
+                                participantCnt={item.participantCnt}
+                                participantLimit={item.participantLimit}
                                 createdAt={item.createdAt}
                                 commentCnt={item.commentCnt}
                                 content={item.content}

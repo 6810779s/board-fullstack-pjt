@@ -4,7 +4,7 @@ import { Button, List, ListItem, Stack, Typography } from '@mui/material';
 import { CalendarBlank, ChatCircleText, Clock, User } from '@phosphor-icons/react';
 import { format } from 'date-fns';
 
-import { useGetBoard } from '@/apis/test/home/useGetBoard';
+import { useGetBoard } from '@/apis/home/useGetBoard';
 import { IconWithText } from '@/components/IconWithText';
 import { palette } from '@/themes';
 import { calcTime } from '@/util';
