@@ -64,8 +64,9 @@ export const BoardList = () => {
                     control={control}
                     select_list={[
                         { value: 'ALL', label: '전체' },
-                        { value: 'ONE', label: '하나' },
-                        { value: 'TWO', label: '둘' },
+                        { value: 'TITLE', label: '제목' },
+                        { value: 'CONTENT', label: '내용' },
+                        { value: 'PROJECT_NAME', label: '프로젝트 명' },
                     ]}
                 />
                 <Stack>

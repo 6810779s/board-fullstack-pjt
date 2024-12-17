@@ -26,6 +26,7 @@ export const SearchAndSelect = <T extends FieldValues>({
                     render={({ field }) => (
                         <Select
                             {...field}
+                            sx={{ width: '140px' }}
                             displayEmpty
                             renderValue={(value) => {
                                 const selectedItem = select_list.find(
