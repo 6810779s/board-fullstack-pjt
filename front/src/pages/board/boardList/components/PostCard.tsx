@@ -23,7 +23,6 @@ export const PostCard: React.FC<TBoardListTopThreeDummyData> = ({
     content,
 }) => {
     const navigate = useNavigate();
-    console.log(`${import.meta.env.VITE_BASE_URL}${imgSrc}`);
     return (
         <Stack flex={1} sx={{ cursor: 'pointer' }} onClick={() => navigate(`/board/${id}`)}>
             <Card variant="outlined">

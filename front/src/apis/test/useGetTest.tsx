@@ -5,7 +5,6 @@ import { api } from '@apis/axios';
 
 const getTest = async () => {
     return await api.get(QUERY_KEYS.TEST.test()[0]).then((res) => {
-        console.log('res', res);
         return res.data;
     });
 };
