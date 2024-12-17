@@ -73,3 +73,7 @@ sketch
 *storybook.log
 *.xml
 *.iml
+
+# 환경 변수 파일 무시
+.env
+.env.*
