@@ -27,9 +27,9 @@ public class BoardController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<List<BoardResponseDto>>> getBoardList(@RequestParam("limit") Integer limit) {
-        List<BoardResponseDto> boardList = boardDao.selectAll(limit);
-        ApiResponse<List<BoardResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardList);
+    public ResponseEntity<ApiResponse<List<BoardMainResponseDto>>> getBoardList(@RequestParam("limit") Integer limit) {
+        List<BoardMainResponseDto> boardList = boardDao.selectAll(limit);
+        ApiResponse<List<BoardMainResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardList);
         return ResponseEntity.ok(response);
     }
 
@@ -46,17 +46,17 @@ public class BoardController {
 
 
     @GetMapping("/pagination")
-    public ResponseEntity<ApiResponse<PageHandler<BoardResponseDto>>> getBoardListPagination(@ModelAttribute PaginationRequestDto requestDto) {
-        PageHandler<BoardResponseDto> boardListPagination = boardDao.boardPagination(requestDto);
-        ApiResponse<PageHandler<BoardResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardListPagination);
+    public ResponseEntity<ApiResponse<PageHandler<BoardMainResponseDto>>> getBoardListPagination(@ModelAttribute PaginationRequestDto requestDto) {
+        PageHandler<BoardMainResponseDto> boardListPagination = boardDao.boardPagination(requestDto);
+        ApiResponse<PageHandler<BoardMainResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardListPagination);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/pagination/my-list")
-    public ResponseEntity<ApiResponse<PageHandler<BoardResponseDto>>> getMyBoardListPagination(@AuthenticationPrincipal UserDetails userDetails, @ModelAttribute PaginationRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<PageHandler<BoardMainResponseDto>>> getMyBoardListPagination(@AuthenticationPrincipal UserDetails userDetails, @ModelAttribute PaginationRequestDto requestDto) {
         System.out.println("PaginationRequestDto="+requestDto.toString());
-        PageHandler<BoardResponseDto> myBoardListPagination = boardDao.myBoardPagination(userDetails, requestDto);
-        ApiResponse<PageHandler<BoardResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, myBoardListPagination);
+        PageHandler<BoardMainResponseDto> myBoardListPagination = boardDao.myBoardPagination(userDetails, requestDto);
+        ApiResponse<PageHandler<BoardMainResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, myBoardListPagination);
         return ResponseEntity.ok(response);
     }
 
