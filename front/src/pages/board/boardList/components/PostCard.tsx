@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { Card, CardContent, CardMedia, Stack, Typography } from '@mui/material';
 import { CalendarBlank, ChatCircleDots, Heart, User } from '@phosphor-icons/react';
+import { format } from 'date-fns';
 
 import { IconWithText } from '@/components/IconWithText';
 import { TBoardListTopThreeDummyData } from '@/const';
 import { palette } from '@/themes';
-import { format } from 'date-fns';
 
 export const PostCard: React.FC<TBoardListTopThreeDummyData> = ({
     id,
@@ -23,14 +23,17 @@ export const PostCard: React.FC<TBoardListTopThreeDummyData> = ({
     content,
 }) => {
     const navigate = useNavigate();
-    console.log(`${import.meta.env.VITE_BASE_URL}${imgSrc}`)
+    console.log(`${import.meta.env.VITE_BASE_URL}${imgSrc}`);
     return (
         <Stack flex={1} sx={{ cursor: 'pointer' }} onClick={() => navigate(`/board/${id}`)}>
             <Card variant="outlined">
-                <CardMedia image={`${import.meta.env.VITE_BASE_URL}${imgSrc}`} sx={{ width: '100%', height: '220px' }} />
+                <CardMedia
+                    image={`${import.meta.env.VITE_BASE_URL}${imgSrc}`}
+                    sx={{ width: '100%', height: '220px' }}
+                />
                 <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
                     <Typography sx={{ fontSize: '25px', fontWeight: 700 }}>{title}</Typography>
-                    <Stack sx={{gap:"10px"}}>
+                    <Stack sx={{ gap: '10px' }}>
                         <Typography sx={{ fontSize: '22px' }}>{projectName}</Typography>
                         <Stack direction="row" alignItems="center" gap="15px">
                             <IconWithText

@@ -4,17 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { Button, List, Pagination, Stack, Typography } from '@mui/material';
 import { Trophy } from '@phosphor-icons/react';
 
+import { useGetBoard } from '@/apis/home/useGetBoard';
 import { PageLayout } from '@/components/PageLayout';
 import { SearchAndSelect } from '@/components/searchAndSelect';
 import { boardListDummyData } from '@/const';
 import { palette } from '@/themes';
 
-import { useGetBoard } from '@/apis/home/useGetBoard';
 import { BoardListItem } from './components/BoardListItem';
 import { PostCard } from './components/PostCard';
 
 export const BoardList = () => {
-    const {data:boardTopList} = useGetBoard({limit:3})
+    const { data: boardTopList } = useGetBoard({ limit: 3 });
     const { control } = useForm<{ selectValue: 'ALL' | 'ONE' | 'TWO'; textValue: string }>({
         defaultValues: { selectValue: 'ALL', textValue: '' },
     });

@@ -3,8 +3,8 @@ export interface TBoardListTopThreeDummyData {
     imgSrc: string;
     title: string;
     projectName: string;
-    participantCnt:number;
-    participantLimit:number;
+    participantCnt: number;
+    participantLimit: number;
     createdAt: string;
     commentCnt: number;
     like: number;
@@ -16,8 +16,8 @@ export const boardListTopThreeDummyData: TBoardListTopThreeDummyData[] = [
         imgSrc: '/src/assets/sky.svg',
         title: '브루마블 게임 프로젝트1',
         projectName: '경력자 3명 있는 프로젝트, 함께하실 웹디자이너 구함',
-        participantCnt:1,
-        participantLimit:3,
+        participantCnt: 1,
+        participantLimit: 3,
         createdAt: '2024.08.25 17:35',
         commentCnt: 5,
         like: 5,
@@ -29,8 +29,8 @@ export const boardListTopThreeDummyData: TBoardListTopThreeDummyData[] = [
         imgSrc: '/src/assets/computer_img.svg',
         title: '브루마블 게임 프로젝트2',
         projectName: '경력자 3명 있는 프로젝트, 함께하실 웹디자이너 구함',
-        participantCnt:1,
-        participantLimit:3,
+        participantCnt: 1,
+        participantLimit: 3,
         createdAt: '2024.08.25 17:35',
         commentCnt: 5,
         like: 5,
@@ -42,8 +42,8 @@ export const boardListTopThreeDummyData: TBoardListTopThreeDummyData[] = [
         imgSrc: '/src/assets/teaAndComputer_img.svg',
         title: '브루마블 게임 프로젝트3',
         projectName: '경력자 3명 있는 프로젝트, 함께하실 웹디자이너 구함',
-        participantCnt:1,
-        participantLimit:3,
+        participantCnt: 1,
+        participantLimit: 3,
         createdAt: '2024.08.25 17:35',
         commentCnt: 5,
         like: 5,
@@ -56,8 +56,8 @@ export interface TBoardListDummyData {
     category: string;
     like: number;
     title: string;
-    participantCnt:number;
-    participantLimit:number;
+    participantCnt: number;
+    participantLimit: number;
     createdAt: string;
     commentCnt: number;
     content: string;
@@ -69,8 +69,8 @@ export const boardListDummyData: TBoardListDummyData[] = [
         category: '팀원 구함',
         like: 5,
         title: '함께하실 프론트엔드 개발자 구합니다',
-        participantCnt:1,
-        participantLimit:3,
+        participantCnt: 1,
+        participantLimit: 3,
         createdAt: '2024.08.25 17:36',
         commentCnt: 5,
         content: 'JAVA Spring 잘 몰라~~ 같이 공부할 사람 구함~~~ ',
@@ -81,8 +81,8 @@ export const boardListDummyData: TBoardListDummyData[] = [
         category: '스터디원 구함',
         like: 5,
         title: '함께하실 프론트엔드 개발자 구합니다',
-        participantCnt:1,
-        participantLimit:3,
+        participantCnt: 1,
+        participantLimit: 3,
         createdAt: '2024.08.25 17:36',
         commentCnt: 5,
         content: 'JAVA Spring 잘 몰라~~ 같이 공부할 사람 구함~~~ ',
@@ -93,8 +93,8 @@ export const boardListDummyData: TBoardListDummyData[] = [
         category: '팀원 구함',
         like: 5,
         title: '함께하실 프론트엔드 개발자 구합니다',
-        participantCnt:1,
-        participantLimit:3,
+        participantCnt: 1,
+        participantLimit: 3,
         createdAt: '2024.08.25 17:36',
         commentCnt: 5,
         content: 'JAVA Spring 잘 몰라~~ 같이 공부할 사람 구함~~~ ',

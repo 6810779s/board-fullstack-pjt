@@ -7,7 +7,7 @@ interface GetBoardReq {
     limit: number;
 }
 interface GetBoardRes {
-    board_id:number;
+    board_id: number;
     title: string;
     category_name: string;
     project_name: string;
