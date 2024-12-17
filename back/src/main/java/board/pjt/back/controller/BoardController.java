@@ -54,7 +54,6 @@ public class BoardController {
 
     @GetMapping("/pagination/my-list")
     public ResponseEntity<ApiResponse<PageHandler<BoardMainResponseDto>>> getMyBoardListPagination(@AuthenticationPrincipal UserDetails userDetails, @ModelAttribute PaginationRequestDto requestDto) {
-        System.out.println("PaginationRequestDto="+requestDto.toString());
         PageHandler<BoardMainResponseDto> myBoardListPagination = boardDao.myBoardPagination(userDetails, requestDto);
         ApiResponse<PageHandler<BoardMainResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, myBoardListPagination);
         return ResponseEntity.ok(response);
@@ -68,8 +67,8 @@ public class BoardController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse<Void>> createBoard(@RequestBody BoardCreateRequestDto requestDto) {
-        boardDao.insert(requestDto);
+    public ResponseEntity<ApiResponse<Void>> createBoard(@RequestBody BoardCreateRequestDto requestDto,@AuthenticationPrincipal UserDetails userDetails) {
+        boardDao.insert(requestDto,userDetails.getUsername());
         ApiResponse<Void> response = ApiResponse.of(SuccessCode.INSERT_SUCCESS);
         return ResponseEntity.ok(response);
     }

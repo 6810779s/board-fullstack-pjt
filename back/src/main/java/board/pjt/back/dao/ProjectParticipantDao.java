@@ -27,6 +27,10 @@ public class ProjectParticipantDao {
         projectParticipantMapper.insert(requestDto);
     }
 
+    public void insertBoardCreator(ProjectParticipantCreateBoardParticipantDto requestDto){
+        projectParticipantMapper.insertBoardCreator(requestDto);
+    }
+
     public List<ProjectParticipantGetListByBoardIdResponseDto> getProjectParticipantByBoardId(ProjectParticipantGetByBoardIdRequestDto requestDto){
         return projectParticipantMapper.getProjectParticipantByBoardId(requestDto);
     }

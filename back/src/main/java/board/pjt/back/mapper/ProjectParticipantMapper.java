@@ -9,6 +9,8 @@ import java.util.List;
 public interface ProjectParticipantMapper {
     void insert(ProjectParticipantCreateRequestDto dto);
 
+    void insertBoardCreator(ProjectParticipantCreateBoardParticipantDto dto);
+
     List<ProjectParticipantGetListByBoardIdResponseDto> getProjectParticipantByBoardId(ProjectParticipantGetByBoardIdRequestDto dto);
 
     List<ProjectParticipantGetMyProjectResponseDto> getProjectParticipantMyProject(String useEmail);

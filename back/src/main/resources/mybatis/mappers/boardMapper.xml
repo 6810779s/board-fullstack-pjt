@@ -11,6 +11,7 @@
             c.name AS category_name,
             b.project_name AS project_name,
             b.content AS content,
+            b.participant_limit AS participant_limit,
             COUNT(DISTINCT pp.project_participant_id) AS participant_cnt,
             b.created_at AS created_at,
             COUNT(DISTINCT bl.board_like_id) AS like_cnt,
@@ -108,8 +109,11 @@
     </select>
     <insert id="insert" parameterType="BoardCreateRequestDto">
         INSERT INTO board
-        (title, content, rating, main_image_path, category_id, created_at, created_by, updated_at, updated_by)
-        VALUES (#{title}, #{content}, #{rating}, #{main_image_path}, #{category_id}, now(), 'test2@daum.net', null,
+        <selectKey keyProperty="board_id" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        (title,project_name, participant_limit, content, rating, main_image_path, category_id, created_at, created_by, updated_at, updated_by)
+        VALUES (#{title},#{project_name}, #{participant_limit}, #{content}, #{rating}, #{main_image_path}, #{category_id}, now(), 'test2@daum.net', null,
                 null)
     </insert>
     <insert id="delete" parameterType="long">

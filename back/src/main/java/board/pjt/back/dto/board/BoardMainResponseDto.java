@@ -9,6 +9,7 @@ public class BoardMainResponseDto {
     private String project_name;
     private String content;
     private int participant_cnt;
+    private int participant_limit;
     private LocalDateTime created_at;
     private int like_cnt;
     private int comment_cnt;
@@ -17,12 +18,13 @@ public class BoardMainResponseDto {
     public BoardMainResponseDto() {
     }
 
-    public BoardMainResponseDto(String title, String category_name, String project_name, String content, int participant_cnt, LocalDateTime created_at, int like_cnt, int comment_cnt, String main_image_path) {
+    public BoardMainResponseDto(String title, String category_name, String project_name, String content, int participant_cnt, int participant_limit, LocalDateTime created_at, int like_cnt, int comment_cnt, String main_image_path) {
         this.title = title;
         this.category_name = category_name;
         this.project_name = project_name;
         this.content = content;
         this.participant_cnt = participant_cnt;
+        this.participant_limit = participant_limit;
         this.created_at = created_at;
         this.like_cnt = like_cnt;
         this.comment_cnt = comment_cnt;
@@ -34,12 +36,12 @@ public class BoardMainResponseDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BoardMainResponseDto that = (BoardMainResponseDto) o;
-        return participant_cnt == that.participant_cnt && like_cnt == that.like_cnt && comment_cnt == that.comment_cnt && Objects.equals(title, that.title) && Objects.equals(category_name, that.category_name) && Objects.equals(project_name, that.project_name) && Objects.equals(content, that.content) && Objects.equals(created_at, that.created_at) && Objects.equals(main_image_path, that.main_image_path);
+        return participant_cnt == that.participant_cnt && participant_limit == that.participant_limit && like_cnt == that.like_cnt && comment_cnt == that.comment_cnt && Objects.equals(title, that.title) && Objects.equals(category_name, that.category_name) && Objects.equals(project_name, that.project_name) && Objects.equals(content, that.content) && Objects.equals(created_at, that.created_at) && Objects.equals(main_image_path, that.main_image_path);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, category_name, project_name, content, participant_cnt, created_at, like_cnt, comment_cnt, main_image_path);
+        return Objects.hash(title, category_name, project_name, content, participant_cnt, participant_limit, created_at, like_cnt, comment_cnt, main_image_path);
     }
 
     @Override
@@ -50,11 +52,20 @@ public class BoardMainResponseDto {
                 ", project_name='" + project_name + '\'' +
                 ", content='" + content + '\'' +
                 ", participant_cnt=" + participant_cnt +
+                ", participant_limit=" + participant_limit +
                 ", created_at=" + created_at +
                 ", like_cnt=" + like_cnt +
                 ", comment_cnt=" + comment_cnt +
                 ", main_image_path='" + main_image_path + '\'' +
                 '}';
+    }
+
+    public int getParticipant_limit() {
+        return participant_limit;
+    }
+
+    public void setParticipant_limit(int participant_limit) {
+        this.participant_limit = participant_limit;
     }
 
     public String getCategory_name() {
