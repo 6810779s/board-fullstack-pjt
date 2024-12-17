@@ -5,7 +5,7 @@
 
 <mapper namespace="board.pjt.back.mapper.BoardMapper">
 
-    <select id="selectAll" parameterType="Integer" resultType="BoardMainResponseDto">
+    <select id="selectAll" parameterType="map" resultType="BoardMainResponseDto">
         SELECT
             b.board_id AS board_id,
             b.title AS title,
@@ -20,22 +20,43 @@
             b.main_image_path AS main_image_path
         FROM
             board b
-                LEFT JOIN
-                    category c ON b.category_id = c.category_id
-                LEFT JOIN
-                    board_like bl ON b.board_id = bl.board_id
-                LEFT JOIN
-                    comment co ON b.board_id = co.board_id
-                LEFT JOIN
-                    project_participant pp ON b.board_id = pp.board_id
-            GROUP BY
-                b.board_id, c.name
-            ORDER BY
-                b.created_at DESC
+            LEFT JOIN category c ON b.category_id = c.category_id
+            LEFT JOIN board_like bl ON b.board_id = bl.board_id
+            LEFT JOIN comment co ON b.board_id = co.board_id
+            LEFT JOIN project_participant pp ON b.board_id = pp.board_id
+            LEFT JOIN project_stack ps ON b.board_id = ps.board_id
+        WHERE 1=1
+        <choose>
+            <when test="searchType == 'TITLE'">
+                AND b.title LIKE CONCAT('%', #{keyword}, '%')
+            </when>
+            <when test="searchType == 'CONTENT'">
+                AND b.content LIKE CONCAT('%', #{keyword}, '%')
+            </when>
+            <when test="searchType == 'SKILL'">
+                AND ps.name LIKE CONCAT('%', #{keyword}, '%')
+            </when>
+            <when test="searchType == 'PROJECT_NAME'">
+                AND b.project_name LIKE CONCAT('%', #{keyword}, '%')
+            </when>
+            <when test="searchType == 'ALL'">
+                AND (
+                LOWER(b.title) LIKE CONCAT('%', LOWER(#{keyword}), '%')
+                OR LOWER(b.content) LIKE CONCAT('%', LOWER(#{keyword}), '%')
+                OR LOWER(ps.name) LIKE CONCAT('%', LOWER(#{keyword}), '%')
+                OR LOWER(b.project_name) LIKE CONCAT('%', LOWER(#{keyword}), '%')
+                )
+            </when>
+        </choose>
+        GROUP BY
+        b.board_id, c.name, b.title, b.project_name, b.content, b.participant_limit, b.created_at, b.main_image_path
+        ORDER BY
+        b.created_at DESC
         <if test="limit != null">
             LIMIT #{limit}
         </if>
     </select>
+
     <resultMap id="BoardDetailMap" type="BoardDetailResponseDto">
         <id property="board_id" column="board_id"/>
         <result property="title" column="title"/>
