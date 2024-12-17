@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +27,11 @@ public class BoardDao {
     }
 
     public PageHandler<BoardMainResponseDto> boardPagination(PaginationRequestDto requestDto) {
-        List<BoardMainResponseDto> boardList = boardMapper.selectAll(null);
+        Map<String, Object> params = new HashMap<>();
+        params.put("searchType", requestDto.getSearchType().name());
+        params.put("keyword", requestDto.getKeyword());
+        params.put("limit", null);
+        List<BoardMainResponseDto> boardList = boardMapper.selectAll(params);
         PageHandler<BoardMainResponseDto> boardResponseDtoPageHandler = new PageHandler<>(boardList.size(), requestDto.getPage(), requestDto.getPageSize());
         boardResponseDtoPageHandler.setContents(boardList);
         return boardResponseDtoPageHandler;
@@ -57,7 +62,11 @@ public class BoardDao {
 
     //    @PreAuthorize("hasRole('ADMIN')")
     public List<BoardMainResponseDto> selectAll(Integer limit) {
-        return boardMapper.selectAll(limit);
+        Map<String, Object> params = new HashMap<>();
+        params.put("searchType", "ALL");
+        params.put("keyword", "");
+        params.put("limit", limit);
+        return boardMapper.selectAll(params);
     }
 
     @Transactional
