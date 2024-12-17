@@ -12,6 +12,7 @@ interface GetBoardRes {
     project_name: string;
     content: string;
     participant_cnt: number;
+    participant_limit: number;
     created_at: string;
     like_cnt: number;
     comment_cnt: number;

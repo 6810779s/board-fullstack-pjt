@@ -66,7 +66,7 @@ export const RecentPosts = () => {
                                 <Stack direction="row" gap="15px">
                                     <IconWithText
                                         icon={<User color={palette.grey[500]} size={16} />}
-                                        content={`5/${item.participant_cnt}`}
+                                        content={`${item.participant_limit}/${item.participant_cnt}`}
                                     />
                                     <IconWithText
                                         icon={<CalendarBlank color={palette.grey[500]} size={16} />}

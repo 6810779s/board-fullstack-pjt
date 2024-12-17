@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Stack, Typography } from '@mui/material';
 import { Clock, Fire } from '@phosphor-icons/react';
 
-import { SearchAndSelect } from '@/components/\bsearchAndSelect';
 import { IconWithText } from '@/components/IconWithText';
 import { PageLayout } from '@/components/PageLayout';
 import { ProjectReviewCard } from '@/components/projectReviewCard';
+import { SearchAndSelect } from '@/components/searchAndSelect';
 import { projectReview } from '@/const';
 import { palette } from '@/themes';
 
