@@ -61,7 +61,12 @@ export const BoardListItem: React.FC<TBoardListDummyData> = ({
                         content={`댓글 ${commentCnt}건`}
                     />
                 </Stack>
-                <Typography variant="main/small/grey">{content}</Typography>
+                <Typography
+                    sx={{ height: '48px', textOverflow: 'hidden', overflow: 'hidden' }}
+                    variant="main/small/grey"
+                >
+                    {content.length > 200 ? content.slice(0, 200) + '...' : content}
+                </Typography>
                 <Typography variant="main/small">{projectName}</Typography>
             </Stack>
         </ListItem>
