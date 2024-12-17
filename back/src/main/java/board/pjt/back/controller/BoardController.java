@@ -27,7 +27,7 @@ public class BoardController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<List<BoardMainResponseDto>>> getBoardList(@RequestParam("limit") Integer limit) {
+    public ResponseEntity<ApiResponse<List<BoardMainResponseDto>>> getBoardList(@RequestParam(value="limit", required = false) Integer limit) {
         List<BoardMainResponseDto> boardList = boardDao.selectAll(limit);
         ApiResponse<List<BoardMainResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, boardList);
         return ResponseEntity.ok(response);
