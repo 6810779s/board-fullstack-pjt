@@ -1,5 +1,6 @@
 package board.pjt.back.dto.board;
 
+import board.pjt.back.dto.category.CategorySelectResponseDto;
 import board.pjt.back.entity.BoardEntity;
 
 import java.time.LocalDateTime;
@@ -7,33 +8,35 @@ import java.util.Date;
 import java.util.Objects;
 
 public class BoardResponseDto {
-    private String project_name;
     private long board_id;
+    private String project_name;
+    private CategorySelectResponseDto category;
     private String title;
     private String content;
-    private long category_id;
     private LocalDateTime created_at;
-    private String created_by;
     private LocalDateTime updated_at;
-    private String updated_by;
-    private int rating;
     private String main_image_path;
+    private int board_like_cnt;
+    private int participant_cnt;
+    private int comment_cnt;
+
+
 
     public BoardResponseDto() {
     }
 
-    public BoardResponseDto(String project_name, long board_id, String title, String content, long category_id, LocalDateTime created_at, String created_by, LocalDateTime updated_at, String updated_by, int rating, String main_image_path) {
-        this.project_name = project_name;
+    public BoardResponseDto(long board_id, String project_name, CategorySelectResponseDto category, String title, String content, LocalDateTime created_at, LocalDateTime updated_at, String main_image_path, int board_like_cnt, int participant_cnt, int comment_cnt) {
         this.board_id = board_id;
+        this.project_name = project_name;
+        this.category = category;
         this.title = title;
         this.content = content;
-        this.category_id = category_id;
         this.created_at = created_at;
-        this.created_by = created_by;
         this.updated_at = updated_at;
-        this.updated_by = updated_by;
-        this.rating = rating;
         this.main_image_path = main_image_path;
+        this.board_like_cnt = board_like_cnt;
+        this.participant_cnt = participant_cnt;
+        this.comment_cnt = comment_cnt;
     }
 
     @Override
@@ -41,29 +44,37 @@ public class BoardResponseDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BoardResponseDto that = (BoardResponseDto) o;
-        return board_id == that.board_id && category_id == that.category_id && rating == that.rating && Objects.equals(project_name, that.project_name) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(created_at, that.created_at) && Objects.equals(created_by, that.created_by) && Objects.equals(updated_at, that.updated_at) && Objects.equals(updated_by, that.updated_by) && Objects.equals(main_image_path, that.main_image_path);
+        return board_id == that.board_id && board_like_cnt == that.board_like_cnt && participant_cnt == that.participant_cnt && comment_cnt == that.comment_cnt && Objects.equals(project_name, that.project_name) && Objects.equals(category, that.category) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(created_at, that.created_at) && Objects.equals(updated_at, that.updated_at) && Objects.equals(main_image_path, that.main_image_path);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(project_name, board_id, title, content, category_id, created_at, created_by, updated_at, updated_by, rating, main_image_path);
+        return Objects.hash(board_id, project_name, category, title, content, created_at, updated_at, main_image_path, board_like_cnt, participant_cnt, comment_cnt);
     }
 
     @Override
     public String toString() {
         return "BoardResponseDto{" +
-                "project_name='" + project_name + '\'' +
-                ", board_id=" + board_id +
+                "board_id=" + board_id +
+                ", project_name='" + project_name + '\'' +
+                ", category=" + category +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", category_id=" + category_id +
                 ", created_at=" + created_at +
-                ", created_by='" + created_by + '\'' +
                 ", updated_at=" + updated_at +
-                ", updated_by='" + updated_by + '\'' +
-                ", rating=" + rating +
                 ", main_image_path='" + main_image_path + '\'' +
+                ", board_like_cnt=" + board_like_cnt +
+                ", participant_cnt=" + participant_cnt +
+                ", comment_cnt=" + comment_cnt +
                 '}';
+    }
+
+    public long getBoard_id() {
+        return board_id;
+    }
+
+    public void setBoard_id(long board_id) {
+        this.board_id = board_id;
     }
 
     public String getProject_name() {
@@ -74,12 +85,12 @@ public class BoardResponseDto {
         this.project_name = project_name;
     }
 
-    public long getBoard_id() {
-        return board_id;
+    public CategorySelectResponseDto getCategory() {
+        return category;
     }
 
-    public void setBoard_id(long board_id) {
-        this.board_id = board_id;
+    public void setCategory(CategorySelectResponseDto category) {
+        this.category = category;
     }
 
     public String getTitle() {
@@ -98,28 +109,12 @@ public class BoardResponseDto {
         this.content = content;
     }
 
-    public long getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(long category_id) {
-        this.category_id = category_id;
-    }
-
     public LocalDateTime getCreated_at() {
         return created_at;
     }
 
     public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
-    }
-
-    public String getCreated_by() {
-        return created_by;
-    }
-
-    public void setCreated_by(String created_by) {
-        this.created_by = created_by;
     }
 
     public LocalDateTime getUpdated_at() {
@@ -130,22 +125,6 @@ public class BoardResponseDto {
         this.updated_at = updated_at;
     }
 
-    public String getUpdated_by() {
-        return updated_by;
-    }
-
-    public void setUpdated_by(String updated_by) {
-        this.updated_by = updated_by;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
     public String getMain_image_path() {
         return main_image_path;
     }
@@ -153,4 +132,30 @@ public class BoardResponseDto {
     public void setMain_image_path(String main_image_path) {
         this.main_image_path = main_image_path;
     }
+
+    public int getBoard_like_cnt() {
+        return board_like_cnt;
+    }
+
+    public void setBoard_like_cnt(int board_like_cnt) {
+        this.board_like_cnt = board_like_cnt;
+    }
+
+    public int getParticipant_cnt() {
+        return participant_cnt;
+    }
+
+    public void setParticipant_cnt(int participant_cnt) {
+        this.participant_cnt = participant_cnt;
+    }
+
+    public int getComment_cnt() {
+        return comment_cnt;
+    }
+
+    public void setComment_cnt(int comment_cnt) {
+        this.comment_cnt = comment_cnt;
+    }
+
+
 }

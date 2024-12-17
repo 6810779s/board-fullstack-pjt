@@ -20,18 +20,18 @@ public class BoardDao {
         this.boardMapper = boardMapper;
     }
 
-    public PageHandler<BoardResponseDto> boardPagination(PaginationRequestDto requestDto) {
-        List<BoardResponseDto> boardList = boardMapper.selectAll(null);
-        PageHandler<BoardResponseDto> boardResponseDtoPageHandler = new PageHandler<>(boardList.size(), requestDto.getPage(), requestDto.getPageSize());
+    public PageHandler<BoardMainResponseDto> boardPagination(PaginationRequestDto requestDto) {
+        List<BoardMainResponseDto> boardList = boardMapper.selectAll(null);
+        PageHandler<BoardMainResponseDto> boardResponseDtoPageHandler = new PageHandler<>(boardList.size(), requestDto.getPage(), requestDto.getPageSize());
         boardResponseDtoPageHandler.setContents(boardList);
         return boardResponseDtoPageHandler;
     }
 
-    public PageHandler<BoardResponseDto> myBoardPagination(UserDetails userDetails, PaginationRequestDto requestDto) {
+    public PageHandler<BoardMainResponseDto> myBoardPagination(UserDetails userDetails, PaginationRequestDto requestDto) {
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(userDetails.getUsername());
-        List<BoardResponseDto> myBoardList = boardMapper.selectMyBoardList(userEntity);
-        PageHandler<BoardResponseDto> boardResponseDtoPageHandler = new PageHandler<>(myBoardList.size(), requestDto.getPage(), requestDto.getPageSize());
+        List<BoardMainResponseDto> myBoardList = boardMapper.selectMyBoardList(userEntity);
+        PageHandler<BoardMainResponseDto> boardResponseDtoPageHandler = new PageHandler<>(myBoardList.size(), requestDto.getPage(), requestDto.getPageSize());
         boardResponseDtoPageHandler.setContents(myBoardList);
         return boardResponseDtoPageHandler;
     }
@@ -51,7 +51,7 @@ public class BoardDao {
     }
 
     //    @PreAuthorize("hasRole('ADMIN')")
-    public List<BoardResponseDto> selectAll(Integer limit) {
+    public List<BoardMainResponseDto> selectAll(Integer limit) {
         return boardMapper.selectAll(limit);
     }
 

@@ -5,10 +5,31 @@
 
 <mapper namespace="board.pjt.back.mapper.BoardMapper">
 
-    <select id="selectAll" parameterType="Integer" resultType="BoardResponseDto">
-        SELECT *
-        FROM board
-        ORDER BY created_at DESC
+    <select id="selectAll" parameterType="Integer" resultType="BoardMainResponseDto">
+        SELECT
+            b.title AS title,
+            c.name AS category_name,
+            b.project_name AS project_name,
+            b.content AS content,
+            COUNT(DISTINCT pp.project_participant_id) AS participant_cnt,
+            b.created_at AS created_at,
+            COUNT(DISTINCT bl.board_like_id) AS like_cnt,
+            COUNT(DISTINCT co.comment_id) AS comment_cnt,
+            b.main_image_path AS main_image_path
+        FROM
+            board b
+                LEFT JOIN
+                    category c ON b.category_id = c.category_id
+                LEFT JOIN
+                    board_like bl ON b.board_id = bl.board_id
+                LEFT JOIN
+                    comment co ON b.board_id = co.board_id
+                LEFT JOIN
+                    project_participant pp ON b.board_id = pp.board_id
+            GROUP BY
+                b.board_id, c.name
+            ORDER BY
+                b.created_at DESC
         <if test="limit != null">
             LIMIT #{limit}
         </if>
@@ -79,7 +100,7 @@
         WHERE board_id &gt; #{board_id}
         ORDER BY board_id ASC LIMIT 1
     </select>
-    <select id="selectMyBoardList" parameterType="UserEntity" resultType="BoardResponseDto">
+    <select id="selectMyBoardList" parameterType="UserEntity" resultType="BoardMainResponseDto">
         SELECT *
         FROM board
         WHERE created_by = #{email}
