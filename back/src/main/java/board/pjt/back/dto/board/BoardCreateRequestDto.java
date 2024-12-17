@@ -3,6 +3,9 @@ package board.pjt.back.dto.board;
 import java.util.Objects;
 
 public class BoardCreateRequestDto {
+    private long board_id;
+    private String project_name;
+    private int participant_limit;
     private String title;
     private String content;
     private int rating;
@@ -21,9 +24,24 @@ public class BoardCreateRequestDto {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BoardCreateRequestDto that = (BoardCreateRequestDto) o;
+        return participant_limit == that.participant_limit && rating == that.rating && category_id == that.category_id && Objects.equals(project_name, that.project_name) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(main_image_path, that.main_image_path);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(project_name, participant_limit, title, content, rating, main_image_path, category_id);
+    }
+
+    @Override
     public String toString() {
         return "BoardCreateRequestDto{" +
-                "title='" + title + '\'' +
+                ", project_name='" + project_name + '\'' +
+                ", participant_limit=" + participant_limit +
+                ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", rating=" + rating +
                 ", main_image_path='" + main_image_path + '\'' +
@@ -31,17 +49,24 @@ public class BoardCreateRequestDto {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BoardCreateRequestDto that = (BoardCreateRequestDto) o;
-        return rating == that.rating && category_id == that.category_id && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(main_image_path, that.main_image_path);
+    public long getBoard_id() {
+        return board_id;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(title, content, rating, main_image_path, category_id);
+    public String getProject_name() {
+        return project_name;
+    }
+
+    public void setProject_name(String project_name) {
+        this.project_name = project_name;
+    }
+
+    public int getParticipant_limit() {
+        return participant_limit;
+    }
+
+    public void setParticipant_limit(int participant_limit) {
+        this.participant_limit = participant_limit;
     }
 
     public String getTitle() {

@@ -3,11 +3,10 @@ package board.pjt.back.controller;
 import board.pjt.back.common.codes.SuccessCode;
 import board.pjt.back.common.response.ApiResponse;
 import board.pjt.back.dao.ProjectParticipantDao;
-import board.pjt.back.dto.projectParticipant.ProjectParticipantCreateRequestDto;
-import board.pjt.back.dto.projectParticipant.ProjectParticipantGetByBoardIdRequestDto;
-import board.pjt.back.dto.projectParticipant.ProjectParticipantGetListByBoardIdResponseDto;
-import board.pjt.back.dto.projectParticipant.ProjectParticipantGetMyProjectResponseDto;
+import board.pjt.back.dto.projectParticipant.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +22,17 @@ public class ProjectParticipantController {
 
     @PostMapping("/create")
     public ResponseEntity<ApiResponse<Void>> insert(@RequestBody ProjectParticipantCreateRequestDto requestDto){
+        //[TODO] 중복 participant 추가 불가하도록 유효성 검사 로직 추가 필요
         projectParticipantDao.insert(requestDto);
+        ApiResponse<Void> response = ApiResponse.of(SuccessCode.INSERT_SUCCESS);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/create/participant")
+    public ResponseEntity<ApiResponse<Void>> insertBoardCreator(@RequestBody ProjectParticipantCreateBoardParticipantDto requestDto, @AuthenticationPrincipal UserDetails userDetails){
+        //[TODO] 중복 participant 추가 불가하도록 유효성 검사 로직 추가 필요
+        requestDto.setUserEmail(userDetails.getUsername());
+        projectParticipantDao.insertBoardCreator(requestDto);
         ApiResponse<Void> response = ApiResponse.of(SuccessCode.INSERT_SUCCESS);
         return ResponseEntity.ok(response);
     }

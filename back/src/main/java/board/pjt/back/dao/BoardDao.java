@@ -4,10 +4,13 @@ import board.pjt.back.common.constants.ErrorMessages;
 import board.pjt.back.dto.PageHandler;
 import board.pjt.back.dto.board.*;
 import board.pjt.back.dto.common.PaginationRequestDto;
+import board.pjt.back.dto.projectParticipant.ProjectParticipantCreateBoardParticipantDto;
 import board.pjt.back.entity.UserEntity;
 import board.pjt.back.mapper.BoardMapper;
+import board.pjt.back.mapper.ProjectParticipantMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -15,9 +18,11 @@ import java.util.Map;
 @Service
 public class BoardDao {
     private final BoardMapper boardMapper;
+    private final ProjectParticipantMapper projectParticipantMapper;
 
-    public BoardDao(BoardMapper boardMapper) {
+    public BoardDao(BoardMapper boardMapper, ProjectParticipantMapper projectParticipantMapper) {
         this.boardMapper = boardMapper;
+        this.projectParticipantMapper = projectParticipantMapper;
     }
 
     public PageHandler<BoardMainResponseDto> boardPagination(PaginationRequestDto requestDto) {
@@ -55,9 +60,16 @@ public class BoardDao {
         return boardMapper.selectAll(limit);
     }
 
-    public void insert(BoardCreateRequestDto requestDto) {
-        // TODO: category id 여부 체크
+    @Transactional
+    public void insert(BoardCreateRequestDto requestDto, String userEmail) {
+        // TODO: category id 여부 체크, project_name 빈 문자열일때 에러처리, 1 <= participant_limit <= 100
         boardMapper.insert(requestDto);
+
+        ProjectParticipantCreateBoardParticipantDto participantDto = new ProjectParticipantCreateBoardParticipantDto();
+        participantDto.setUserEmail(userEmail);
+        participantDto.setBoard_id(requestDto.getBoard_id());
+        projectParticipantMapper.insertBoardCreator(participantDto);
+
     }
 
     public void delete(BoardDeleteRequestDto requestDto) {
