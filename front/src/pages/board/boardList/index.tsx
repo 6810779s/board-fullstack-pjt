@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -5,19 +7,22 @@ import { Button, List, Pagination, Stack, Typography } from '@mui/material';
 import { Trophy } from '@phosphor-icons/react';
 
 import { useGetBoard } from '@/apis/home/useGetBoard';
+import { useGetBoardPagination } from '@/apis/home/userGetBoardPagination';
 import { PageLayout } from '@/components/PageLayout';
 import { SearchAndSelect } from '@/components/searchAndSelect';
-import { boardListDummyData } from '@/const';
 import { palette } from '@/themes';
 
 import { BoardListItem } from './components/BoardListItem';
 import { PostCard } from './components/PostCard';
 
 export const BoardList = () => {
+    const [page, setPage] = React.useState<number>(0);
     const { data: boardTopList } = useGetBoard({ limit: 3 });
+    const { data: boardPageList } = useGetBoardPagination({ page, pageSize: 10 });
     const { control } = useForm<{ selectValue: 'ALL' | 'ONE' | 'TWO'; textValue: string }>({
         defaultValues: { selectValue: 'ALL', textValue: '' },
     });
+
     const navigate = useNavigate();
     return (
         <PageLayout>
@@ -65,25 +70,31 @@ export const BoardList = () => {
                 />
                 <Stack>
                     <List disablePadding>
-                        {boardListDummyData.map((item) => (
+                        {boardPageList?.contents.map((item) => (
                             <BoardListItem
-                                key={`boardList-${item.id}`}
-                                id={item.id}
-                                category={item.category}
-                                like={item.like}
+                                key={`boardList-${item.board_id}`}
+                                id={item.board_id}
+                                category={item.category_name}
+                                like={item.like_cnt}
                                 title={item.title}
-                                participantCnt={item.participantCnt}
-                                participantLimit={item.participantLimit}
-                                createdAt={item.createdAt}
-                                commentCnt={item.commentCnt}
+                                participantCnt={item.participant_cnt}
+                                participantLimit={item.participant_limit}
+                                createdAt={item.created_at}
+                                commentCnt={item.comment_cnt}
                                 content={item.content}
-                                projectName={item.projectName}
+                                projectName={item.project_name}
                             />
                         ))}
                     </List>
                 </Stack>
             </Stack>
-            <Pagination count={10} page={1} />
+            <Pagination
+                count={boardPageList?.totalPages || 1}
+                page={page + 1}
+                onChange={(_e, value) => {
+                    setPage(value - 1);
+                }}
+            />
         </PageLayout>
     );
 };

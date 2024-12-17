@@ -8,7 +8,8 @@
         "plugin:@typescript-eslint/recommended",
         "plugin:react-hooks/recommended",
         "plugin:prettier/recommended",
-        "plugin:storybook/recommended"
+        "plugin:storybook/recommended",
+        "plugin:@tanstack/query/recommended"
     ],
     "ignorePatterns": ["dist", "craco.config.js", ".eslintrc.json"],
     "parser": "@typescript-eslint/parser",
@@ -16,12 +17,14 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": ["@tanstack/query", "@typescript-eslint", "react"],
+    "plugins": ["@tanstack/query", "@typescript-eslint", "react", "prettier"],
     "rules": {
         "prettier/prettier": [
             "error",
             {
-                "endOfLine": "lf"
+                "endOfLine": "lf",
+                "singleQuote": true,
+                "semi": true
             }
         ]
     }
