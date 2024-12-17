@@ -15,7 +15,9 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
     ...props
 }) => {
     return (
-        <Stack sx={{ height: '100vh', width: '100vw', overflow: 'scroll' }}>
+        <Stack
+            sx={{ height: '100vh', width: '100vw', overflow: 'scroll', boxSizing: 'border-box' }}
+        >
             <Header />
             <Profile />
             <Stack flex={1} sx={{ padding: `${60}px ${paddingSide}px` }} {...props}>
