@@ -16,56 +16,64 @@ import { ProjectReviewRegister } from '@/pages/projectReview/projectReviewRegist
 
 import { Redirect } from './Redirect';
 
-export const router = createBrowserRouter([
-    {
-        element: <GnbLayout />,
-        children: [
-            //로그인
-            { path: 'login', element: <Login /> },
-            //회원가입
-            { path: 'sign-up', element: <SignUp /> },
-            //홈
-            { index: true, element: <Home /> },
-            //팀원 구하기 게시판 목록
-            {
-                path: 'board-list',
-                element: <BoardList />,
-            },
-            //팀원 구하기 게시판 상세
-            {
-                path: 'board/:id',
-                element: <BoardDetail />,
-            },
-            //팀원 구하기 게시판 등록
-            {
-                path: 'board-register',
-                element: <BoardRegister />,
-            },
-            //프로젝트 리뷰 목록
-            {
-                path: 'project-review-list',
-                element: <ProjectReviewList />,
-            },
-            //프로젝트 리뷰 상세
-            {
-                path: 'project-review/:id',
-                element: <ProjectReviewDetail />,
-            },
-            //프로젝트 리뷰 등록
-            {
-                path: 'project-register',
-                element: <ProjectReviewRegister />,
-            },
-            //마이페이지
-            {
-                path: 'my-page/:userNickname',
-                element: <MyPage />,
-                children: [{ path: '', element: <MypageContainer /> }],
-            },
+export const router = createBrowserRouter(
+    [
+        {
+            element: <GnbLayout />,
+            children: [
+                //로그인
+                { path: 'login', element: <Login /> },
+                //회원가입
+                { path: 'sign-up', element: <SignUp /> },
+                //홈
+                { index: true, element: <Home /> },
+                //팀원 구하기 게시판 목록
+                {
+                    path: 'board-list',
+                    element: <BoardList />,
+                },
+                //팀원 구하기 게시판 상세
+                {
+                    path: 'board/:id',
+                    element: <BoardDetail />,
+                },
+                //팀원 구하기 게시판 등록
+                {
+                    path: 'board-register',
+                    element: <BoardRegister />,
+                },
+                //프로젝트 리뷰 목록
+                {
+                    path: 'project-review-list',
+                    element: <ProjectReviewList />,
+                },
+                //프로젝트 리뷰 상세
+                {
+                    path: 'project-review/:id',
+                    element: <ProjectReviewDetail />,
+                },
+                //프로젝트 리뷰 등록
+                {
+                    path: 'project-register',
+                    element: <ProjectReviewRegister />,
+                },
+                //마이페이지
+                {
+                    path: 'my-page/:userNickname',
+                    element: <MyPage />,
+                    children: [{ path: '', element: <MypageContainer /> }],
+                },
 
-            { path: '*', element: <Redirect /> },
-        ],
-        errorElement: <Error />,
-    },
-    { path: '*', element: <Redirect /> },
-]);
+                { path: '*', element: <Redirect /> },
+            ],
+            errorElement: <Error />,
+        },
+        { path: '*', element: <Redirect /> },
+    ],
+    {
+        future: {
+            v7_startTransition: true,
+            v7_fetcherPersist: true,
+        },
+    }
+);
