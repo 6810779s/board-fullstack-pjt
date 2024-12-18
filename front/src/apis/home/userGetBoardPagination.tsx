@@ -1,14 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { TPagination } from '@/types/pagination';
+import { TPaginationReq, TPaginationRes } from '@/types/pagination';
 
 import { QUERY_KEYS } from '../QueryKeys';
 import { api } from '../axios';
-
-interface GetBoardPaginationReq {
-    page: number;
-    pageSize: number;
-}
 
 interface GetBoardPaginationRes {
     board_id: number;
@@ -24,8 +19,8 @@ interface GetBoardPaginationRes {
     main_image_path: string;
 }
 const getBoardPagination = async (
-    param: GetBoardPaginationReq
-): Promise<TPagination<GetBoardPaginationRes>> => {
+    param: TPaginationReq
+): Promise<TPaginationRes<GetBoardPaginationRes>> => {
     return await api
         .get('board/pagination', {
             params: param,
@@ -38,7 +33,7 @@ const getBoardPagination = async (
         });
 };
 
-export const useGetBoardPagination = (param: GetBoardPaginationReq) => {
+export const useGetBoardPagination = (param: TPaginationReq) => {
     return useQuery({
         queryKey: QUERY_KEYS.BOARD.getBoardPagination(JSON.stringify(param)),
         queryFn: () => getBoardPagination(param),

@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { Button, Stack, Typography } from '@mui/material';
@@ -10,12 +10,16 @@ import { ProjectReviewCard } from '@/components/projectReviewCard';
 import { SearchAndSelect } from '@/components/searchAndSelect';
 import { projectReview } from '@/const';
 import { palette } from '@/themes';
+import { TSearchFilter } from '@/types/pagination';
 
 export const ProjectReviewList = () => {
-    const { control } = useForm<{ selectValue: 'ALL' | 'WRITER' | 'TITLE'; textValue: string }>({
-        defaultValues: { selectValue: 'ALL', textValue: '' },
-    });
+    const methods = useForm<TSearchFilter>({ defaultValues: { searchType: 'ALL', keyword: '' } });
+
     const navigate = useNavigate();
+    const onSubmit: SubmitHandler<TSearchFilter> = (data) => {
+        //
+        console.log({ data });
+    };
 
     return (
         <PageLayout gap="60px">
@@ -27,13 +31,14 @@ export const ProjectReviewList = () => {
                 </Button>
             </Stack>
             <SearchAndSelect
-                control={control}
-                selectName="selectValue"
-                textFieldName="textValue"
+                methods={methods}
+                onSubmit={onSubmit}
                 select_list={[
                     { value: 'ALL', label: '전체' },
-                    { value: 'WRITER', label: '글쓴이' },
                     { value: 'TITLE', label: '제목' },
+                    { value: 'CONTENT', label: '내용' },
+                    { value: 'PROJECT_NAME', label: '프로젝트 명' },
+                    { value: 'SKILL', label: '기술술' },
                 ]}
             />
             <Stack gap="40px" flex={1}>
