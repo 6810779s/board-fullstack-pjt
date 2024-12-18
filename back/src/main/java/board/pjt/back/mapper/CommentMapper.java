@@ -14,7 +14,7 @@ public interface CommentMapper {
 
     List<CommentResponseDto> selectMyCommentList(UserEntity userEntity);
 
-    List<CommentResponseDto> selectAllReplyList(CommentReplyRequestDto requestDto);
+    List<CommentResponseDto> selectAllReplyList(long parent_comment_id);
 
     List<CommentResponseDto> selectAllCommentByBoardId(long board_id);
 

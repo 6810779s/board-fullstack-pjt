@@ -46,8 +46,8 @@ public class CommentDao {
         return commentResponseDtoPageHandler;
     }
 
-    public List<CommentResponseDto> selectAllReplyList(CommentReplyRequestDto requestDto) {
-        return commentsMapper.selectAllReplyList(requestDto);
+    public List<CommentResponseDto> selectAllReplyList(long parent_comment_id) {
+        return commentsMapper.selectAllReplyList(parent_comment_id);
     }
 
 

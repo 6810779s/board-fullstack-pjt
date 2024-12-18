@@ -41,9 +41,9 @@ public class CommentController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/reply_comment")
-    public ResponseEntity<ApiResponse<List<CommentResponseDto>>> selectAllReplyComment(@ModelAttribute CommentReplyRequestDto requestDto) {
-        List<CommentResponseDto> replyComment = commentsDao.selectAllReplyList(requestDto);
+    @GetMapping("/reply_comment/{parent_comment_id}")
+    public ResponseEntity<ApiResponse<List<CommentResponseDto>>> selectAllReplyComment(@PathVariable long parent_comment_id) {
+        List<CommentResponseDto> replyComment = commentsDao.selectAllReplyList(parent_comment_id);
         ApiResponse<List<CommentResponseDto>> response = ApiResponse.of(SuccessCode.SELECT_SUCCESS, replyComment);
         return ResponseEntity.ok(response);
     }
