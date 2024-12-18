@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { Stack, Typography } from '@mui/material';
 import { ArrowCircleLeft, ArrowCircleRight } from '@phosphor-icons/react';
 
@@ -8,8 +10,10 @@ import { palette } from '@/themes';
 interface OtherBoardsProps {
     type: 'prev' | 'next';
     title: string;
+    id: number;
 }
-export const OtherBoards: React.FC<OtherBoardsProps> = ({ type, title }) => {
+export const OtherBoards: React.FC<OtherBoardsProps> = ({ type, title, id }) => {
+    const navigate = useNavigate();
     return (
         <Stack
             direction="row"
@@ -23,6 +27,7 @@ export const OtherBoards: React.FC<OtherBoardsProps> = ({ type, title }) => {
                 background: palette.grey[100],
                 justifyContent: type === 'prev' ? 'start' : 'end',
             }}
+            onClick={() => navigate(`/board/${id}`)}
         >
             {type === 'prev' && <ArrowCircleLeft size={32} color={palette.common.black} />}
             <Stack justifyContent={'space-between'}>
@@ -32,7 +37,9 @@ export const OtherBoards: React.FC<OtherBoardsProps> = ({ type, title }) => {
                 >
                     {type === 'prev' ? '이전 게시물' : '다음 게시물'}
                 </Typography>
-                <Typography sx={{ fontWeight: 700 }}>{title}</Typography>
+                <Typography sx={{ fontWeight: 700 }}>
+                    {title.length > 30 ? title.slice(0, 30) + '...' : title}
+                </Typography>
             </Stack>
             {type === 'next' && <ArrowCircleRight size={32} color={palette.common.black} />}
         </Stack>

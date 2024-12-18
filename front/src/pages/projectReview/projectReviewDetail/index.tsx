@@ -108,12 +108,12 @@ export const ProjectReviewDetail = () => {
                 </Stack>
                 <Stack direction="row" gap="45px">
                     {post ? (
-                        <OtherBoards type="prev" title={'Prev Pjt Review'} />
+                        <OtherBoards type="prev" title={'Prev Pjt Review'} id={3} />
                     ) : (
                         <Stack flex={1} sx={{ height: '64px' }} />
                     )}
                     {!post ? (
-                        <OtherBoards type="next" title={'Next Pjt Review'} />
+                        <OtherBoards type="next" title={'Next Pjt Review'} id={3} />
                     ) : (
                         <Stack flex={1} sx={{ height: '64px' }} />
                     )}

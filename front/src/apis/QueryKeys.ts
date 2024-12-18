@@ -9,5 +9,6 @@ export const QUERY_KEYS = {
     BOARD: {
         all: () => [...QUERY_KEYS.ALL, 'board'],
         getBoardPagination: (param: string) => [...QUERY_KEYS.BOARD.all(), 'pagination', param],
+        getBoardDetail: (param: string) => [...QUERY_KEYS.BOARD.all(), 'detail', param],
     },
 };
