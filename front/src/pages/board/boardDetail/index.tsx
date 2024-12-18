@@ -85,7 +85,7 @@ export const BoardDetail = () => {
                             key={`${item.comment_id}-${item.created_at}`}
                             nickname={item.nickname}
                             content={item.content}
-                            replyCommentCnt={item.comment_reply_cnt}
+                            replyCommentCnt={item.reply_comment_cnt}
                             createdAt={item.created_at}
                             like={item.like_cnt}
                         />
