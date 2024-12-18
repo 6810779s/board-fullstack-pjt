@@ -3,7 +3,10 @@ import { Heart } from '@phosphor-icons/react';
 
 import { palette } from '@/themes';
 
-export const LikeButtonForBoard = () => {
+interface LikeButtonForBoardProps {
+    likeCnt: number;
+}
+export const LikeButtonForBoard: React.FC<LikeButtonForBoardProps> = ({ likeCnt }) => {
     return (
         <Stack
             sx={{
@@ -35,7 +38,7 @@ export const LikeButtonForBoard = () => {
             >
                 <Heart color={palette.error[500]} weight="fill" size={30} />
             </Stack>
-            <Typography sx={{ fontSize: '20px', fontWeight: 500 }}>25</Typography>
+            <Typography sx={{ fontSize: '20px', fontWeight: 500 }}>{likeCnt}</Typography>
         </Stack>
     );
 };
