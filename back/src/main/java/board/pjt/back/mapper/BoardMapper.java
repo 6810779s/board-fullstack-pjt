@@ -1,5 +1,6 @@
 package board.pjt.back.mapper;
 
+import board.pjt.back.dto.board.BoardSimpleInfo;
 import board.pjt.back.dto.board.*;
 import board.pjt.back.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
@@ -14,9 +15,9 @@ public interface BoardMapper {
     BoardDetailResponseDto select(@Param("board_id") long board_id);
 
     List<BoardMainResponseDto> getBoardByCriteria(Map param);
-    BoardDetailResponseDto getPrevBoard(long board_id);
+    BoardSimpleInfo getPrevBoard(long board_id);
 
-    BoardDetailResponseDto getNextBoard(long board_id);
+    BoardSimpleInfo getNextBoard(long board_id);
 
 
     List<BoardMainResponseDto> selectMyBoardList(UserEntity requestDto);

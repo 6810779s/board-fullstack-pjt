@@ -58,32 +58,43 @@
     </select>
 
     <resultMap id="BoardDetailMap" type="BoardDetailResponseDto">
-        <id property="board_id" column="board_id"/>
-        <result property="title" column="title"/>
         <result property="project_name" column="project_name"/>
+        <result property="title" column="title"/>
         <result property="content" column="content"/>
         <result property="rating" column="rating"/>
         <result property="main_image_path" column="main_image_path"/>
         <result property="created_by" column="created_by"/>
         <result property="created_at" column="created_at"/>
+        <result property="participant_limit" column="participant_limit"/>
         <association property="category" javaType="CategorySelectResponseDto">
             <id property="category_id" column="category_id"/>
             <result property="name" column="name"/>
         </association>
     </resultMap>
     <select id="select" parameterType="long" resultMap="BoardDetailMap">
-        SELECT b.board_id,
-               b.project_name,
+        SELECT b.project_name,
                b.title,
                b.content,
                b.rating,
                b.main_image_path,
                b.created_by,
                b.created_at,
+               b.participant_limit,
+               COUNT(DISTINCT pp.participant) AS participant_cnt,
+               COUNT(DISTINCT co.comment_id) AS comment_cnt,
+               COUNT(DISTINCT bl.created_by) AS like_cnt,
+               c.category_id,
                c.name
         FROM board b
-                 JOIN category c
-                      ON b.category_id = c.category_id
+            JOIN category c
+                ON b.category_id = c.category_id
+            JOIN board_like bl
+                ON b.board_id = bl.board_id
+            JOIN comment co
+                ON b.board_id = co.board_id
+            JOIN project_participant pp
+                ON b.board_id = pp.board_id
+
         WHERE b.board_id = #{board_id}
     </select>
     <select id="getBoardByCriteria" parameterType="map" resultType="BoardMainResponseDto">
@@ -111,14 +122,14 @@
             </when>
         </choose>
     </select>
-    <select id="getPrevBoard" resultType="BoardDetailResponseDto">
-        SELECT *
+    <select id="getPrevBoard" resultType="BoardSimpleInfo">
+        SELECT board_id, title
         FROM board
         WHERE board_id &lt; #{board_id}
         ORDER BY board_id DESC LIMIT 1
     </select>
-    <select id="getNextBoard" resultType="BoardDetailResponseDto">
-        SELECT *
+    <select id="getNextBoard" resultType="BoardSimpleInfo">
+        SELECT board_id, title
         FROM board
         WHERE board_id &gt; #{board_id}
         ORDER BY board_id ASC LIMIT 1
