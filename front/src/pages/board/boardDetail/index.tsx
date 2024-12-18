@@ -5,11 +5,11 @@ import { CalendarBlank, ChatCenteredDots, User } from '@phosphor-icons/react';
 import { format } from 'date-fns';
 
 import { useGetBoardDetail } from '@/apis/board/useGetBoardDetail';
+import { useGetComment } from '@/apis/comment/useGetComment';
 import { IconWithText } from '@/components/IconWithText';
 import { OtherBoards } from '@/components/OtherBoards';
 import { PageLayout } from '@/components/PageLayout';
 import { CommentContainer } from '@/components/comment/CommentContainer';
-import { boardDetailDummyData } from '@/const';
 import { palette } from '@/themes';
 
 import { LikeButtonForBoard } from './components/LikeButtonForBoard';
@@ -18,12 +18,12 @@ import UserProfile from './components/UserProfile';
 export const BoardDetail = () => {
     const { id } = useParams();
     const { data: boardDetailData } = useGetBoardDetail(Number(id));
-
+    const { data: commentData } = useGetComment(Number(id));
     return (
         <PageLayout alignItems="center">
             {boardDetailData && (
                 <Stack flex={1} gap="15px" sx={{ width: '770px', position: 'relative' }}>
-                    <LikeButtonForBoard likeCnt={0} />
+                    <LikeButtonForBoard likeCnt={boardDetailData.like_cnt} />
                     <Typography sx={{ fontWeight: 700, textAlign: 'right' }}>
                         {boardDetailData.category.name}
                     </Typography>
@@ -41,7 +41,7 @@ export const BoardDetail = () => {
                     >
                         <IconWithText
                             icon={<User color={palette.grey[500]} size={16} />}
-                            content={`${boardDetailDummyData.member.total}/${boardDetailDummyData.member.participants}`}
+                            content={`${boardDetailData.participant_limit}/${boardDetailData.participant_cnt}`}
                         />
                         <IconWithText
                             icon={<CalendarBlank color={palette.grey[500]} size={16} />}
@@ -49,7 +49,7 @@ export const BoardDetail = () => {
                         />
                         <IconWithText
                             icon={<ChatCenteredDots color={palette.grey[500]} size={16} />}
-                            content={`댓글 ${boardDetailDummyData.comment.commentCnt}건`}
+                            content={`댓글 ${boardDetailData.comment_cnt}건`}
                         />
                     </Stack>
                     <Typography sx={{ paddingBottom: '100px' }}>
@@ -80,14 +80,14 @@ export const BoardDetail = () => {
                     <Stack flex={1} alignItems="flex-end">
                         <Button sx={{ width: '97px' }}>댓글 작성</Button>
                     </Stack>
-                    {boardDetailDummyData.comment.commentsArr.map((item) => (
+                    {commentData?.map((item) => (
                         <CommentContainer
-                            key={item.id}
+                            key={`${item.comment_id}-${item.created_at}`}
                             nickname={item.nickname}
                             content={item.content}
-                            replyComment={item.replyComment}
-                            createdAt={item.createdAt}
-                            like={item.like}
+                            replyCommentCnt={item.comment_reply_cnt}
+                            createdAt={item.created_at}
+                            like={item.like_cnt}
                         />
                     ))}
                 </Stack>

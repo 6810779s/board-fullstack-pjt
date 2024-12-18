@@ -3,8 +3,8 @@ import React from 'react';
 import { Button, IconButton, Stack, Typography } from '@mui/material';
 import { ArrowElbowDownRight, Heart } from '@phosphor-icons/react';
 
-import { CommentProps } from '@/const';
 import { palette } from '@/themes';
+import { CommentProps } from '@/types/comment';
 
 export const Comment: React.FC<
     Omit<

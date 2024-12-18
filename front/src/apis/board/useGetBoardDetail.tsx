@@ -21,6 +21,10 @@ interface GetBoardDetailRes {
     nextBoard: null | TBoardInfo;
     created_by: string;
     created_at: string;
+    participant_cnt: number;
+    participant_limit: number;
+    like_cnt: number;
+    comment_cnt: number;
     // like cnt, participant_cnt, participant_limit,
 }
 
