@@ -8,7 +8,8 @@ interface GetCommentRes {
     content: string;
     nickname: string;
     created_at: string;
-    comment_reply_cnt: number;
+    updated_at: string;
+    reply_comment_cnt: number;
     like_cnt: number;
 }
 
