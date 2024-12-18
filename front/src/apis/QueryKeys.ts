@@ -14,5 +14,7 @@ export const QUERY_KEYS = {
     COMMENT: {
         all: () => [...QUERY_KEYS.ALL, 'comment'],
         getComment: (param: string) => [...QUERY_KEYS.COMMENT.all(), 'comment', param],
+        getReplyComment: (param: string) => [...QUERY_KEYS.COMMENT.all(), 'replyComment', param],
+        postCreateComment: () => [...QUERY_KEYS.COMMENT.all(), 'createComment'],
     },
 };

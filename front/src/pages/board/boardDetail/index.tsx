@@ -1,11 +1,16 @@
+import React, { ChangeEvent } from 'react';
+
 import { useParams } from 'react-router-dom';
 
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import { CalendarBlank, ChatCenteredDots, User } from '@phosphor-icons/react';
+import { useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
 
+import { QUERY_KEYS } from '@/apis/QueryKeys';
 import { useGetBoardDetail } from '@/apis/board/useGetBoardDetail';
 import { useGetComment } from '@/apis/comment/useGetComment';
+import { usePostCreateComment } from '@/apis/comment/usePostCreateComment';
 import { IconWithText } from '@/components/IconWithText';
 import { OtherBoards } from '@/components/OtherBoards';
 import { PageLayout } from '@/components/PageLayout';
@@ -16,9 +21,22 @@ import { LikeButtonForBoard } from './components/LikeButtonForBoard';
 import UserProfile from './components/UserProfile';
 
 export const BoardDetail = () => {
+    const queryClient = useQueryClient();
     const { id } = useParams();
     const { data: boardDetailData } = useGetBoardDetail(Number(id));
     const { data: commentData } = useGetComment(Number(id));
+    const { mutateAsync: createComment } = usePostCreateComment();
+    const [comment, setComment] = React.useState<string>('');
+    const submitComment = () => {
+        createComment({ board_id: Number(id), parent_comment_id: null, content: comment }).then(
+            (res) => {
+                if (res?.data?.status === 'SUCCESS') {
+                    queryClient.invalidateQueries({ queryKey: QUERY_KEYS.COMMENT.all() });
+                    setComment('');
+                }
+            }
+        );
+    };
     return (
         <PageLayout alignItems="center">
             {boardDetailData && (
@@ -76,13 +94,24 @@ export const BoardDetail = () => {
                             <Stack flex={1} sx={{ height: '64px' }} />
                         )}
                     </Stack>
-                    <TextField multiline={true} rows={5} placeholder="댓글을 입력해 주세요." />
+                    <TextField
+                        onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+                            setComment(e.target.value);
+                        }}
+                        value={comment}
+                        multiline={true}
+                        rows={5}
+                        placeholder="댓글을 입력해 주세요."
+                    />
                     <Stack flex={1} alignItems="flex-end">
-                        <Button sx={{ width: '97px' }}>댓글 작성</Button>
+                        <Button onClick={submitComment} sx={{ width: '97px' }}>
+                            댓글 작성
+                        </Button>
                     </Stack>
                     {commentData?.map((item) => (
                         <CommentContainer
                             key={`${item.comment_id}-${item.created_at}`}
+                            id={item.comment_id}
                             nickname={item.nickname}
                             content={item.content}
                             replyCommentCnt={item.reply_comment_cnt}
