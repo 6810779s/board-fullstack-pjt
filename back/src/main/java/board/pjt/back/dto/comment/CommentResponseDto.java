@@ -5,27 +5,25 @@ import java.util.Date;
 import java.util.Objects;
 
 public class CommentResponseDto {
-    private Long parent_comment_id;
     private long comment_id;
-    private long board_id;
     private String content;
     private LocalDateTime created_at;
-    private String created_by;
+    private String nickname;
     private LocalDateTime updated_at;
-    private String updated_by;
+    private int reply_comment_cnt;
+    private int like_cnt;
 
     public CommentResponseDto() {
     }
 
-    public CommentResponseDto(Long parent_comment_id, long comment_id, long board_id, String content, LocalDateTime created_at, String created_by, LocalDateTime updated_at, String updated_by) {
-        this.parent_comment_id = parent_comment_id;
+    public CommentResponseDto(long comment_id, String content, LocalDateTime created_at, String nickname, LocalDateTime updated_at, int reply_comment_cnt, int like_cnt) {
         this.comment_id = comment_id;
-        this.board_id = board_id;
         this.content = content;
         this.created_at = created_at;
-        this.created_by = created_by;
+        this.nickname = nickname;
         this.updated_at = updated_at;
-        this.updated_by = updated_by;
+        this.reply_comment_cnt = reply_comment_cnt;
+        this.like_cnt = like_cnt;
     }
 
     @Override
@@ -33,34 +31,25 @@ public class CommentResponseDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CommentResponseDto that = (CommentResponseDto) o;
-        return comment_id == that.comment_id && board_id == that.board_id && Objects.equals(parent_comment_id, that.parent_comment_id) && Objects.equals(content, that.content) && Objects.equals(created_at, that.created_at) && Objects.equals(created_by, that.created_by) && Objects.equals(updated_at, that.updated_at) && Objects.equals(updated_by, that.updated_by);
+        return comment_id == that.comment_id && reply_comment_cnt == that.reply_comment_cnt && like_cnt == that.like_cnt && Objects.equals(content, that.content) && Objects.equals(created_at, that.created_at) && Objects.equals(nickname, that.nickname) && Objects.equals(updated_at, that.updated_at);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(parent_comment_id, comment_id, board_id, content, created_at, created_by, updated_at, updated_by);
+        return Objects.hash(comment_id, content, created_at, nickname, updated_at, reply_comment_cnt, like_cnt);
     }
 
     @Override
     public String toString() {
         return "CommentResponseDto{" +
-                "parent_comment_id=" + parent_comment_id +
-                ", comment_id=" + comment_id +
-                ", board_id=" + board_id +
+                "comment_id=" + comment_id +
                 ", content='" + content + '\'' +
                 ", created_at=" + created_at +
-                ", created_by='" + created_by + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", updated_at=" + updated_at +
-                ", updated_by='" + updated_by + '\'' +
+                ", reply_comment_cnt=" + reply_comment_cnt +
+                ", like_cnt=" + like_cnt +
                 '}';
-    }
-
-    public Long getParent_comment_id() {
-        return parent_comment_id;
-    }
-
-    public void setParent_comment_id(Long parent_comment_id) {
-        this.parent_comment_id = parent_comment_id;
     }
 
     public long getComment_id() {
@@ -69,14 +58,6 @@ public class CommentResponseDto {
 
     public void setComment_id(long comment_id) {
         this.comment_id = comment_id;
-    }
-
-    public long getBoard_id() {
-        return board_id;
-    }
-
-    public void setBoard_id(long board_id) {
-        this.board_id = board_id;
     }
 
     public String getContent() {
@@ -95,12 +76,12 @@ public class CommentResponseDto {
         this.created_at = created_at;
     }
 
-    public String getCreated_by() {
-        return created_by;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setCreated_by(String created_by) {
-        this.created_by = created_by;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public LocalDateTime getUpdated_at() {
@@ -111,11 +92,19 @@ public class CommentResponseDto {
         this.updated_at = updated_at;
     }
 
-    public String getUpdated_by() {
-        return updated_by;
+    public int getReply_comment_cnt() {
+        return reply_comment_cnt;
     }
 
-    public void setUpdated_by(String updated_by) {
-        this.updated_by = updated_by;
+    public void setReply_comment_cnt(int reply_comment_cnt) {
+        this.reply_comment_cnt = reply_comment_cnt;
+    }
+
+    public int getLike_cnt() {
+        return like_cnt;
+    }
+
+    public void setLike_cnt(int like_cnt) {
+        this.like_cnt = like_cnt;
     }
 }

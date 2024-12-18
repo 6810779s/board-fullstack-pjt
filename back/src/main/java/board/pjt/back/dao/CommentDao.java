@@ -55,6 +55,7 @@ public class CommentDao {
         if (boardMapper.select(board_id) == null) {
             throw new IllegalArgumentException(ErrorMessages.BOARD_NOT_FOUND);
         }
+
         return commentsMapper.selectAllCommentByBoardId(board_id);
     }
 
