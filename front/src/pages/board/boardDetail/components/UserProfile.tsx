@@ -1,7 +1,5 @@
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 
-import { Tag } from '@/components/Tag';
-import { boardDetailDummyData } from '@/const';
 import { palette } from '@/themes';
 
 const UserProfile = () => {
@@ -26,22 +24,20 @@ const UserProfile = () => {
                     }}
                 />
                 <Stack justifyContent="space-between" sx={{ height: '100%' }}>
-                    <Typography sx={{ fontSize: '24px', fontWeight: 700 }}>
-                        {boardDetailDummyData.writer.nickname}
-                    </Typography>
+                    <Typography sx={{ fontSize: '24px', fontWeight: 700 }}>{'nickname'}</Typography>
                     <Stack direction="row" gap="6px">
-                        {boardDetailDummyData.writer.tags.map((item, index) => (
+                        {/* {boardDetailDummyData.writer.tags.map((item, index) => (
                             <Tag key={index} label={item} />
-                        ))}
+                        ))} */}
                     </Stack>
-                    <Typography>{boardDetailDummyData.writer.message}</Typography>
+                    <Typography>{'user status message'}</Typography>
                 </Stack>
             </Stack>
-            {!boardDetailDummyData.writer.friend && (
+            {/* {!boardDetailDummyData.writer.friend && (
                 <Button variant="WhiteContainedBlackOutlined" sx={{ borderRadius: '20px' }}>
                     팔로우
                 </Button>
-            )}
+            )} */}
         </Stack>
     );
 };

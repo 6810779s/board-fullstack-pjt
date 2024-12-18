@@ -7,8 +7,6 @@ import { IconWithText } from '@/components/IconWithText';
 import { OtherBoards } from '@/components/OtherBoards';
 import { PageLayout } from '@/components/PageLayout';
 import { Tag } from '@/components/Tag';
-import { CommentContainer } from '@/components/comment/CommentContainer';
-import { boardDetailDummyData } from '@/const';
 // import { settings } from '@/const';
 import UserProfile from '@/pages/board/boardDetail/components/UserProfile';
 import { palette } from '@/themes';
@@ -123,7 +121,7 @@ export const ProjectReviewDetail = () => {
                     <Stack flex={1} alignItems="flex-end">
                         <Button sx={{ width: '97px' }}>댓글 작성</Button>
                     </Stack>
-                    {boardDetailDummyData.comment.commentsArr.map((item) => (
+                    {/* {boardDetailDummyData.comment.commentsArr.map((item) => (
                         <CommentContainer
                             key={item.id}
                             nickname={item.nickname}
@@ -132,7 +130,7 @@ export const ProjectReviewDetail = () => {
                             createdAt={item.createdAt}
                             like={item.like}
                         />
-                    ))}
+                    ))} */}
                 </Stack>
             </Stack>
         </PageLayout>
