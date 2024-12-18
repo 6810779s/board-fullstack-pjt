@@ -86,15 +86,14 @@
                c.category_id,
                c.name
         FROM board b
-            JOIN category c
+            LEFT JOIN category c
                 ON b.category_id = c.category_id
-            JOIN board_like bl
+            LEFT JOIN board_like bl
                 ON b.board_id = bl.board_id
-            JOIN comment co
+            LEFT JOIN comment co
                 ON b.board_id = co.board_id
-            JOIN project_participant pp
+            LEFT JOIN project_participant pp
                 ON b.board_id = pp.board_id
-
         WHERE b.board_id = #{board_id}
     </select>
     <select id="getBoardByCriteria" parameterType="map" resultType="BoardMainResponseDto">
