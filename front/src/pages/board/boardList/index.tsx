@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { Button, List, Pagination, Stack, Typography } from '@mui/material';
@@ -11,17 +11,33 @@ import { useGetBoardPagination } from '@/apis/home/userGetBoardPagination';
 import { PageLayout } from '@/components/PageLayout';
 import { SearchAndSelect } from '@/components/searchAndSelect';
 import { palette } from '@/themes';
+import { TSearchFilter, TSearchType } from '@/types/pagination';
 
 import { BoardListItem } from './components/BoardListItem';
 import { PostCard } from './components/PostCard';
 
 export const BoardList = () => {
+    const methods = useForm<TSearchFilter>({
+        defaultValues: {
+            searchType: 'ALL',
+            keyword: '',
+        },
+    });
     const [page, setPage] = React.useState<number>(0);
     const { data: boardTopList } = useGetBoard({ limit: 3 });
-    const { data: boardPageList } = useGetBoardPagination({ page, pageSize: 10 });
-    const { control } = useForm<{ selectValue: 'ALL' | 'ONE' | 'TWO'; textValue: string }>({
-        defaultValues: { selectValue: 'ALL', textValue: '' },
+    const [keyword, setKeyword] = React.useState<string>('');
+    const [searchType, setSearchType] = React.useState<TSearchType>('ALL');
+    const { data: boardPageList } = useGetBoardPagination({
+        page,
+        pageSize: 10,
+        keyword,
+        searchType,
     });
+
+    const onSubmit: SubmitHandler<TSearchFilter> = (data) => {
+        setKeyword(data.keyword);
+        setSearchType(data.searchType);
+    };
 
     const navigate = useNavigate();
     return (
@@ -59,9 +75,8 @@ export const BoardList = () => {
                     </Stack>
                 </Stack>
                 <SearchAndSelect
-                    selectName="selectValue"
-                    textFieldName="textValue"
-                    control={control}
+                    methods={methods}
+                    onSubmit={onSubmit}
                     select_list={[
                         { value: 'ALL', label: '전체' },
                         { value: 'TITLE', label: '제목' },
