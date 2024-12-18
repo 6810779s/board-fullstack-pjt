@@ -48,7 +48,6 @@ public class BoardDao {
 
     public BoardDetailResponseDto select(long board_id) {
         BoardDetailResponseDto dto = boardMapper.select(board_id);
-        System.out.println(board_id);
         if (dto == null) {
             throw new IllegalArgumentException(ErrorMessages.BOARD_NOT_FOUND);
         }
