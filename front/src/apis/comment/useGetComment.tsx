@@ -4,7 +4,7 @@ import { QUERY_KEYS } from '../QueryKeys';
 import { api } from '../axios';
 
 interface GetCommentRes {
-    comment_id: string;
+    comment_id: number;
     content: string;
     nickname: string;
     created_at: string;
