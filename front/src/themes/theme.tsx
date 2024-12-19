@@ -160,6 +160,7 @@ export const theme = createTheme({
             },
             styleOverrides: {
                 root: {
+                    'borderRadius': '8px',
                     'height': '38.5px',
                     'fontSize': '14px',
                     '&:hover': {

@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { GnbLayout } from '@/components/gnb/GnbLayout';
 import { Login } from '@/pages/auth/login';
 import { SignUp } from '@/pages/auth/signUp';
-import { BoardDetail } from '@/pages/board/boardDetail';
+import { BoardDetail } from '@/pages/board/boardDetail/BoardDetail';
 import { BoardList } from '@/pages/board/boardList';
 import { BoardRegister } from '@/pages/board/boardRegister';
 import { Error } from '@/pages/error';
