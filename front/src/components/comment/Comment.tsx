@@ -26,9 +26,9 @@ export const Comment: React.FC<
             }}
             gap="10px"
         >
-            <Stack direction="row" gap="7px" alignItems="center">
+            <Stack direction="row" gap="7px">
                 {reply && (
-                    <Stack alignItems="center" justifyContent="center" sx={{ width: '52px' }}>
+                    <Stack alignItems="center" sx={{ width: '52px' }}>
                         <ArrowElbowDownRight size={25} color={palette.grey[500]} />
                     </Stack>
                 )}

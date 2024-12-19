@@ -104,7 +104,7 @@ export const BoardDetail = () => {
                         placeholder="댓글을 입력해 주세요."
                     />
                     <Stack flex={1} alignItems="flex-end">
-                        <Button onClick={submitComment} sx={{ width: '97px' }}>
+                        <Button onClick={submitComment} sx={{ width: '97px', fontWeight: 700 }}>
                             댓글 작성
                         </Button>
                     </Stack>
