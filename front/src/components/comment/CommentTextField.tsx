@@ -1,13 +1,34 @@
+import React from 'react';
+
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import { ArrowElbowDownRight } from '@phosphor-icons/react';
+import { useQueryClient } from '@tanstack/react-query';
 
+import { QUERY_KEYS } from '@/apis/QueryKeys';
+import { usePostCreateComment } from '@/apis/comment/usePostCreateComment';
 import { palette } from '@/themes';
 
 interface CommentTextFieldProps {
-    parent_comment_id: number;
+    parentCommentId: number;
+    boardId: number;
 }
-export const CommentTextField: React.FC<CommentTextFieldProps> = ({ parent_comment_id }) => {
-    console.log(parent_comment_id);
+export const CommentTextField: React.FC<CommentTextFieldProps> = ({ boardId, parentCommentId }) => {
+    const queryClient = useQueryClient();
+    const { mutateAsync: createComment } = usePostCreateComment();
+    const [comment, setComment] = React.useState<string>('');
+    const submitComment = () => {
+        createComment({
+            board_id: Number(boardId),
+            parent_comment_id: parentCommentId,
+            content: comment,
+        }).then((res) => {
+            if (res?.data?.status === 'SUCCESS') {
+                queryClient.invalidateQueries({ queryKey: QUERY_KEYS.COMMENT.all() });
+                setComment('');
+            }
+        });
+    };
+
     return (
         <Stack direction="row" gap="7px">
             <Stack sx={{ width: '52px', alignItems: 'center' }}>
@@ -18,6 +39,10 @@ export const CommentTextField: React.FC<CommentTextFieldProps> = ({ parent_comme
                     <Typography sx={{ fontWeight: 600 }}>user nickname</Typography>
                     <TextField
                         fullWidth
+                        onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+                            setComment(e.target.value)
+                        }
+                        value={comment}
                         sx={{
                             '& .MuiOutlinedInput-root': {
                                 'padding': 0,
@@ -46,7 +71,11 @@ export const CommentTextField: React.FC<CommentTextFieldProps> = ({ parent_comme
                         alignItems: 'end',
                     }}
                 >
-                    <Button variant="BlackContained" sx={{ width: '97px', height: '32px' }}>
+                    <Button
+                        onClick={submitComment}
+                        variant="BlackContained"
+                        sx={{ width: '97px', height: '32px' }}
+                    >
                         댓글 작성
                     </Button>
                 </Stack>

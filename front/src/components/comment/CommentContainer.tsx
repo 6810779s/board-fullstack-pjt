@@ -15,9 +15,10 @@ export const CommentContainer: React.FC<CommentProps> = ({
     content,
     replyCommentCnt,
     createdAt,
-    id,
+    commentId,
+    boardId,
 }) => {
-    const { data: replyComment } = useGetReplyComment(id);
+    const { data: replyComment } = useGetReplyComment(commentId);
     const [open, setOpen] = React.useState<boolean>(false);
     return (
         <Stack>
@@ -52,7 +53,7 @@ export const CommentContainer: React.FC<CommentProps> = ({
                     }}
                     gap="10px"
                 >
-                    <CommentTextField parent_comment_id={id} />
+                    <CommentTextField parentCommentId={commentId} boardId={boardId} />
                 </Stack>
             )}
         </Stack>

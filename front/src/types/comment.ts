@@ -1,5 +1,6 @@
 export interface CommentProps {
-    id: number;
+    commentId: number;
+    boardId: number;
     nickname: string;
     content: string;
     replyCommentCnt: number;
