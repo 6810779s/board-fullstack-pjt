@@ -17,7 +17,9 @@ export const RequiredTitle: React.FC<RequiredTitleProps> = ({ title, required })
             alignSelf="flex-start"
             sx={{ minWidth: '86px', height: '40px' }}
         >
-            <Typography sx={{ fontWeight: 600, fontSize: '14px' }}>{title}</Typography>
+            <Typography sx={{ fontWeight: 600, fontSize: '14px', whiteSpace: 'nowrap' }}>
+                {title}
+            </Typography>
             {required && <DotOutline color={palette.error[500]} weight="fill" />}
         </Stack>
     );

@@ -5,7 +5,7 @@ import { Login } from '@/pages/auth/login';
 import { SignUp } from '@/pages/auth/signUp';
 import { BoardDetail } from '@/pages/board/boardDetail/BoardDetail';
 import { BoardList } from '@/pages/board/boardList';
-import { BoardRegister } from '@/pages/board/boardRegister';
+import { BoardRegister } from '@/pages/board/boardRegister/BoardRegister';
 import { Error } from '@/pages/error';
 import { Home } from '@/pages/home';
 import { MyPage } from '@/pages/myPage';

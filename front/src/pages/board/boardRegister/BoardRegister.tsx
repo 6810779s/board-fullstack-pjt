@@ -71,6 +71,14 @@ export const BoardRegister = () => {
                         <MenuItem value="value3">value3</MenuItem>
                     </Select>
                 </StackStyle>
+                <StackStyle>
+                    <RequiredTitle title="모집 인원 수" required={true} />
+                    <TextField placeholder="1이상 100이하" />
+                </StackStyle>
+                <StackStyle>
+                    <RequiredTitle title="프로젝트 명" required={true} />
+                    <TextField fullWidth placeholder="프로젝트 명을 입력해 주세요." />
+                </StackStyle>
                 <StackStyle direction="row" alignItems="center">
                     <RequiredTitle title="제목" required={true} />
                     <TextField fullWidth placeholder="제목을 입력해 주세요." />
