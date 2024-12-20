@@ -13,7 +13,7 @@ export const Comment: React.FC<
             reply?: boolean;
             setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
         },
-        'replyComment' | 'id'
+        'replyComment' | 'commentId' | 'boardId'
     >
 > = ({ like, nickname, content, replyCommentCnt, createdAt, reply = false, setOpen }) => {
     return (

@@ -111,12 +111,13 @@ export const BoardDetail = () => {
                     {commentData?.map((item) => (
                         <CommentContainer
                             key={`${item.comment_id}-${item.created_at}`}
-                            id={item.comment_id}
+                            commentId={item.comment_id}
                             nickname={item.nickname}
                             content={item.content}
                             replyCommentCnt={item.reply_comment_cnt}
                             createdAt={item.created_at}
                             like={item.like_cnt}
+                            boardId={Number(id)}
                         />
                     ))}
                 </Stack>

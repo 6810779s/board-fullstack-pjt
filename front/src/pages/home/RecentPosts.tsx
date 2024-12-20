@@ -32,7 +32,7 @@ export const RecentPosts = () => {
             <List disablePadding>
                 {boardList?.map((item, idx) => (
                     <ListItem
-                        key={`${item.title}-${item.created_at}`}
+                        key={`${item.board_id}-${item.created_at}`}
                         disablePadding
                         sx={{
                             padding: '18px 0',
@@ -44,7 +44,7 @@ export const RecentPosts = () => {
                             flex={1}
                             direction="row"
                             onClick={() => {
-                                navigate(`/board/${idx}`);
+                                navigate(`/board/${item.board_id}`);
                             }}
                             sx={{ cursor: 'pointer' }}
                         >
