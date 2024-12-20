@@ -25,7 +25,10 @@ export const RecentPosts = () => {
                     <Clock size={20} color={palette.grey[500]} />
                     <Typography sx={{ fontWeight: 700, fontSize: '20px' }}>최신</Typography>
                 </Stack>
-                <Button sx={{ width: '71px' }} onClick={() => navigate('/board-list')}>
+                <Button
+                    sx={{ width: '71px', wordBreak: 'keep-all' }}
+                    onClick={() => navigate('/board-list')}
+                >
                     더보기
                 </Button>
             </Stack>
