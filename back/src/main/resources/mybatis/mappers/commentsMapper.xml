@@ -11,7 +11,6 @@
     <select id="selectAll" resultType="CommentResponseDto">
         SELECT *
         FROM comment
-        WHERE parent_comment_id IS NULL
         ORDER BY created_at DESC
     </select>
     <select id="selectMyCommentList" parameterType="UserEntity" resultType="CommentResponseDto">
@@ -51,7 +50,7 @@
                 ON c.comment_id = cl.comment_id
             LEFT JOIN comment r
                 ON r.parent_comment_id = c.comment_id
-        WHERE c.board_id = #{board_id}
+        WHERE c.board_id = #{board_id} AND c.parent_comment_id IS NULL
         GROUP BY c.comment_id, c.content, c.created_at, c.updated_at, u.nickname
         ORDER BY created_at DESC
     </select>
