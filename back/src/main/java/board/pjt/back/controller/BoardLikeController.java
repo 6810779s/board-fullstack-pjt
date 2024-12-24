@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/board-like")
+@RequestMapping("/api/board-like")
 public class BoardLikeController {
     private final BoardLikeDao boardLikeDao;
 

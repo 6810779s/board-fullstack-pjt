@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/project-attachment")
+@RequestMapping("/api/project-attachment")
 public class ProjectAttachmentController {
     private final ProjectAttachmentDao projectAttachmentDao;
 

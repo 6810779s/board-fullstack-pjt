@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/status-message")
+@RequestMapping("/api/status-message")
 public class StatusMessageController {
     private final StatusMessageDao statusMessageDao;
 
