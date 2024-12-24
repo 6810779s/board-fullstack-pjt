@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/thumbnail")
+@RequestMapping("/api/thumbnail")
 public class ThumbnailController {
     @Value("${file.thumbnail-upload-dir}")
     private String thumbnailUploadDir;

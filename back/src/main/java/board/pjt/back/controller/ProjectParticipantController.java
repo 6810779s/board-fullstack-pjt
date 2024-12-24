@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/project-participant")
+@RequestMapping("/api/project-participant")
 public class ProjectParticipantController {
     private final ProjectParticipantDao projectParticipantDao;
 

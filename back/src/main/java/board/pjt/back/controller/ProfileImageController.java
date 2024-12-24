@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/profile-image")
+@RequestMapping("/api/profile-image")
 public class ProfileImageController {
     @Value("${file.upload-dir}")
     private String uploadDir;

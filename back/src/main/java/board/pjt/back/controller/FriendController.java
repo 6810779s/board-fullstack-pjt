@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/friend")
+@RequestMapping("/api/friend")
 public class FriendController {
     private final FriendDao friendDao;
 

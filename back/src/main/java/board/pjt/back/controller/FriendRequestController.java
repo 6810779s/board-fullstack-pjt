@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/friend-request")
+@RequestMapping("/api/friend-request")
 public class FriendRequestController {
     private final FriendRequestDao friendRequestDao;
 

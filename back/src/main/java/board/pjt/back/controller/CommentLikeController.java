@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/comment-like")
+@RequestMapping("/api/comment-like")
 public class CommentLikeController {
     private final CommentLikeDao commentLikeDao;
 
