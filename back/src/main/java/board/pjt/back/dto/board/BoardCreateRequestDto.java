@@ -11,16 +11,21 @@ public class BoardCreateRequestDto {
     private int rating;
     private String main_image_path;
     private long category_id;
+    private String created_by;
 
     public BoardCreateRequestDto() {
     }
 
-    public BoardCreateRequestDto(String title, String content, int rating, String main_image_path, long category_id) {
+    public BoardCreateRequestDto(long board_id, String project_name, int participant_limit, String title, String content, int rating, String main_image_path, long category_id, String created_by) {
+        this.board_id = board_id;
+        this.project_name = project_name;
+        this.participant_limit = participant_limit;
         this.title = title;
         this.content = content;
         this.rating = rating;
         this.main_image_path = main_image_path;
         this.category_id = category_id;
+        this.created_by = created_by;
     }
 
     @Override
@@ -28,17 +33,18 @@ public class BoardCreateRequestDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BoardCreateRequestDto that = (BoardCreateRequestDto) o;
-        return participant_limit == that.participant_limit && rating == that.rating && category_id == that.category_id && Objects.equals(project_name, that.project_name) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(main_image_path, that.main_image_path);
+        return board_id == that.board_id && participant_limit == that.participant_limit && rating == that.rating && category_id == that.category_id && created_by == that.created_by && Objects.equals(project_name, that.project_name) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(main_image_path, that.main_image_path);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(project_name, participant_limit, title, content, rating, main_image_path, category_id);
+        return Objects.hash(board_id, project_name, participant_limit, title, content, rating, main_image_path, category_id, created_by);
     }
 
     @Override
     public String toString() {
         return "BoardCreateRequestDto{" +
+                "board_id=" + board_id +
                 ", project_name='" + project_name + '\'' +
                 ", participant_limit=" + participant_limit +
                 ", title='" + title + '\'' +
@@ -46,7 +52,16 @@ public class BoardCreateRequestDto {
                 ", rating=" + rating +
                 ", main_image_path='" + main_image_path + '\'' +
                 ", category_id=" + category_id +
+                ", created_by=" + created_by +
                 '}';
+    }
+
+    public String getCreated_by() {
+        return created_by;
+    }
+
+    public void setCreated_by(String created_by) {
+        this.created_by = created_by;
     }
 
     public long getBoard_id() {

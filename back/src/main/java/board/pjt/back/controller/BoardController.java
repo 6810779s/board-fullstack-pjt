@@ -68,7 +68,8 @@ public class BoardController {
 
     @PostMapping("/create")
     public ResponseEntity<ApiResponse<Void>> createBoard(@RequestBody BoardCreateRequestDto requestDto,@AuthenticationPrincipal UserDetails userDetails) {
-        boardDao.insert(requestDto,userDetails.getUsername());
+        requestDto.setCreated_by(userDetails.getUsername());
+        boardDao.insert(requestDto);
         ApiResponse<Void> response = ApiResponse.of(SuccessCode.INSERT_SUCCESS);
         return ResponseEntity.ok(response);
     }

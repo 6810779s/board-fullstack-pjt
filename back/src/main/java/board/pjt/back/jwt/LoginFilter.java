@@ -3,6 +3,7 @@ package board.pjt.back.jwt;
 import board.pjt.back.dto.user.CustomUserDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +25,8 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     public LoginFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
+
+        setFilterProcessesUrl("/api/login");
     }
 
     @Override
@@ -58,7 +61,13 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         String token = jwtUtil.createJwt(username, role, 600 * 600 * 1000L); //1시간
 
-        response.addHeader("Authorization", "Bearer " + token);
+        Cookie cookie = new Cookie("token", token);
+        cookie.setHttpOnly(true); // JavaScript에서 접근할 수 없도록 설정
+        cookie.setSecure(true); // HTTPS 연결에서만 쿠키가 전송되도록 설정
+        cookie.setPath("/"); // 모든 경로에서 쿠키 사용 가능
+        cookie.setMaxAge(60 * 60); // 1시간 유효
+        cookie.setAttribute("SameSite","None");
+        response.addCookie(cookie);
 
     }
 

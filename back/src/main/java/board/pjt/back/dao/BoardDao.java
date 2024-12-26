@@ -70,12 +70,11 @@ public class BoardDao {
     }
 
     @Transactional
-    public void insert(BoardCreateRequestDto requestDto, String userEmail) {
+    public void insert(BoardCreateRequestDto requestDto) {
         // TODO: category id 여부 체크, project_name 빈 문자열일때 에러처리, 1 <= participant_limit <= 100
         boardMapper.insert(requestDto);
-
         ProjectParticipantCreateBoardParticipantDto participantDto = new ProjectParticipantCreateBoardParticipantDto();
-        participantDto.setUserEmail(userEmail);
+        participantDto.setUserEmail(requestDto.getCreated_by());
         participantDto.setBoard_id(requestDto.getBoard_id());
         projectParticipantMapper.insertBoardCreator(participantDto);
 
