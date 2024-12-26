@@ -23,11 +23,12 @@ export const PostCard: React.FC<TBoardListTopThreeDummyData> = ({
     content,
 }) => {
     const navigate = useNavigate();
+    console.log({ imgSrc });
     return (
         <Stack flex={1} sx={{ cursor: 'pointer' }} onClick={() => navigate(`/board/${id}`)}>
             <Card variant="outlined">
                 <CardMedia
-                    image={`${import.meta.env.VITE_BASE_URL}${imgSrc}`}
+                    image={`${import.meta.env.VITE_BASE_IMAGE_URL}${imgSrc}`}
                     sx={{ width: '100%', height: '220px' }}
                 />
                 <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>

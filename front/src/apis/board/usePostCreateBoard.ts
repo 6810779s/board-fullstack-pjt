@@ -10,17 +10,21 @@ export interface PostCreateBoardReq {
     participant_limit: number;
     content: string;
     rating: number | null;
-    main_image_path: string;
     category_id: number;
+    thumbnail_file: File | null;
 }
 
-const postCreateBoard = async (param: PostCreateBoardReq): Promise<AxiosResponse> => {
-    return await api.post('/board/create', param);
+const postCreateBoard = async (param: FormData): Promise<AxiosResponse> => {
+    return await api.post('/board/create', param, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
 };
 
 export const usePostCreateBoard = () => {
     return useMutation({
         mutationKey: QUERY_KEYS.BOARD.postCreateBoard(),
-        mutationFn: (param: PostCreateBoardReq) => postCreateBoard(param),
+        mutationFn: (param: FormData) => postCreateBoard(param),
     });
 };
