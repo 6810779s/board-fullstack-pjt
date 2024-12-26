@@ -3,13 +3,18 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button, Stack, Typography, styled } from '@mui/material';
+import { useQueryClient } from '@tanstack/react-query';
 
+import { QUERY_KEYS } from '@/apis/QueryKeys';
+import { usePostLogin } from '@/apis/user/usePostLogin';
 import { palette } from '@/themes';
 
 const ButtonStyle = styled(Button)({
     width: '240px',
 });
 export const Header = () => {
+    const { mutateAsync: loginMutate } = usePostLogin();
+    const queryClient = useQueryClient();
     const navigate = useNavigate();
     const [dummyLogin, setDummyLogin] = React.useState<boolean>(false);
     return (
@@ -33,7 +38,22 @@ export const Header = () => {
                 <ButtonStyle onClick={() => setDummyLogin(false)}>로그아웃</ButtonStyle>
             ) : (
                 <Stack direction="row" gap="12px">
-                    <ButtonStyle variant="WhiteOutlined" onClick={() => setDummyLogin(true)}>
+                    <ButtonStyle
+                        variant="WhiteOutlined"
+                        onClick={() => {
+                            setDummyLogin(true);
+                            loginMutate({
+                                email: import.meta.env.VITE_TEST_EMAIL,
+                                password: import.meta.env.VITE_TEST_PW,
+                            }).then((res) => {
+                                if (res?.data?.status === 'SUCCESS') {
+                                    queryClient.invalidateQueries({
+                                        queryKey: QUERY_KEYS.USER.all(),
+                                    });
+                                }
+                            });
+                        }}
+                    >
                         로그인
                     </ButtonStyle>
                     <ButtonStyle onClick={() => navigate('/sign-up')}>회원가입</ButtonStyle>

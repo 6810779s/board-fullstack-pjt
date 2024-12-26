@@ -1,5 +1,4 @@
-import React from 'react';
-
+import { useFormContext } from 'react-hook-form';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 
@@ -9,12 +8,14 @@ import { SizeStyle } from 'quill/formats/size';
 
 import { formats, modules } from '@/pages/board/boardRegister/const';
 
+import { TBoardCreate } from '../../../BoardRegister';
 import './Editor.css';
 
 export const Editor = () => {
+    const { watch, setValue } = useFormContext<TBoardCreate>();
     SizeStyle.whitelist = ['12px', '13px', '14px', '15px', '16px', '18px', '20px', '24px'];
     ReactQuill.Quill.register(SizeStyle, true);
-    const [value, setValue] = React.useState<string>('');
+    // const [value, setValue] = React.useState<string>('');
 
     const handleChange = (
         content: string,
@@ -22,7 +23,7 @@ export const Editor = () => {
         _source: string,
         editor: ReactQuill.UnprivilegedEditor
     ) => {
-        setValue(content);
+        setValue('content', content);
         console.log({ content });
         console.log({ editor });
     };
@@ -43,7 +44,7 @@ export const Editor = () => {
             <ReactQuill
                 modules={modules}
                 formats={formats}
-                value={value}
+                value={watch('content')}
                 onChange={handleChange}
                 theme="snow"
             />
