@@ -10,12 +10,7 @@ interface PostCreateCommentReq {
     content: string;
 }
 const postCreateComment = async (param: PostCreateCommentReq): Promise<AxiosResponse> => {
-    return await api.post('/comment/create', param, {
-        headers: {
-            Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3QzQGRhdW0ubmV0Iiwicm9sZSI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MzQ1MjU3OTAsImV4cCI6MTczNDg4NTc5MH0.fM5TdmAwLhgB_NUCeJbB69nYcAke9oKVLqWty-omP_4',
-        },
-    });
+    return await api.post('/comment/create', param);
 };
 
 export const usePostCreateComment = () => {
