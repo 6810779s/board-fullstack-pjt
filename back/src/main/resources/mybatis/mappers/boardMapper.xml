@@ -145,14 +145,14 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         (title,project_name, participant_limit, content, rating, main_image_path, category_id, created_at, created_by, updated_at, updated_by)
-        VALUES (#{title},#{project_name}, #{participant_limit}, #{content}, #{rating}, #{main_image_path}, #{category_id}, now(), 'test2@daum.net', null,
+        VALUES (#{title},#{project_name}, #{participant_limit}, #{content}, #{rating}, #{main_image_path}, #{category_id}, now(), #{created_by}, null,
                 null)
     </insert>
-    <insert id="delete" parameterType="long">
+    <delete id="delete" parameterType="long">
         DELETE
         FROM board
         WHERE board_id = #{board_id}
-    </insert>
+    </delete>
     <update id="update" parameterType="BoardUpdateRequestDto">
         UPDATE board
         SET title       = #{title},
