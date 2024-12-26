@@ -40,9 +40,9 @@ export const BoardRegister = () => {
             project_name: '',
             participant_limit: 0,
             content: '',
-            main_image_path: '',
             category_id: '',
             rating: null,
+            thumbnail_file: null,
         },
     });
     const navigate = useNavigate();
@@ -53,7 +53,6 @@ export const BoardRegister = () => {
     const [previewUrl, setPreviewUrl] = React.useState<string | null>(null);
     const fileInputRef = React.useRef<HTMLInputElement | null>(null);
     const handleButtonClick = () => {
-        console.log('handleButtonClick');
         fileInputRef.current?.click(); // input 요소 클릭
     };
     // 선택한 이미지 미리보기 설정
@@ -67,21 +66,30 @@ export const BoardRegister = () => {
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
-            console.log('file', file);
-            methods.setValue('main_image_path', file.name);
-            // setSelectedFile(file);
+            methods.setValue('thumbnail_file', file);
+            console.log({ file });
             previewImage(file); // 미리보기 이미지 설정
         }
     };
     const submitCreateBoard: SubmitHandler<TBoardCreate> = (data) => {
-        createBoard({ ...data, category_id: data.category_id ? data.category_id : 0 }).then(
-            (res) => {
-                if (res?.data?.status === 'SUCCESS') {
-                    queryClient.invalidateQueries({ queryKey: QUERY_KEYS.BOARD.all() });
-                    navigate('/board-list');
-                }
+        console.log({ data });
+        const formData = new FormData();
+        formData.append('title', data.title);
+        formData.append('project_name', data.project_name);
+        formData.append('participant_limit', data.participant_limit.toString());
+        formData.append('content', data.content);
+        formData.append('rating', data.rating ? data.rating.toString() : '0');
+        formData.append('category_id', data.category_id ? data.category_id.toString() : '0');
+        if (data.thumbnail_file instanceof File) {
+            formData.append('thumbnail_file', data.thumbnail_file);
+        }
+
+        createBoard(formData).then((res) => {
+            if (res?.data?.status === 'SUCCESS') {
+                queryClient.invalidateQueries({ queryKey: QUERY_KEYS.BOARD.all() });
+                navigate('/board-list');
             }
-        );
+        });
     };
 
     return (
