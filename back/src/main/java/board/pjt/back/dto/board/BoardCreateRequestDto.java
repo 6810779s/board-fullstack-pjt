@@ -1,5 +1,7 @@
 package board.pjt.back.dto.board;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Objects;
 
 public class BoardCreateRequestDto {
@@ -9,21 +11,21 @@ public class BoardCreateRequestDto {
     private String title;
     private String content;
     private int rating;
-    private String main_image_path;
+    private MultipartFile thumbnail_file;
     private long category_id;
     private String created_by;
 
     public BoardCreateRequestDto() {
     }
 
-    public BoardCreateRequestDto(long board_id, String project_name, int participant_limit, String title, String content, int rating, String main_image_path, long category_id, String created_by) {
+    public BoardCreateRequestDto(long board_id, String project_name, int participant_limit, String title, String content, int rating, MultipartFile thumbnail_file, long category_id, String created_by) {
         this.board_id = board_id;
         this.project_name = project_name;
         this.participant_limit = participant_limit;
         this.title = title;
         this.content = content;
         this.rating = rating;
-        this.main_image_path = main_image_path;
+        this.thumbnail_file = thumbnail_file;
         this.category_id = category_id;
         this.created_by = created_by;
     }
@@ -33,12 +35,12 @@ public class BoardCreateRequestDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BoardCreateRequestDto that = (BoardCreateRequestDto) o;
-        return board_id == that.board_id && participant_limit == that.participant_limit && rating == that.rating && category_id == that.category_id && created_by == that.created_by && Objects.equals(project_name, that.project_name) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(main_image_path, that.main_image_path);
+        return board_id == that.board_id && participant_limit == that.participant_limit && rating == that.rating && category_id == that.category_id && Objects.equals(project_name, that.project_name) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(thumbnail_file, that.thumbnail_file) && Objects.equals(created_by, that.created_by);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(board_id, project_name, participant_limit, title, content, rating, main_image_path, category_id, created_by);
+        return Objects.hash(board_id, project_name, participant_limit, title, content, rating, thumbnail_file, category_id, created_by);
     }
 
     @Override
@@ -50,9 +52,9 @@ public class BoardCreateRequestDto {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", rating=" + rating +
-                ", main_image_path='" + main_image_path + '\'' +
+                ", thumbnail_file=" + thumbnail_file +
                 ", category_id=" + category_id +
-                ", created_by=" + created_by +
+                ", created_by='" + created_by + '\'' +
                 '}';
     }
 
@@ -108,12 +110,12 @@ public class BoardCreateRequestDto {
         this.rating = rating;
     }
 
-    public String getMain_image_path() {
-        return main_image_path;
+    public MultipartFile getThumbnail_file() {
+        return thumbnail_file;
     }
 
-    public void setMain_image_path(String main_image_path) {
-        this.main_image_path = main_image_path;
+    public void setThumbnail_file(MultipartFile thumbnail_file) {
+        this.thumbnail_file = thumbnail_file;
     }
 
     public long getCategory_id() {

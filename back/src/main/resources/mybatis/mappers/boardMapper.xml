@@ -17,7 +17,7 @@
             b.created_at AS created_at,
             COUNT(DISTINCT bl.board_like_id) AS like_cnt,
             COUNT(DISTINCT co.comment_id) AS comment_cnt,
-            b.main_image_path AS main_image_path
+            t.file_path AS main_image_path
         FROM
             board b
             LEFT JOIN category c ON b.category_id = c.category_id
@@ -25,6 +25,7 @@
             LEFT JOIN comment co ON b.board_id = co.board_id
             LEFT JOIN project_participant pp ON b.board_id = pp.board_id
             LEFT JOIN project_stack ps ON b.board_id = ps.board_id
+            LEFT JOIN thumbnail t ON b.board_id = t.board_id
         WHERE 1=1
         <choose>
             <when test="searchType == 'TITLE'">
@@ -49,7 +50,7 @@
             </when>
         </choose>
         GROUP BY
-        b.board_id, c.name, b.title, b.project_name, b.content, b.participant_limit, b.created_at, b.main_image_path
+        b.board_id, c.name, b.title, b.project_name, b.content, b.participant_limit, b.created_at, t.file_path
         ORDER BY
         b.created_at DESC
         <if test="limit != null">
@@ -62,7 +63,6 @@
         <result property="title" column="title"/>
         <result property="content" column="content"/>
         <result property="rating" column="rating"/>
-        <result property="main_image_path" column="main_image_path"/>
         <result property="created_by" column="created_by"/>
         <result property="created_at" column="created_at"/>
         <result property="participant_limit" column="participant_limit"/>
@@ -76,7 +76,7 @@
                b.title,
                b.content,
                b.rating,
-               b.main_image_path,
+               t.file_path AS main_image_path,
                b.created_by,
                b.created_at,
                b.participant_limit,
@@ -94,7 +94,11 @@
                 ON b.board_id = co.board_id
             LEFT JOIN project_participant pp
                 ON b.board_id = pp.board_id
+            LEFT JOIN thumbnail t
+                ON b.board_id = t.board_id
         WHERE b.board_id = #{board_id}
+        GROUP BY b.board_id, b.project_name, b.title, b.content, b.rating, t.file_path,
+                 b.created_by, b.created_at, b.participant_limit, c.category_id, c.name;
     </select>
     <select id="getBoardByCriteria" parameterType="map" resultType="BoardMainResponseDto">
         SELECT *
@@ -144,8 +148,8 @@
         <selectKey keyProperty="board_id" resultType="long" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        (title,project_name, participant_limit, content, rating, main_image_path, category_id, created_at, created_by, updated_at, updated_by)
-        VALUES (#{title},#{project_name}, #{participant_limit}, #{content}, #{rating}, #{main_image_path}, #{category_id}, now(), #{created_by}, null,
+        (title,project_name, participant_limit, content, rating, category_id, created_at, created_by, updated_at, updated_by)
+        VALUES (#{title}, #{project_name}, #{participant_limit}, #{content}, #{rating}, #{category_id}, now(), #{created_by}, null,
                 null)
     </insert>
     <delete id="delete" parameterType="long">

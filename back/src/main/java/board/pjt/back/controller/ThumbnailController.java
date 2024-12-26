@@ -37,19 +37,8 @@ public class ThumbnailController {
     // 나중에 해당 api를 지우고 해당 서비스만 board에서 사용할 것
     //사용자가 대표이미지 업데이트를 안했을 경우 기본 이미지 업데이트.
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse<Void>> createThumbnail(@AuthenticationPrincipal UserDetails userDetails, @RequestParam(value="file",required = false)MultipartFile file){
-        FileUtil fileUtil = new FileUtil(thumbnailUploadDir);
-        String fileName = BasicThumbnail.THUMBNAIL_FILE_NAME;
-        String filePath = Paths.get(BasicThumbnail.THUMBNAIL_FILE_PATH).toString();
-        String fileExtension = BasicThumbnail.THUMBNAIL_FILE_EXTENSION;
-        if(file !=null && !file.isEmpty()){
-            Map<String, String> fileDetails =  fileUtil.createFile(file);
-            fileName = fileDetails.get("fileName");
-            filePath = fileDetails.get("filePath");
-            fileExtension = fileDetails.get("fileExtension");
-        }
-        CreateThumbnailRequestDto createThumbnailRequestDto = new CreateThumbnailRequestDto(1000,userDetails.getUsername(), fileName, filePath, fileExtension);
-        thumbnailDao.createThumbnail(createThumbnailRequestDto);
+    public ResponseEntity<ApiResponse<Void>> createThumbnail(@AuthenticationPrincipal UserDetails userDetails,@RequestParam("board_id") long board_id, @RequestParam(value="file",required = false)MultipartFile file){
+        thumbnailDao.createThumbnail(file,board_id, userDetails.getUsername());
         ApiResponse<Void> response = ApiResponse.of(SuccessCode.INSERT_SUCCESS);
         return ResponseEntity.ok(response);
     }
