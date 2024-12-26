@@ -55,7 +55,7 @@ public class SecurityConfig {
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
                 registry.addResourceHandler("/uploads/**")
-                        .addResourceLocations("file:/Users/eunheejang/Desktop/uploads/");
+                        .addResourceLocations("file:/opt/homebrew/etc/nginx/board-full-pjt/uploads/");
             }
         };
 
