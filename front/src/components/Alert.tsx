@@ -49,8 +49,15 @@ const Alert: React.FC<AlertProps> = ({ variant, title, content, onConfirm, ...pr
                             height: '32px',
                         }}
                     >
-                        {variant === 'confirm' && <Check color={palette.primary[600]} />}
-                        {variant === 'error' && <WarningCircle color={palette.error[500]} />}
+                        {variant === 'confirm' && (
+                            <Check data-testid="CheckIcon" color={palette.primary[600]} />
+                        )}
+                        {variant === 'error' && (
+                            <WarningCircle
+                                data-testid="WarningCircleIcon"
+                                color={palette.error[500]}
+                            />
+                        )}
                     </Stack>
                     <Typography> {title}</Typography>
                 </Stack>
